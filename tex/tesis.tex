@@ -442,7 +442,7 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
     \begin{aligned}
       n^n \prod_{d = 1}^{k} [(v_d - u_d) + \varepsilon_d / n]
       & = n^n \prod_{d = 1}^{k} (v_d - u_d) \\
-      & + n^n \mathlarger{\sum}_{j = 1}^{2^k - 1}
+      & \hspace*{4mm} + n^n \mathlarger{\sum}_{j = 1}^{2^k - 1}
       \left [ \mathlarger{\prod}_{d = 1}^{k} \left \{ \begin{array}{lr}
       (v_d - u_d) & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
       \varepsilon_d / n & \text{otherwise}
@@ -520,9 +520,9 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
     \begin{aligned}
       \nu_N
         & = \nu^{(1)}_N \\
-        & + \sum_{s = k}^{r - 1} \left[ t(s) \left( s^s |I| + s^{s - 1} (2^k - 1) \varepsilon_s \right) \right] + \varepsilon_{\nu^{(2)}_N} \\
-        & + q \left( r^r |I| + r^{r - 1} (2^k - 1) \varepsilon_r \right)  + \varepsilon_{\nu^{(3)}_N} \\
-        & + \nu^{(4)}_N + \varepsilon_b
+        & \hspace*{4mm} + \sum_{s = k}^{r - 1} \left[ t(s) \left( s^s |I| + s^{s - 1} (2^k - 1) \varepsilon_s \right) \right] + \varepsilon_{\nu^{(2)}_N} \\
+        & \hspace*{4mm} + q \left( r^r |I| + r^{r - 1} (2^k - 1) \varepsilon_r \right)  + \varepsilon_{\nu^{(3)}_N} \\
+        & \hspace*{4mm} + \nu^{(4)}_N + \varepsilon_b
     \end{aligned}
   \end{equation*}
 
@@ -532,10 +532,10 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
     \begin{aligned}
       \nu_N
         & = |I| \left[ \sum_{s = k}^{r - 1} t(s) s^s + q r^r \right] \\
-        & + \nu^{(1)}_N \\
-        & + \sum_{s = k}^{r - 1} \left[ t(s) s^{s - 1} (2^k - 1) \varepsilon_s \right] + \varepsilon_{\nu^{(2)}_N} \\
-        & + q r^{r - 1} (2^k - 1) \varepsilon_r  + \varepsilon_{\nu^{(3)}_N} \\
-        & + \nu^{(4)}_N + \varepsilon_b
+        & \hspace*{4mm} + \nu^{(1)}_N \\
+        & \hspace*{4mm} + \sum_{s = k}^{r - 1} \left[ t(s) s^{s - 1} (2^k - 1) \varepsilon_s \right] + \varepsilon_{\nu^{(2)}_N} \\
+        & \hspace*{4mm} + q r^{r - 1} (2^k - 1) \varepsilon_r  + \varepsilon_{\nu^{(3)}_N} \\
+        & \hspace*{4mm} + \nu^{(4)}_N + \varepsilon_b
     \end{aligned}
   \end{equation*}
 
@@ -545,10 +545,10 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
     \begin{aligned}
       \nu_N
         & = |I| \left[ N - \sum_{s = 1}^{k - 1} t(s) s^s - p \right] \\
-        & + \nu^{(1)}_N \\
-        & + \sum_{s = k}^{r - 1} \left[ t(s) s^{s - 1} (2^k - 1) \varepsilon_s \right] + \varepsilon_{\nu^{(2)}_N} \\
-        & + q r^{r - 1} (2^k - 1) \varepsilon_r  + \varepsilon_{\nu^{(3)}_N} \\
-        & + \nu^{(4)}_N + \varepsilon_b
+        & \hspace*{4mm} + \nu^{(1)}_N \\
+        & \hspace*{4mm} + \sum_{s = k}^{r - 1} \left[ t(s) s^{s - 1} (2^k - 1) \varepsilon_s \right] + \varepsilon_{\nu^{(2)}_N} \\
+        & \hspace*{4mm} + q r^{r - 1} (2^k - 1) \varepsilon_r  + \varepsilon_{\nu^{(3)}_N} \\
+        & \hspace*{4mm} + \nu^{(4)}_N + \varepsilon_b
     \end{aligned}
   \end{equation*}
 
@@ -558,8 +558,8 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
     \begin{aligned}
       \frac{\nu_N}{N} - |I|
         & = \frac{p}{N} \left[ \frac{\nu^{(4)}_N}{p} - |I| \right] \\
-        & + \frac{2^k - 1}{N} \left[ \sum_{s = k}^{r - 1} t(s) s^{s - 1} \varepsilon_s + q r^{r - 1} \varepsilon_r \right] \\
-        & + \frac{1}{N} \left[ \nu^{(1)}_N - |I| \sum_{s = 1}^{k - 1} t(s) s^s + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \varepsilon_b \right]
+        & \hspace*{4mm} + \frac{2^k - 1}{N} \left[ \sum_{s = k}^{r - 1} t(s) s^{s - 1} \varepsilon_s + q r^{r - 1} \varepsilon_r \right] \\
+        & \hspace*{4mm} + \frac{1}{N} \left[ \nu^{(1)}_N - |I| \sum_{s = 1}^{k - 1} t(s) s^s + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \varepsilon_b \right]
     \end{aligned}
   \end{equation*}
 
@@ -568,11 +568,11 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
   \begin{equation*}
     \begin{aligned}
       & \frac{\sum_{s = k}^{r - 1} t(s) s^{s - 1} \varepsilon_s}{N} \le \frac{t(r - 1) \sum_{s = 1}^{r - 1} s^{s - 1}}{t(r - 1) (r - 1)^{(r - 1)}} \le \frac{2 (r - 1)^{(r - 2)}}{(r - 1)^{(r - 1)}} = \frac{2}{r - 1} \text{, and} \\
-      & \frac{q r^{r - 1} \varepsilon_r}{N} \le \frac{q r^{r - 1}}{q r^r} = \frac{1}{r} \text{.}
+      & \frac{q r^{r - 1} \varepsilon_r}{N} \le \frac{q r^{r - 1}}{q r^r} = \frac{1}{r} \text{,}
     \end{aligned}
   \end{equation*}
 
-  Since $r$ is an unbounded, non-decreasing function of $N$, this term approaches $0$ as well.
+  and since $r$ is an unbounded, non-decreasing function of $N$, this term approaches $0$ as well.
 
   Finally, consider the first term on the right-hand side and note that $\left[ \frac{\nu^{(4)}_N}{p} - |I| \right] \in [-1, 1]$, since both $\frac{\nu^{(4)}_N}{p}, |I| \in [0, 1]$. Moreover, since $p \le r^r$ and using the identity:
 
@@ -609,7 +609,7 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
 \end{proof}
 
 \begin{repproposition}{proposition:product-of-sums}
-  Given two sequences $a_1, a_2, \dots, a_k$ and $b_1, b_2, \dots, b_k$ of real numbers, the product of their element-by-element sums can be expanded in the following way:
+  Let $k$ be an arbitrary positive integer. Given two sequences $a_1, a_2, \dots, a_k$ and $b_1, b_2, \dots, b_k$ of real numbers, the product of their element-by-element sums can be expanded in the following way:
   \begin{equation*}
     \prod_{d = 1}^{k} a_d + b_d = \prod_{d = 1}^{k} a_d + \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
       \left \{ \begin{array}{lr}
@@ -620,7 +620,72 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
 \end{repproposition}
 
 \begin{proof}
-  // TODO
+  By induction on $k$. First, note that the property holds for $k = 1$:
+
+  \begin{equation*}
+    \begin{aligned}
+      & \prod_{d = 1}^{1} a_d + b_d = a_1 + b_1 \text{, and} \\
+      & \prod_{d = 1}^{1} a_d + \mathlarger{\sum}_{j = 1}^{1} \left [ \mathlarger{\prod}_{d = 1}^{1}
+      \left \{ \begin{array}{lr}
+        a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+        b_d & \text{otherwise}
+      \end{array} \right \} \right ] = a_1 + b_1 \text{.}
+    \end{aligned}
+  \end{equation*}
+
+  Next, we see that the inductive step holds for any $k$. First,
+
+  \begin{equation*}
+    \begin{aligned}
+      \prod_{d = 1}^{k + 1} a_d + b_d
+        & = (a_{k + 1} + b_{k + 1}) \prod_{d = 1}^{k} a_d + b_d \text{, \hspace*{5mm} and by I. H.} \\
+        & = (a_{k + 1} + b_{k + 1}) \left[ \prod_{d = 1}^{k} a_d + \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
+      \left \{ \begin{array}{lr}
+        a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+        b_d & \text{otherwise}
+      \end{array} \right \} \right ] \right] \\
+        & = \prod_{d = 1}^{k + 1} a_d + a_{k + 1} \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
+        \left \{ \begin{array}{lr}
+          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          b_d & \text{otherwise}
+        \end{array} \right \} \right ] \\
+        & \hspace*{4mm} + b_{k + 1} \prod_{d = 1}^{k} a_d + b_{k + 1} \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
+        \left \{ \begin{array}{lr}
+          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          b_d & \text{otherwise}
+        \end{array} \right \} \right ] \text{.}
+    \end{aligned}
+  \end{equation*}
+
+  Since for every $j = 1 \dots 2^{k} - 1$ the value $\left \lfloor \frac{j}{2^{k}} \right \rfloor = 0$ and is therefore even, we can add the factor $a_{k + 1}$ to the product in the second term simply by raising the upper limit to $k + 1$. Similarly, in the fourth term we can add the factor $b_{k + 1}$ to the product by raising the upper limit to $k + 1$ and changing the limits in the sum to $j = (2^k + 1) \dots (2^k + 2^k - 1)$. This is true because adding $2^k$ to $j$ does not change the value of $\left \lfloor \frac{j}{2^{d - 1}} \right \rfloor$ for any $d \le k$, but when $d = k + 1$ the value $\left \lfloor \frac{j}{2^{k}} \right \rfloor = 1$ and is therefore odd. The third term can be rewritten as a similar product for a value of $j = 2^k$, and substituting into the equation above:
+
+  \begin{equation*}
+    \begin{aligned}
+      \prod_{d = 1}^{k + 1} a_d + b_d
+        & = \prod_{d = 1}^{k + 1} a_d + \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k + 1}
+        \left \{ \begin{array}{lr}
+          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          b_d & \text{otherwise}
+        \end{array} \right \} \right ] \\
+        & \hspace*{4mm} + \mathlarger{\sum}_{j = 2^k}^{2^k} \left [ \mathlarger{\prod}_{d = 1}^{k + 1}
+        \left \{ \begin{array}{lr}
+          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          b_d & \text{otherwise}
+        \end{array} \right \} \right ] \\
+        & \hspace*{4mm} + \mathlarger{\sum}_{j = 2^k + 1}^{2^k + 2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
+        \left \{ \begin{array}{lr}
+          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          b_d & \text{otherwise}
+        \end{array} \right \} \right ] \\
+        & = \prod_{d = 1}^{k + 1} a_d + \mathlarger{\sum}_{j = 1}^{2^{k + 1} - 1} \left [ \mathlarger{\prod}_{d = 1}^{k + 1}
+        \left \{ \begin{array}{lr}
+          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          b_d & \text{otherwise}
+        \end{array} \right \} \right ] \text{,}
+    \end{aligned}
+  \end{equation*}
+  which completes the proof.
+
 \end{proof}
 
 \begin{repproposition}{proposition:sum-i-to-the-i-m-1}
