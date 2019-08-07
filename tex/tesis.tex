@@ -647,9 +647,9 @@ Before applying Weyl's Criterion to sequence $L$, we must first prove the follow
 
   then from the definition of a $C$ sequence, it follows that $\bar{w}_j = \frac{1}{n} \bar{f}_j$ for $j = 1 \dots n^n$.
   
-  If we define $\Gamma = \left \{ 0, 1, \dots, n - 1 \right \} $, then every $\bar{\gamma} \in \Gamma^k$ appears exactly $n^{n - k}$ times in the sequence $W_k^c\left(F^{(n, n)}\right)$. This is true because there are  $n^{n - k}$ ways of extending an $n$-ary sequence of length $k$ to one of length $n$ and, by construction, each of these appears exactly once in $F^{(n, n)}$ when viewed as a cycle.
+  Then, if we define $\Gamma = \left \{ 0, 1, \dots, n - 1 \right \} $, every $\bar{\gamma} \in \Gamma^k$ appears exactly $n^{n - k}$ times in the sequence $W_k^c\left(F^{(n, n)}\right)$. This is true because there are  $n^{n - k}$ ways of extending an $n$-ary sequence of length $k$ to one of length $n$ and, by construction, each of these appears exactly once in $F^{(n, n)}$ when viewed as a cycle.
   
-  Substituting into the left-hand side of the equation \ref{equation:weyl-sum-over-cyclic-c-sequence}:
+  Substituting into the left-hand side of equation \ref{equation:weyl-sum-over-cyclic-c-sequence}:
   
   \begin{equation*}
     \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot (\frac{1}{n} \bar{f}_j)} = \sum_{j = 1}^{n^n} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{f}_j} = n^{n - k} \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{\gamma}}
@@ -670,7 +670,7 @@ Before applying Weyl's Criterion to sequence $L$, we must first prove the follow
 
   where the congruence $\bar{l} \cdot \bar{\gamma} \equiv r$ is taken modulo $n$.
 
-  The conditions for the existence of solutions to equations of the form $\bar{l} \cdot \bar{\gamma} \equiv r \text{ (mod $n$)}$, $\bar{\gamma} \in \Gamma^k$, are well understood. See for example \cite{mccarthy-1986}, page 114. In particular, this equation only has solutions when $gcd(l_1, \dots, l_k, n) = g$ divides $r$ and, in such case, the total number of solutions is equal to $g n^{k - 1}$. Therefore:
+  The conditions for the existence of solutions to equations of the form $\bar{l} \cdot \bar{\gamma} \equiv r \text{ (mod $n$)}$, $\bar{\gamma} \in \Gamma^k$, are well understood (see \cite{mccarthy-1986}, page 114). In particular, this equation only has solutions when $gcd(l_1, \dots, l_k, n) = g$ divides $r$ and, in such case, the total number of solutions is equal to $g n^{k - 1}$. Therefore:
 
   \begin{equation*}
     \begin{aligned}
@@ -691,7 +691,7 @@ Before applying Weyl's Criterion to sequence $L$, we must first prove the follow
     \end{aligned}
   \end{equation*}
 
-  where the last step comes from substituting $r = g r'$. If we also substitute $n = g n'$ and observe that $\left\lfloor \frac{n - 1}{g} \right\rfloor = n' - 1$, we can see that:
+  where the last step comes from substituting $r = g r'$. If we also substitute $n = g n'$ and observe that $\left\lfloor \frac{n - 1}{g} \right\rfloor = n' - 1$:
 
   \begin{equation*}
     \begin{aligned}
@@ -711,13 +711,13 @@ Before applying Weyl's Criterion to sequence $L$, we must first prove the follow
 \begin{proof}[Proof of Theorem 1]
   Similarly to section \ref{subsection:proof-of-theorem 1}, we consider a prefix of sequence $L$ of length $N$, denoted $L_{1:N}$, and we define the values $p$, $q$, and $r$ equivalently.
 
-  Letting $W_k(L) = \bar{w}_1, \bar{w}_2, \dots$, we define the complex value $\nu_N$ analogously as the Weyl sum over the first $N$ windows:
+  Letting $W_k(L) = \bar{w}_1, \bar{w}_2, \dots$, we analogously define the complex value $\nu_N$ as the Weyl sum over the first $N$ windows of size $k$ of $L$:
 
   \begin{equation*}
     \nu_N = \sum_{j = 1}^{N} e^{2 \pi i \bar{l} \cdot \bar{w}_j}
   \end{equation*}
 
-  Let $m = max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$, and consider sufficiently large values of $N$ such that $m < r$. Again, this is always possible since $r$ is an unbounded, non-decreasing function of $N$. We can decompose $L_{1:N}$ into four consecutive sections; namely, sequences $S^{(1)}$, $S^{(2)}$, $S^{(3)}$ and $S^{(4)}$:
+  Let $m = max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$, and consider sufficiently large values of $N$ such that $m < r$. Like before, this is always possible since $r$ is an unbounded, non-decreasing function of $N$. We can decompose $L_{1:N}$ into four consecutive sections; namely, sequences $S^{(1)}$, $S^{(2)}$, $S^{(3)}$ and $S^{(4)}$:
 
   \begin{equation*}
     \begin{aligned}
@@ -729,7 +729,7 @@ Before applying Weyl's Criterion to sequence $L$, we must first prove the follow
     \end{aligned}
   \end{equation*}
 
-  and define $\nu_N^{(1)}$, $\nu_N^{(2)}$, $\nu_N^{(3)}$ and $\nu_N^{(4)}$ as the Weyl sums over windows entirely contained within each section, respectively, such that:
+  and define $\nu_N^{(1)}$, $\nu_N^{(2)}$, $\nu_N^{(3)}$ and $\nu_N^{(4)}$ as the Weyl sums over windows entirely contained within each respective section, such that:
 
   \begin{equation*}
     \begin{aligned}
@@ -738,7 +738,7 @@ Before applying Weyl's Criterion to sequence $L$, we must first prove the follow
   \end{equation*}
   for some complex number $\varepsilon_b$ with $|\varepsilon_b| \le 3 (k - 1)$, accounting for all windows crossing over any border.
 
-  Following the same reasoning as in section \ref{subsection:proof-of-theorem 1}, the values of $\nu_N^{(2)}$ and $\nu_N^{(3)}$ can be computed as the Weyl sums over the $C$ sequences composing $S^{(2)}$ and $S^{(3)}$ viewed as cycles, plus an error term accounting for right borders. However, in this case, due to Lemma \ref{lemma:weyl-sum-over-cyclic-c-sequences} and the fact that all $C$ sequences in $S^{(2)}$ and $S^{(3)}$ have orders greater than $m$, these sums vanish to zero. Therefore, $\nu_N = \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \nu^{(4)}_N + \varepsilon_b$, for some complex values $\varepsilon_{\nu^{(2)}_N}, \varepsilon_{\nu^{(3)}_N}$ with $|\varepsilon_{\nu^{(2)}_N}|, |\varepsilon_{\nu^{(3)}_N}| \le k - 1$.
+  Following the same reasoning from section \ref{subsection:proof-of-theorem 1}, the values of $\nu_N^{(2)}$ and $\nu_N^{(3)}$ can be computed as the Weyl sums over the $C$ sequences composing $S^{(2)}$ and $S^{(3)}$ viewed as cycles, plus two error terms accounting for right borders. However, in this case, due to Lemma \ref{lemma:weyl-sum-over-cyclic-c-sequences} and the fact that all $C$ sequences in $S^{(2)}$ and $S^{(3)}$ have orders greater than $m$, these sums vanish to zero. Therefore, $\nu_N = \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \nu^{(4)}_N + \varepsilon_b$, for some complex values $\varepsilon_{\nu^{(2)}_N}, \varepsilon_{\nu^{(3)}_N}$ with $|\varepsilon_{\nu^{(2)}_N}|, |\varepsilon_{\nu^{(3)}_N}| \le k - 1$.
 
   We will now consider the limit of $\nu_N / N$ as $N \to \infty$. Note that:
 
@@ -751,7 +751,7 @@ Before applying Weyl's Criterion to sequence $L$, we must first prove the follow
     \end{aligned}
   \end{equation*}
 
-  The numerator in the first term is dependent on $k$ and $m$ and constant as a function of $N$ and, as shown before, the second term approaches $0$ as $r \to \infty$. Therefore, the sum of both terms approaches $0$ as $N \to \infty$, which in turn implies that $\nu_N / N$ vanishes as well.
+  The numerator in the first term is dependent on $k$ and $m$, and constant as a function of $N$. As shown before, the second term approaches $0$ as $r \to \infty$. Therefore, the sum of both terms approaches $0$ as $N \to \infty$, which in turn implies that $\nu_N / N$ vanishes as well.
 
   Given that $k$ and $\bar{l}$ were chosen arbitrarily, Weyl's Criterion is satisfied for all values of $k$ and sequence $L$ is completely equidistributed.
 
