@@ -157,6 +157,26 @@ In order to avoid ambiguity with the previous definition, for a cyclic sequence 
 
 where the indices are taken modulo $l$.
 
+\section{Weyl's Criterion}\label{section:weyls-criterion}
+
+First formulated by Hermann Weyl in his paper from 1916 \cite{weyl-1916}, Weyl's Criterion states that a sequence $X = x_1, x_2, \dots$ of real numbers is equidistributed in the unit interval if and only if for all non-zero integers $l$:
+
+\begin{equation*}
+  \lim_{N \to \infty} \frac{1}{N} \sum_{n = 1}^{N} e^{2 \pi i l x_n} = 0 \text{,}
+\end{equation*}
+
+which allows questions about equidistribution to be reduced to bounds on exponential sums.
+
+The criterion can also be generalized into higher dimensions in the following way. If $\bar{X} = \bar{x}_1, \bar{x}_2, \dots$ is a sequence of $k$-dimensional vectors of real numbers, then $\bar{X}$ is equidistributed in the unit cube if and only if for all non-zero $k$-dimensional vectors of integers $\bar{l} = (l_1, \dots, l_k)$:
+
+\begin{equation*}
+  \lim_{N \to \infty} \frac{1}{N} \sum_{n = 1}^{N} e^{2 \pi i \bar{l} \cdot \bar{x}_n} = 0 \text{,}
+\end{equation*}
+
+where $\bar{l} \cdot \bar{x}_n$ denotes the dot product of $\bar{l}$ and $\bar{x}_n$.
+
+Proof of both statements can be found in \cite{weyl-1916}, pages 313 and 318.
+
 \section{De Bruijn Sequences and Ford Sequences}
 
 For the constructions presented in chapter \ref{chapter:cesbofs}, we will use Ford sequences as a basic primitive, which are themselves a specific type of De Bruijn sequences. Having been originally defined over a binary alphabet (see \cite{de-bruijn-1946}) and later generalized to larger alphabets, their definition varies slightly accross the literature. Throughout this work, we will use these terms according to the following definitions.
@@ -305,7 +325,7 @@ We now define sequence $L$ as the infinite sequence of real numbers resulting fr
   and $L$ is completely equidistributed.
 \end{exmp*}
 
-\subsection{Proof of Theorem 1}
+\subsection{Proof of Theorem 1}\label{subsection:proof-of-theorem 1}
 
 In order to present our proof of Theorem 1, we must first establish some preliminary definitions.
 
@@ -340,7 +360,7 @@ We can now express the probability, in the sense defined in chapter \ref{chapter
 
 Consider sufficiently large values of $N$ such that $k < r$. This is always possible since $r$ is an unbounded, non-decreasing function of $N$. We can decompose $L_{1:N}$ into four consecutive sections; namely, sequences $S^{(1)}$, $S^{(2)}$, $S^{(3)}$ and $S^{(4)}$:
 
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     L_{1:N} & = \left< S^{(1)} ; S^{(2)} ; S^{(3)} ; S^{(4)} \right> \text{, \hspace*{5mm} where} \\
     S^{(1)} & = \left< D^{(1)} ; D^{(2)} ; \dots ; D^{(k - 1)} \right> \\
@@ -348,7 +368,7 @@ Consider sufficiently large values of $N$ such that $k < r$. This is always poss
     S^{(3)} & = \left< \underbrace{C^{(r)} ; \dots ; C^{(r)}}_{q \text{ times}} \right> \\ 
     S^{(4)} & = C^{(r)}_{1:p}
   \end{aligned}
-\end{equation}
+\end{equation*}
 
 Note that $S^{(1)}$ and $S^{(3)}$ could potentially be empty in the cases when $k = 1$ or $q = 0$, respectively.
 
@@ -376,7 +396,7 @@ Before obtaining more precise expressions for these quantities, we must first st
   \begin{equation*}
     \prod_{d = 1}^{k} a_d + b_d = \prod_{d = 1}^{k} a_d + \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
       \left \{ \begin{array}{lr}
-        a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+        a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
         b_d & \text{otherwise}
       \end{array} \right \} \right ]
   \end{equation*}
@@ -444,7 +464,7 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
       & = n^n \prod_{d = 1}^{k} (v_d - u_d) \\
       & \hspace*{4mm} + n^n \mathlarger{\sum}_{j = 1}^{2^k - 1}
       \left [ \mathlarger{\prod}_{d = 1}^{k} \left \{ \begin{array}{lr}
-      (v_d - u_d) & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+      (v_d - u_d) & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
       \varepsilon_d / n & \text{otherwise}
     \end{array} \right \} \right ]
     \end{aligned}
@@ -454,7 +474,7 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
 
   \begin{equation*}
     \varepsilon'_j / n = \mathlarger{\prod}_{d = 1}^{k} \left \{ \begin{array}{lr}
-      (v_d - u_d) & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+      (v_d - u_d) & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
       \varepsilon_d / n & \text{otherwise}
     \end{array} \right \}
   \end{equation*}
@@ -596,6 +616,131 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
 
 \end{proof}
 
+\subsection{Alternative Proof of Theorem 1}
+
+Next, we provide an alternative proof of Theorem 1 based on Weyl's Criterion, stated in section \ref{section:weyls-criterion}, and a well-known proposition from the theory of systems of linear modular congruences.
+
+Let $k$ be a positive integer and $\bar{l} = (l_1, l_2, \dots, l_k)$ a non-zero $k$-dimensional vector of integers, where both $k$ and $\bar{l}$ have arbitrary but fixed values.
+
+Before providing the alternative proof of Theorem 1, we must first state the following lemma.
+
+\begin{lemma}\label{lemma:weyl-sum-over-cyclic-c-sequences}
+  Given an $n \in \mathbb{N}$, $n > min(|l_1|, |l_2|, \dots, |l_k|)$, let $W_k^c\left(C^{(n)}\right) = \bar{w}_1, \bar{w}_2, \dots, \bar{w}_{n^n}$ denote the windows sequence of order $k$ of $C^{(n)}$ viewed as a cyclic sequence. Then:
+
+  \begin{equation*}
+    \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot \bar{w}_j} = 0 \text{.}
+  \end{equation*}
+\end{lemma}
+
+\begin{proof}
+  Let $W_k^c\left(F^{(n, n)}\right) = \bar{f}_1, \bar{f}_2, \dots, \bar{f}_{n^n}$. From the definition of a $C$ sequence, it follows that $\bar{w}_j = \frac{1}{n} \bar{f}_j$ for $j = 1 \dots n^n$. Also, if we call $\Gamma = \left \{ 0, 1, \dots, n - 1 \right \} $, then by construction every $\bar{\gamma} \in \Gamma^k$ appears exactly once in the sequence $W_k^c\left(F^{(n, n)}\right)$. Substituting into the left-hand side of the equation above:
+  
+  \begin{equation*}
+    \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot (\frac{1}{n} \bar{f}_j)} = \sum_{j = 1}^{n^n} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{f}_j} = \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{\gamma}}
+  \end{equation*}
+
+  Now, since $\bar{l} \cdot \bar{\gamma} \in \mathbb{Z}$ and the function $exp : \mathbb{Z} \to \mathbb{C}$, $exp(m) = e^{\frac{2 \pi i}{n} m}$ is periodic with period equal to $n$, then:
+
+  \begin{equation*}
+    \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{\gamma}}
+    = \sum_{r = 0}^{n - 1}
+        \sum_{
+          \substack{
+            \bar{\gamma} \in \Gamma^k \\
+            \bar{l} \cdot \bar{\gamma} \equiv r
+          }
+        } e^{\frac{2 \pi i}{n} r}
+  \end{equation*}
+
+  where the congruence $\bar{l} \cdot \bar{\gamma} \equiv r$ is taken modulo $n$.
+
+  It is a well-known fact from the theory of systems of linear modular congruences (see \cite{mccarthy-1986}, page 114), that the equation $\bar{l} \cdot \bar{\gamma} \equiv r \text{ (mod $n$)}$, where $\bar{\gamma} \in \Gamma^k$, only has solutions when $gcd(l_1, l_2, \dots, l_k, n) = g$ divides $r$. Moreover, in such case, the total number of solutions is equal to $g n^{k - 1}$. Therefore:
+
+  \begin{equation*}
+    \begin{aligned}
+      \sum_{r = 0}^{n - 1}
+        \sum_{
+          \substack{
+            \bar{\gamma} \in \Gamma^k \\
+            \bar{l} \cdot \bar{\gamma} \equiv r
+          }
+        } e^{\frac{2 \pi i}{n} r}
+      & = \sum_{\substack{
+        r = 0 \\
+        g | r
+      }}^{n - 1} g n^{k - 1} e^{\frac{2 \pi i}{n} r} \\
+      & = g n^{k - 1} \sum_{\substack{
+        r' = 0
+      }}^{\left\lfloor \frac{n - 1}{g} \right\rfloor} e^{\frac{2 \pi i}{n} g r'}
+    \end{aligned}
+  \end{equation*}
+
+  where the last step comes from substituting $r = g r'$. If we also substitute $n = g n'$ and observe that $\left\lfloor \frac{n - 1}{g} \right\rfloor = n' - 1$, we arrive at:
+
+  \begin{equation*}
+    \begin{aligned}
+      \sum_{\substack{
+        r' = 0
+      }}^{\left\lfloor \frac{n - 1}{g} \right\rfloor} e^{\frac{2 \pi i}{n} g r'}
+      & = \sum_{\substack{
+        r' = 0
+      }}^{n' - 1} e^{\frac{2 \pi i}{n'} r'}
+    \end{aligned}
+  \end{equation*}
+
+  The term on the right-hand side is the sum of all roots of unity of order $n'$. It is a well-known fact that this sum is equal to $0$ whenever $n' > 1$. Finally, since $n > min(|l_1|, |l_2|, \dots, |l_k|) \ge g$, then $n' = n / g > 1$, and the proof is complete.
+
+\end{proof}
+
+\begin{proof}[Proof of Theorem 1]
+  Similarly to subsection \ref{subsection:proof-of-theorem 1}, we consider a prefix of $L$ of length $N$, denoted $L_{1:N}$, and define the values $p$, $q$, and $r$ in the same way.
+
+  Letting $W_k(L) = \bar{w}_1, \bar{w}_2, \dots$, we define the complex value $\nu_N$ analogously as:
+
+  \begin{equation*}
+    \nu_N = \sum_{j = 1}^{N} e^{2 \pi i \bar{l} \cdot \bar{w}_j}
+  \end{equation*}
+
+  Let $m = max\left(k, min\left(|l_1|, |l_1|, \dots, |l_k|\right)\right)$, and consider sufficiently large values of $N$ such that $m < r$. Again, this is always possible since $r$ is an unbounded, non-decreasing function of $N$. We can decompose $L_{1:N}$ into four consecutive sections; namely, sequences $S^{(1)}$, $S^{(2)}$, $S^{(3)}$ and $S^{(4)}$:
+
+  \begin{equation*}
+    \begin{aligned}
+      L_{1:N} & = \left< S^{(1)} ; S^{(2)} ; S^{(3)} ; S^{(4)} \right> \text{, \hspace*{5mm} where} \\
+      S^{(1)} & = \left< D^{(1)} ; D^{(2)} ; \dots ; D^{(m - 1)} \right> \\
+      S^{(2)} & = \left< D^{(m)} ; D^{(m + 1)} ; \dots ; D^{(r - 1)} \right> \\
+      S^{(3)} & = \left< \underbrace{C^{(r)} ; \dots ; C^{(r)}}_{q \text{ times}} \right> \\ 
+      S^{(4)} & = C^{(r)}_{1:p}
+    \end{aligned}
+  \end{equation*}
+
+  and define $\nu_N^{(1)}$, $\nu_N^{(2)}$, $\nu_N^{(3)}$ and $\nu_N^{(4)}$ analogously such that:
+
+  \begin{equation*}
+    \begin{aligned}
+      \nu_N & = \nu^{(1)}_N + \nu^{(2)}_N + \nu^{(3)}_N + \nu^{(4)}_N + \varepsilon_b
+    \end{aligned}
+  \end{equation*}
+  for some complex number $\varepsilon_b$ where $|\varepsilon_b| \le 3 (k - 1)$.
+
+  Following the same reasoning as in subsection \ref{subsection:proof-of-theorem 1}, the values of $\nu_N^{(2)}$ and $\nu_N^{(3)}$ can be computed as the sums over the $C$ sequences composing $S^{(2)}$ and $S^{(3)}$ viewed as cycles, plus an error term accounting for the right edges. However, in this case, due to Lemma \ref{lemma:weyl-sum-over-cyclic-c-sequences} and the fact that all $C$ sequences in $S^{(2)}$ and $S^{(3)}$ have orders greater than $min\left(|l_1|, |l_1|, \dots, |l_k|\right)$, all these sums vanish to zero. Therefore, $\nu_N = \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \nu^{(4)}_N + \varepsilon_b$, for some complex values $\varepsilon_{\nu^{(2)}_N}, \varepsilon_{\nu^{(3)}_N}$ with absolute values less than or equal to $k - 1$.
+
+  We will now consider the limit of $\nu_N / N$ as $N \to \infty$. Note that:
+
+  \begin{equation*}
+    \begin{aligned}
+      \left| \frac{\nu_N}{N} \right|
+        & \le \frac{1}{N} \left| \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \varepsilon_b \right| + \frac{1}{N} \left| \nu^{(4)}_N \right| \\
+        & \le \frac{1}{N} \left[ \left| \nu^{(1)}_N \right| + | \varepsilon_{\nu^{(2)}_N} | + | \varepsilon_{\nu^{(3)}_N} | + \left| \varepsilon_b \right| \right] + \frac{p}{N} \\
+        & \le \frac{1}{N} \left[ \left| \nu^{(1)}_N \right| + (k - 1) + (k - 1) + 3 (k - 1) \right] + \frac{p}{N}
+    \end{aligned}
+  \end{equation*}
+
+  Since the numerator in the first term is dependent on $k$ and $m$ and bounded as a function of $N$ and, as shown before, $p / N$ approaches $0$ as $r \to \infty$, then the sum of both terms approaches $0$ as $N \to \infty$.
+
+  Given that $k$ and $\bar{l}$ were chosen arbitrarily, Weyl's Criterion is satisfied for all values of $k$ and sequence $L$ is completely equidistributed.
+
+\end{proof}
+
 \appendix
 
 \section*{Appendix A}
@@ -613,7 +758,7 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
   \begin{equation*}
     \prod_{d = 1}^{k} a_d + b_d = \prod_{d = 1}^{k} a_d + \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
       \left \{ \begin{array}{lr}
-        a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+        a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
         b_d & \text{otherwise}
       \end{array} \right \} \right ]
   \end{equation*}
@@ -627,7 +772,7 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
       & \prod_{d = 1}^{1} a_d + b_d = a_1 + b_1 \text{, and} \\
       & \prod_{d = 1}^{1} a_d + \mathlarger{\sum}_{j = 1}^{1} \left [ \mathlarger{\prod}_{d = 1}^{1}
       \left \{ \begin{array}{lr}
-        a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+        a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
         b_d & \text{otherwise}
       \end{array} \right \} \right ] = a_1 + b_1 \text{.}
     \end{aligned}
@@ -641,45 +786,45 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
         & = (a_{k + 1} + b_{k + 1}) \prod_{d = 1}^{k} a_d + b_d \text{, \hspace*{5mm} and by I. H.} \\
         & = (a_{k + 1} + b_{k + 1}) \left[ \prod_{d = 1}^{k} a_d + \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
       \left \{ \begin{array}{lr}
-        a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+        a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
         b_d & \text{otherwise}
       \end{array} \right \} \right ] \right] \\
         & = \prod_{d = 1}^{k + 1} a_d + a_{k + 1} \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
         \left \{ \begin{array}{lr}
-          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
           b_d & \text{otherwise}
         \end{array} \right \} \right ] \\
         & \hspace*{4mm} + b_{k + 1} \prod_{d = 1}^{k} a_d + b_{k + 1} \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
         \left \{ \begin{array}{lr}
-          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
           b_d & \text{otherwise}
         \end{array} \right \} \right ] \text{.}
     \end{aligned}
   \end{equation*}
 
-  Since for every $j = 1 \dots 2^{k} - 1$ the value $\left \lfloor \frac{j}{2^{k}} \right \rfloor = 0$ and is therefore even, we can add the factor $a_{k + 1}$ to the product in the second term simply by raising the upper limit to $k + 1$. Similarly, in the fourth term we can add the factor $b_{k + 1}$ to the product by raising the upper limit to $k + 1$ and changing the limits in the sum to $j = (2^k + 1) \dots (2^k + 2^k - 1)$. This is true because adding $2^k$ to $j$ does not change the value of $\left \lfloor \frac{j}{2^{d - 1}} \right \rfloor$ for any $d \le k$, but when $d = k + 1$ the value $\left \lfloor \frac{j}{2^{k}} \right \rfloor = 1$ and is therefore odd. The third term can be rewritten as a similar product for a value of $j = 2^k$, and substituting into the equation above:
+  Since for every $j = 1 \dots 2^{k} - 1$ the value $\left\lfloor \frac{j}{2^{k}} \right\rfloor = 0$ and is therefore even, we can add the factor $a_{k + 1}$ to the product in the second term simply by raising the upper limit to $k + 1$. Similarly, in the fourth term we can add the factor $b_{k + 1}$ to the product by raising the upper limit to $k + 1$ and changing the limits in the sum to $j = (2^k + 1) \dots (2^k + 2^k - 1)$. This is true because adding $2^k$ to $j$ does not change the value of $\left\lfloor \frac{j}{2^{d - 1}} \right\rfloor$ for any $d \le k$, but when $d = k + 1$ the value $\left\lfloor \frac{j}{2^{k}} \right\rfloor = 1$ and is therefore odd. The third term can be rewritten as a similar product for a value of $j = 2^k$, and substituting into the equation above:
 
   \begin{equation*}
     \begin{aligned}
       \prod_{d = 1}^{k + 1} a_d + b_d
         & = \prod_{d = 1}^{k + 1} a_d + \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k + 1}
         \left \{ \begin{array}{lr}
-          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
           b_d & \text{otherwise}
         \end{array} \right \} \right ] \\
         & \hspace*{4mm} + \mathlarger{\sum}_{j = 2^k}^{2^k} \left [ \mathlarger{\prod}_{d = 1}^{k + 1}
         \left \{ \begin{array}{lr}
-          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
           b_d & \text{otherwise}
         \end{array} \right \} \right ] \\
         & \hspace*{4mm} + \mathlarger{\sum}_{j = 2^k + 1}^{2^k + 2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
         \left \{ \begin{array}{lr}
-          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
           b_d & \text{otherwise}
         \end{array} \right \} \right ] \\
         & = \prod_{d = 1}^{k + 1} a_d + \mathlarger{\sum}_{j = 1}^{2^{k + 1} - 1} \left [ \mathlarger{\prod}_{d = 1}^{k + 1}
         \left \{ \begin{array}{lr}
-          a_d & \left \lfloor \frac{j}{2^{d - 1}} \right \rfloor \text{is even} \\
+          a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
           b_d & \text{otherwise}
         \end{array} \right \} \right ] \text{,}
     \end{aligned}
