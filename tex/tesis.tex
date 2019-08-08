@@ -79,21 +79,21 @@ Significant work has been done in this direction. In a paper by Franklin \cite{f
 
 The first concrete construction yielding a completely equidistributed sequence is due to Knuth \cite{knuth-1965}, and based on De Bruijn sequences of increasing order and alphabet size. In this work, we provide a similar albeit simpler construction and prove that the sequence it yields is also completely equidistributed.
 
-Since a real computer with finite word-length and finite memory can only produce numbers of limited precision and sequences that will ultimately be periodic, we ignore this limitation by considering a computational model with infinite memory and with infinite word-length, where real numbers can be stored and computed with perfect precision.
+Since a real computer with finite word-length and finite memory can only produce numbers of limited precision and sequences that are ultimately periodic, we ignore this limitation by considering a computational model with infinite memory and with infinite word-length, where real numbers can be stored and computed with perfect precision.
 
-\section{A Note on Notation}
+\section{Notational Conventions}
 
-Since notation on sequences can differ across the literature, we state the conventions that we will be using throughout this work.
+Since notation on sequences can differ across the literature, we state the conventions used throughout this work.
 
-When discussing a sequence $X = x_1, x_2, \dots$, the expression $X_i$ will denote the $i$-th element of the sequence, with the first element having an index of $1$.
+When discussing a sequence $X = x_1, x_2, \dots$, the expression $X_i$ denotes the $i$-th element of the sequence, with the first element having an index of $1$.
 
-The expression $X_{1 : n}$ will denote a prefix of length $n$ from sequence $X$. Namely, $X_{1 : n} = x_1, x_2, \dots, x_n$.
+The expression $X_{1 : n}$ denotes a prefix of length $n$ from sequence $X$. Namely, $X_{1 : n} = x_1, x_2, \dots, x_n$.
 
-Given two sequences $X$ and $Y$, the expression $ \left< X ; Y \right>$ will denote the sequence obtained by concatenating $Y$ after $X$, when this operation is well-defined. We also extend this notation to more than two input sequences; for example, if $A = 1, 2, 3$, $B = 3$, and $C = 4, 5$, then $\left< A ; B ; C \right> = 1, 2, 3, 3, 4, 5$.
+Given two sequences $X$ and $Y$, the expression $ \left< X ; Y \right>$ denotes the sequence obtained by concatenating $Y$ after $X$, when this operation is well-defined. We also extend this notation to more than two input sequences; for example, if $A = 1, 2, 3$, $B = 3$, and $C = 4, 5$, then $\left< A ; B ; C \right> = 1, 2, 3, 3, 4, 5$.
 
 \section{Complete Equidistribution}
 
-In order to define complete equidistribution, we will first need to define a notion of "probability" for deterministic sequences. Let $P = p_1, p_2, ...$ be an infinite sequence of predicates and $\sigma$ a function such that $\sigma(p_i) = 1$ if $p_i$ is $true$, and $\sigma(p_i) = 0$ otherwise. We define:
+In order to define complete equidistribution, we first need to define a notion of "probability" for deterministic sequences. Let $P = p_1, p_2, ...$ be an infinite sequence of predicates and $\sigma$ a function such that $\sigma(p_i) = 1$ if $p_i$ is $true$, and $\sigma(p_i) = 0$ otherwise. We define:
 
 \begin{equation*}
   Pr(P) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(p_i)
@@ -145,7 +145,7 @@ For convenience, we extend the notion of windows sequences to finite and cyclic 
   \end{aligned}
 \end{equation*}
 
-Note that the windows sequence of $Y$ of order $k$ will be empty if $l < k$, having $max(0, l - k + 1)$ terms in general.
+Note that the windows sequence of $Y$ of order $k$ is empty whenever $l < k$, having $max(0, l - k + 1)$ terms in general.
 
 In order to avoid ambiguity with the previous definition, for a cyclic sequence $Z = z_1, z_2, \dots, z_l$ of size $l$ we denote its windows sequence of order $k$ as $W_k^{c}(Z)$ instead. In this case, the derived sequence has exactly $l$ terms:
 
@@ -176,11 +176,11 @@ The criterion can also be generalized into higher dimensions in the following wa
 
 where $\bar{l} \cdot \bar{x}_n$ denotes the dot product of $\bar{l}$ and $\bar{x}_n$.
 
-Proof of both statements can be found in \cite{weyl-1916}, pages 313 and 318.
+See \cite{tijdeman-1975}, pages 7 and 48, for proof of these statements.
 
 \section{De Bruijn Sequences and Ford Sequences}
 
-For the constructions presented in chapter \ref{chapter:cesbofs}, we will use Ford sequences as a basic primitive, which are themselves a specific type of De Bruijn sequences. Having been originally defined over a binary alphabet (see \cite{de-bruijn-1946}) and later generalized to larger alphabets, their definition varies slightly accross the literature. Throughout this work, we will use these terms according to the following definitions.
+For the constructions presented in chapter \ref{chapter:cesbofs}, we use Ford sequences as a basic primitive, which are themselves a specific type of De Bruijn sequences. Having been originally defined over a binary alphabet (see \cite{de-bruijn-1946}) and later generalized to larger alphabets, their definition varies slightly accross the literature. Throughout this work, we use these terms according to the following definitions.
 
 \begin{definition*}
   A $b$-ary De Bruijn sequence of order $k$ is any sequence of length $b^k$ which, when viewed as a cycle, contains every possible $b$-ary sequence of length $k$ exactly once as a contiguous subsequence.
@@ -222,7 +222,7 @@ In general, there may exist multiple different $b$-ary De Bruijn sequences of or
 
 \section{Knuth's Sequence}
 
-In order to define Knuth's sequence, denoted as $K$, we must first construct the following building blocks based on Ford sequences. Given a natural number $n$, we define:
+In order to define Knuth's sequence, denoted as $K$, we first construct the following building blocks based on Ford sequences. Given a natural number $n$, we define:
 
 i) an $A$ sequence of order $n$, denoted $A^{(n)}$, as the finite sequence of rational numbers obtained from dividing by $2^n$ each of the terms in a $2^n$-ary Ford sequence of order $n$:
 
@@ -265,15 +265,15 @@ We now define Knuth's sequence, denoted as $K$, as the infinite sequence of real
 
 Two choices in the construction yielding $K$ may seem arbitrary at first glance, but play an important role in the proof of the theorem stated above. Namely, that the number of repetitions of each $A$ sequence within a $B$ sequence is $n 2^{2n}$, and the fact that the alphabet sizes of the composing Ford sequences grow exponentially as $2^n$.
 
-On account of the first choice, one can adapt Knuth's proof in a rather straightforward manner to show that a sufficient condition for the complete equidistribution of $K$ is for the number of repetitions to grow asymptotically faster than $2^{2n}$. A proof of this fact is omitted here since it follows from Knuth's work, together with the technique that will be used in the following section to obtain an analogous result.
+On account of the first choice, one can adapt Knuth's proof in a rather straightforward manner to show that a sufficient condition for the complete equidistribution of $K$ is for the number of repetitions to grow asymptotically faster than $2^{2n}$. A proof of this fact is omitted here since it follows from Knuth's work, together with the technique used in the following section to obtain an analogous result.
 
 In regard to the second choice, the use of successive powers of $2$ as alphabet sizes allows one to reason more easily in terms of bits about the rational numbers comprised in sequence $K$. In particular, Knuth uses this device to derive properties of the distribution of the $m$ most-significant bits of the terms in a $2^n$-ary Ford sequence, where $m \le n$.
 
-As we will see in the next section, the second choice can be relaxed to using linearly increasing alphabet sizes while preserving the property of complete equidistribution, and at the same time allowing a much more reduced number of repetitions.
+As seen in the next section, the second choice can be relaxed to using linearly increasing alphabet sizes while preserving the property of complete equidistribution, and at the same time allowing a much more reduced number of repetitions.
 
 \section{Linearly Increasing Alphabet Sizes}
 
-We now provide a variant of Knuth's sequence based on Ford sequences with linearly increasing alphabet sizes. Within the current section, consider $t : \mathbb{N} \mapsto \mathbb{N}$ to be an arbitrary but fixed function. Later, we will study which conditions $t$ must satisfy in order for the generated sequence to be completely equidistributed. Similar to the previous section, we define for any given natural number $n$:
+We now provide a variant of Knuth's sequence based on Ford sequences with linearly increasing alphabet sizes. Within the current section, consider $t : \mathbb{N} \mapsto \mathbb{N}$ to be an arbitrary but fixed function. Later, we study which conditions $t$ must satisfy in order for the generated sequence to be completely equidistributed. Similar to the previous section, we define for any given natural number $n$:
 
 i) a $C$ sequence of order $n$, denoted $C^{(n)}$, as the finite sequence of rational numbers obtained from dividing by $n$ each of the terms in an $n$-ary Ford sequence of order $n$:
 
@@ -328,7 +328,7 @@ We now define sequence $L$ as the infinite sequence of real numbers resulting fr
 
 \subsection{Proof of Theorem 1}\label{subsection:proof-of-theorem 1}
 
-In order to present our proof of Theorem 1, we must first establish some preliminary definitions.
+In order to present our proof of Theorem 1, we first establish some preliminary definitions.
 
 Consider a prefix of $L$ of length $N$, denoted $L_{1 : N}$. It is always possible to find numbers $p, q, r \in \mathbb{N}$ such that:
 
@@ -371,7 +371,7 @@ Consider sufficiently large values of $N$ such that $k < r$. This is always poss
   \end{aligned}
 \end{equation*}
 
-Note that $S^{(1)}$ and $S^{(3)}$ could potentially be empty in the cases when $k = 1$ or $q = 0$, respectively.
+Note that $S^{(1)}$ and $S^{(3)}$ can potentially be empty, such as when $k = 1$ or $q = 0$, respectively.
 
 We denote the cummulative sums of the sizes of the sequences defined above as $n_0 = 0$, and $n_j = n_{j - 1} + |S^{(j)}|$ for $j = 1, 2, 3, 4$. Now, we can similarly decompose $\nu_N$ into five parts:
 
@@ -384,9 +384,9 @@ We denote the cummulative sums of the sizes of the sequences defined above as $n
 \end{equation}
 for some $\varepsilon_b \le 3 (k - 1)$.
 
-For each $j = 1, 2, 3, 4$, the quantity $\nu^{(j)}_N$ accounts for windows contained entirely within the sequence $S^{(j)}$, and $\varepsilon_b$ accounts for all windows crossing any of the three borders between the four sections. This is enough to account for all possible windows, since any given window will either be entirely contained in some section, or it will start at a given section and end at a subsequent one, thereby crossing a border.
+For each $j = 1, 2, 3, 4$, the quantity $\nu^{(j)}_N$ accounts for windows contained entirely within the sequence $S^{(j)}$, and $\varepsilon_b$ accounts for all windows crossing any of the three borders between the four sections. This is enough to account for all possible windows, since any given window is either entirely contained in some section, or it starts at a given section and ends at a subsequent one, thereby crossing a border.
 
-Before obtaining more precise expressions for these quantities, we must first state the following three technical propositions.
+Before obtaining more precise expressions for these quantities, we first state the following three technical propositions.
 
 \begin{proposition}\label{proposition:inequality-sandwich}
   If $n \in \mathbb{N}$ and $x, y \in \mathbb{R}$ such that $[x, y) \subseteq [0, n)$, then the number of integers from the set $\left \{ 0, 1, \dots, n - 1 \right \}$ contained in $\left[x, y\right)$ is equal to $y - x + \varepsilon$ for some $\varepsilon \in (-1, 1)$.
@@ -412,7 +412,7 @@ Before obtaining more precise expressions for these quantities, we must first st
 
 Proofs of Propositions \ref{proposition:inequality-sandwich}, \ref{proposition:product-of-sums}, and \ref{proposition:sum-i-to-the-i-m-1} are given in Appendix A.
 
-We will now obtain an expression for the number of windows of a $C$ sequence which are contained in the set $I$. This will be useful for evaluating $\nu_N$ later on.
+We now obtain an expression for the number of windows of a $C$ sequence which are contained in the set $I$. This is useful for evaluating $\nu_N$, as seen later on.
 
 \begin{lemma}\label{lemma:count-windows-c-sequence-cyclic}
   Given $n \in \mathbb{N}$ such that $k \le n$, if we consider the sequence $C^{(n)}$ as a cyclic sequence, then for some $\varepsilon \in (-1, 1)$:
@@ -501,7 +501,7 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
 
 \begin{proof}[Proof of Theorem 1]
 
-  We will now obtain an expression for $\nu_N / N$ and compute its limit when $N \to \infty$. Recall the following definitions:
+  We now obtain an expression for $\nu_N / N$ and compute its limit when $N \to \infty$. Recall the following definitions:
 
   \begin{equation*}
     \begin{aligned}
@@ -512,7 +512,7 @@ We will now obtain an expression for the number of windows of a $C$ sequence whi
     \end{aligned}
   \end{equation*}
 
-  Note that the sequences $S^{(2)}$ and $S^{(3)}$ are entirely composed of complete $C$ sequences of increasing orders which are larger than or equal to $k$. Moreover, with the exception of the last, rightmost instance in each of $S^{(2)}$ and $S^{(3)}$, every single $C$ sequence is immediately succeeded by another $C$ sequence of the same or the following order, including those which are part of a $D$ sequence. Additionally, any window starting at the right-hand end of a $C$ sequence will necessarily finish within the first $k - 1$ elements of the following $C$ sequence, all of which are guaranteed to be $0$.
+  Note that the sequences $S^{(2)}$ and $S^{(3)}$ are entirely composed of complete $C$ sequences of increasing orders which are larger than or equal to $k$. Moreover, with the exception of the last, rightmost instance in each of $S^{(2)}$ and $S^{(3)}$, every single $C$ sequence is immediately succeeded by another $C$ sequence of the same or the following order, including those which are part of a $D$ sequence. Additionally, any window starting at the right-hand end of a $C$ sequence necessarily finishes within the first $k - 1$ elements of the following $C$ sequence, all of which are guaranteed to be $0$.
 
   Therefore, the amount of windows of size $k$ contained in $I$ ranging over $S^{(2)}$ and $S^{(3)}$ is equal to the sum over each composing $C$ sequence \textit{viewed as a cycle}, with an error of at most $k - 1$ due to the fact that we are counting only windows entirely contained within each sequence:
 
@@ -623,7 +623,7 @@ We provide an alternative proof of Theorem 1 based on Weyl's Criterion, as state
 
 Let $k$ be a positive integer and $\bar{l} = (l_1, \dots, l_k)$ a non-zero $k$-dimensional vector of integers, where both $k$ and $\bar{l}$ have arbitrary but fixed values.
 
-Before applying Weyl's Criterion to sequence $L$, we must first prove the following lemma.
+Before applying Weyl's Criterion to sequence $L$, we first prove the following lemma.
 
 \begin{lemma}\label{lemma:weyl-sum-over-cyclic-c-sequences}
   Given a number $n \in \mathbb{N}$ such that $n > max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$, let
@@ -741,7 +741,7 @@ Before applying Weyl's Criterion to sequence $L$, we must first prove the follow
 
   Following the same reasoning from section \ref{subsection:proof-of-theorem 1}, the values of $\nu_N^{(2)}$ and $\nu_N^{(3)}$ can be computed as the Weyl sums over the $C$ sequences composing $S^{(2)}$ and $S^{(3)}$ viewed as cycles, plus two error terms accounting for right borders. However, in this case, due to Lemma \ref{lemma:weyl-sum-over-cyclic-c-sequences} and the fact that all $C$ sequences in $S^{(2)}$ and $S^{(3)}$ have orders greater than $m$, these sums vanish to zero. Therefore, $\nu_N = \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \nu^{(4)}_N + \varepsilon_b$, for some complex values $\varepsilon_{\nu^{(2)}_N}, \varepsilon_{\nu^{(3)}_N}$ with $|\varepsilon_{\nu^{(2)}_N}|, |\varepsilon_{\nu^{(3)}_N}| \le k - 1$.
 
-  We will now consider the limit of $\nu_N / N$ as $N \to \infty$. Note that:
+  We now consider the limit of $\nu_N / N$ as $N \to \infty$. Note that:
 
   \begin{equation*}
     \begin{aligned}
