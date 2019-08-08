@@ -10,6 +10,7 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{relsize}
+\usepackage{xcolor}
 
 \setlength\parskip{1\baselineskip}
 
@@ -39,9 +40,9 @@
 %%%% CARATULA
 
 \def\autor{Emilio Guido Almansi}
-\def\tituloTesis{Secuencias completamente equidistribuidas basadas en secuencias de Ford}
-\def\runtitulo{La Guerra de las Galaxias: Rebelión e Imperio}
-\def\runtitle{Star Wars: Rebellion and Empire}
+\def\tituloTesis{Secuencias completamente equidistribuidas basadas en secuencias de De Bruijn}
+\def\runtitulo{Secuencias completamente equidistribuidas basadas en secuencias de De Bruijn}
+\def\runtitle{Completely Equidistributed Sequences \\ Based on De Bruijn Sequences}
 \def\director{Verónica Becher}
 \def\lugar{Buenos Aires, 2019}
 
@@ -49,12 +50,12 @@
 
 %%%% ABSTRACTS, AGRADECIMIENTOS Y DEDICATORIA
 
-% \frontmatter
-% \pagestyle{empty}
-% \input{abs_esp.tex}
+\frontmatter
+\pagestyle{empty}
+\input{abs_esp.tex}
 
-% \cleardoublepage
-% \input{abs_en.tex} % OPCIONAL: comentar si no se quiere
+\cleardoublepage
+\input{abs_en.tex}
 
 % \cleardoublepage
 % \input{agradecimientos.tex} % OPCIONAL: comentar si no se quiere
@@ -217,7 +218,7 @@ In general, there may exist multiple different $b$-ary De Bruijn sequences of or
   The first sequences in each of the examples above are, respectively, the binary Ford sequence of order 3, and the 4-ary Ford sequence of order 2.
 \end{exmp*}
 
-\chapter{Completely Equidistributed Sequences Based on Ford Sequences}\label{chapter:cesbofs}
+\chapter{Completely Equidistributed Sequences Based on De Bruijn Sequences}\label{chapter:cesbofs}
 
 \section{Knuth's Sequence}
 
@@ -409,7 +410,7 @@ Before obtaining more precise expressions for these quantities, we must first st
   \end{equation*}
 \end{proposition}
 
-Proofs of propositions \ref{proposition:inequality-sandwich}, \ref{proposition:product-of-sums}, and \ref{proposition:sum-i-to-the-i-m-1} are given in Appendix A.
+Proofs of Propositions \ref{proposition:inequality-sandwich}, \ref{proposition:product-of-sums}, and \ref{proposition:sum-i-to-the-i-m-1} are given in Appendix A.
 
 We will now obtain an expression for the number of windows of a $C$ sequence which are contained in the set $I$. This will be useful for evaluating $\nu_N$ later on.
 
