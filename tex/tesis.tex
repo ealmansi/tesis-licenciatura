@@ -112,7 +112,7 @@ if the limit exists. Note that $Pr(x_i < x_{i+1})$ denotes $Pr(P)$ where $P = (x
 We say that an infinite sequence $X = x_1, x_2, \dots$ of real numbers is \textit{equidistributed in the unit interval} if the probability of finding $x_i$ in any subinterval is proportional to the length of the subinterval. Formally, if for every interval $I = [u, v) \subseteq [0, 1)$ the following is true:
 
 \begin{equation*}
-  Pr(x_i \in I) = |I| = v - u
+  Pr(x_i \in I) = |I| = v - u \text{.}
 \end{equation*}
 
 % The points of an equidistributed sequence form a dense set on the interval $[0, 1)$, however the reciprocal is not always true. See \cite{weisstein-2019} for an example of such a sequence.
@@ -120,7 +120,7 @@ We say that an infinite sequence $X = x_1, x_2, \dots$ of real numbers is \texti
 Analogously, we say that an infinite sequence $\bar{X} = \bar{x}_1, \bar{x}_2, \dots$ of $k$-dimensional vectors of real numbers is \textit{equidistributed in the unit cube} if for every set $I = [u_1, v_1)  \times \dots \times [u_k, v_k) \subseteq [0, 1)^k$ the following is true:
 
 \begin{equation*}
-  Pr(\bar{x}_i \in I) = |I| = \prod_{d = 1}^{k} v_d - u_d
+  Pr(\bar{x}_i \in I) = |I| = \prod_{d = 1}^{k} v_d - u_d \text{.}
 \end{equation*}
 
 For every positive integer $k$ we define the \textit{windows sequence of $X$ of order $k$}, denoted $W_k(X)$, as the sequence of $k$-dimensional vectors containing every possible window (or contiguous subsequence) of $X$ from left to right:
@@ -128,7 +128,7 @@ For every positive integer $k$ we define the \textit{windows sequence of $X$ of 
 \begin{equation}\label{equation:windows-sequence}
   \begin{aligned}
     W_k(X) & = (x_1, x_2, \dots, x_k), (x_2, x_3, \dots, x_{k + 1}), \dots \\
-             & = \big( (x_i, x_{i + 1}, \dots, x_{i + k - 1}) \big)_{i = 1}^{\infty}
+             & = \big( (x_i, x_{i + 1}, \dots, x_{i + k - 1}) \big)_{i = 1}^{\infty} \text{.}
   \end{aligned}
 \end{equation}
 
@@ -141,7 +141,7 @@ For convenience, we extend the notion of windows sequences to finite and cyclic 
 \begin{equation*}
   \begin{aligned}
     W_k(Y) & = (y_1, y_2, \dots, y_k), \dots, (y_{l - k + 1}, y_{l - k + 2}, \dots, y_l) \\
-             & = \big( (y_i, y_{i + 1}, \dots, y_{i + k - 1}) \big)_{i = 1}^{max(0, l - k + 1)}
+             & = \big( (y_i, y_{i + 1}, \dots, y_{i + k - 1}) \big)_{i = 1}^{max(0, l - k + 1)} \text{.}
   \end{aligned}
 \end{equation*}
 
@@ -222,7 +222,7 @@ In general, there may exist multiple different $b$-ary De Bruijn sequences of or
 
 \section{Knuth's Sequence}
 
-In this section, we define Knuth's sequence, denoted as $K$, following the construction presented in \cite{knuth-1965}. In its original formulation, the sequence $K$ can be constructed using any given family of De Bruijn sequences. Here, we use Ford sequences specifically since they are easily defined in a univocal manner, and they can also be generated efficiently. Given a natural number $n$, we define:
+In this section, we define Knuth's sequence, denoted as $K$, following the construction presented in \cite{knuth-1965}. In its original formulation, the sequence $K$ can be constructed using any given family of De Bruijn sequences. Here, we specifically use Ford sequences since they are easily defined in a univocal manner and can be generated efficiently. Given a natural number $n$, we define:
 
 i) an $A$ sequence of order $n$, denoted $A^{(n)}$, as the finite sequence of rational numbers obtained from dividing by $2^n$ each of the terms in a $2^n$-ary Ford sequence of order $n$:
 
@@ -269,7 +269,7 @@ On account of the first choice, one can adapt Knuth's proof in a rather straight
 
 In regard to the second choice, Knuth's use of alphabet sizes which grow exponentially as powers of $2$ allows one to reason more easily about the rational numbers comprised in the sequence $K$ in terms of their binary representations. In particular, Knuth uses this device to derive properties of the distribution of the $m$ most-significant bits of the terms in a $2^n$-ary Ford sequence, where $m \le n$. See \cite[Lemma 2]{knuth-1965}.
 
-In the next section, we show that it is possible to consider linearly increasing alphabet sizes instead, while preserving the property of complete equidistribution. In turn, this allows for a much more reduced number of repetitions of each $A$ sequence within a $B$ sequence.
+In the next section, we show that it is possible to construct the sequence using linearly increasing alphabet sizes instead, while preserving the property of complete equidistribution. In turn, this allows for a much more reduced number of repetitions of each $A$ sequence within a $B$ sequence.
 
 \section{Linearly Increasing Alphabet Sizes}
 
@@ -596,7 +596,7 @@ We now obtain an expression for the number of windows of a $C$ sequence which ar
 
 \begin{proof}[Proof of Theorem 1]
 
-  Let $k$ be a positive integer and $I = [u_1, v_1) \times \dots \times [u_k, v_k)$ a set such that $I \subseteq [0, 1)^k$, where both $k$ and $I$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers. Next, we obtain an expression for $\nu_N / N$ and compute its limit when $N \to \infty$. Recall the following definitions:
+  Remember that $k$ is a positive integer and $I = [u_1, v_1) \times \dots \times [u_k, v_k)$ is a set such that $I \subseteq [0, 1)^k$, where both $k$ and $I$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers. Next, we obtain an expression for $\nu_N / N$ and compute its limit when $N \to \infty$. Recall the following definitions:
 
   \begin{equation*}
     \begin{aligned}
@@ -723,8 +723,8 @@ Before applying Weyl's Criterion to the sequence $L$, we first prove the followi
 
   \begin{equation}\label{equation:weyl-sum-over-cyclic-c-sequence}
     \begin{aligned}
-      & \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot \bar{w}_j} = 0 \text{, where} \\
-      & W_k^c\left(C^{(n)}\right) = \bar{w}_1, \bar{w}_2, \dots, \bar{w}_{n^n} \text{.}
+      \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot \bar{w}_j} & = 0 \text{,} \\
+      \text{where } W_k^c\left(C^{(n)}\right) & = \bar{w}_1, \bar{w}_2, \dots, \bar{w}_{n^n} \text{.}
     \end{aligned}
   \end{equation}
 
@@ -802,7 +802,7 @@ Before applying Weyl's Criterion to the sequence $L$, we first prove the followi
 
 \begin{proof}[Proof of Theorem 1]
 
-  Let $k$ be a positive integer and $\bar{l} = (l_1, \dots, l_k)$ a $k$-dimensional vector of integers, not all zero, where both $k$ and $\bar{l}$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers. Similarly to section \ref{subsection:proof-of-theorem 1}, we consider a prefix of the sequence $L$ of length $N$, denoted $L_{1:N}$, and we define the values $p$, $q$, and $r$ equivalently.
+  Remember that $k$ is a positive integer and $\bar{l} = (l_1, \dots, l_k)$ is a non-zero $k$-dimensional vector of integers, where both $k$ and $\bar{l}$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers. Similarly to section \ref{subsection:proof-of-theorem 1}, we consider a prefix of the sequence $L$ of length $N$, denoted $L_{1:N}$, and we define the values $p$, $q$, and $r$ equivalently.
 
   Letting $W_k(L) = \bar{w}_1, \bar{w}_2, \dots$, we analogously define the complex value $\nu_N$ as the Weyl sum over the first $N$ windows of size $k$ of $L$:
 
@@ -829,7 +829,7 @@ Before applying Weyl's Criterion to the sequence $L$, we first prove the followi
       \nu_N & = \nu^{(1)}_N + \nu^{(2)}_N + \nu^{(3)}_N + \nu^{(4)}_N + \varepsilon_b
     \end{aligned}
   \end{equation*}
-  for some complex number $\varepsilon_b$ with $|\varepsilon_b| \le 3 (k - 1)$, accounting for all windows crossing over any border.
+  for some complex number $\varepsilon_b$ with $|\varepsilon_b| \le 3 (k - 1)$ which accounts for all windows crossing over any border.
 
   Following the same reasoning from section \ref{subsection:proof-of-theorem 1}, the values of $\nu_N^{(2)}$ and $\nu_N^{(3)}$ can be computed as the Weyl sums over the $C$ sequences composing $S^{(2)}$ and $S^{(3)}$ viewed as cycles, plus two error terms accounting for right borders. However, in this case, due to Lemma \ref{lemma:weyl-sum-over-cyclic-c-sequences} and the fact that all $C$ sequences in $S^{(2)}$ and $S^{(3)}$ have orders greater than $m$, these sums vanish to zero. Therefore, $\nu_N = \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \nu^{(4)}_N + \varepsilon_b$, for some complex values $\varepsilon_{\nu^{(2)}_N}, \varepsilon_{\nu^{(3)}_N}$ with $|\varepsilon_{\nu^{(2)}_N}|, |\varepsilon_{\nu^{(3)}_N}| \le k - 1$.
 
