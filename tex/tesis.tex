@@ -87,7 +87,7 @@ Since notation on sequences can differ across the literature, we state the conve
 
 When discussing a sequence $X = x_1, x_2, \dots$, the expression $X_i$ denotes the $i$-th element of the sequence, with the first element having an index of $1$.
 
-The expression $X_{1 : n}$ denotes a prefix of length $n$ from sequence $X$. Namely, $X_{1 : n} = x_1, x_2, \dots, x_n$.
+The expression $X_{1 : n}$ denotes a prefix of length $n$ from the sequence $X$. Namely, $X_{1 : n} = x_1, x_2, \dots, x_n$.
 
 Given two sequences $X$ and $Y$, the expression $ \left< X ; Y \right>$ denotes the sequence obtained by concatenating $Y$ after $X$, when this operation is well-defined. We also extend this notation to more than two input sequences; for example, if $A = 1, 2, 3$, $B = 3$, and $C = 4, 5$, then $\left< A ; B ; C \right> = 1, 2, 3, 3, 4, 5$.
 
@@ -117,7 +117,7 @@ We say that an infinite sequence $X = x_1, x_2, \dots$ of real numbers is \texti
 
 % The points of an equidistributed sequence form a dense set on the interval $[0, 1)$, however the reciprocal is not always true. See \cite{weisstein-2019} for an example of such a sequence.
 
-Analogously, we say that an infinite sequence $\bar{X} = \bar{x}_1, \bar{x}_2, \dots$ of $k$-dimensional vectors of real numbers is \textit{equidistributed in the unit cube} if for every set $I = [u_1, v_1) \times [u_2, v_2) \times \dots \times [u_k, v_k) \subseteq [0, 1)^k$ the following is true:
+Analogously, we say that an infinite sequence $\bar{X} = \bar{x}_1, \bar{x}_2, \dots$ of $k$-dimensional vectors of real numbers is \textit{equidistributed in the unit cube} if for every set $I = [u_1, v_1)  \times \dots \times [u_k, v_k) \subseteq [0, 1)^k$ the following is true:
 
 \begin{equation*}
   Pr(\bar{x}_i \in I) = |I| = \prod_{d = 1}^{k} v_d - u_d
@@ -222,7 +222,7 @@ In general, there may exist multiple different $b$-ary De Bruijn sequences of or
 
 \section{Knuth's Sequence}
 
-In order to define Knuth's sequence, denoted as $K$, we first construct the following building blocks based on Ford sequences. Given a natural number $n$, we define:
+In this section, we define Knuth's sequence, denoted as $K$, following the construction presented in \cite{knuth-1965}. In its original formulation, the sequence $K$ can be constructed using any given family of De Bruijn sequences. Here, we use Ford sequences specifically since they are easily defined in a univocal manner, and they can also be generated efficiently. Given a natural number $n$, we define:
 
 i) an $A$ sequence of order $n$, denoted $A^{(n)}$, as the finite sequence of rational numbers obtained from dividing by $2^n$ each of the terms in a $2^n$-ary Ford sequence of order $n$:
 
@@ -236,7 +236,7 @@ i) an $A$ sequence of order $n$, denoted $A^{(n)}$, as the finite sequence of ra
 and, ii) a $B$ sequence of order $n$, denoted $B^{(n)}$, as $n 2^{2 n}$ consecutive copies of $A^{(n)}$:
 
 \begin{equation*}
-  B^{(n)} = \left< \underbrace{A^{(n)} ; A^{(n)} ; \dots ; A^{(n)}}_{n 2^{2 n} \text{ times}} \right>
+  B^{(n)} = \left< \underbrace{A^{(n)} ; A^{(n)} ; \dots ; A^{(n)}}_{n 2^{2 n} \text{ times}} \right> \text{.}
 \end{equation*}
 
 By construction, the size of $A^{(n)}$ is $|A^{(n)}| = |F^{(2^n, n)}| = 2^{n^2}$, and the size of $B^{(n)}$ is $|B^{(n)}| = n 2^{2 n} |A^{(n)}| = n 2^{2 n} 2^{n^2}$. Note as well that, for any given $n$, all terms in $A^{(n)}$ and in $B^{(n)}$ are numbers in the set $\left \{ 0, \frac{1}{2^n}, \frac{2}{2^n}, \dots, \frac{2^n - 1}{2^n} \right \} \subset [0, 1)$.
@@ -256,20 +256,20 @@ and $|A^{(2)}| = 16$, $|B^{(2)}| = 512$.
 We now define Knuth's sequence, denoted as $K$, as the infinite sequence of real numbers resulting from the concatenation of all possible $B$ sequences in increasing order:
 
 \begin{equation*}
-  K = \left< B^{(1)} ; B^{(2)} ;  B^{(3)} ; \dots \right>
+  K = \left< B^{(1)} ; B^{(2)} ;  B^{(3)} ; \dots \right> \text{.}
 \end{equation*}
 
 \begin{theorem*}[Knuth 1965, \cite{knuth-1965}, page 268]
-  Sequence $K$ is completely equidistributed.
+  The sequence $K$ is completely equidistributed.
 \end{theorem*}
 
 Two choices in the construction yielding $K$ may seem arbitrary at first glance, but play an important role in the proof of the theorem stated above. Namely, that the number of repetitions of each $A$ sequence within a $B$ sequence is $n 2^{2n}$, and the fact that the alphabet sizes of the composing Ford sequences grow exponentially as $2^n$.
 
 On account of the first choice, one can adapt Knuth's proof in a rather straightforward manner to show that a sufficient condition for the complete equidistribution of $K$ is for the number of repetitions to grow asymptotically faster than $2^{2n}$. A proof of this fact is omitted here since it follows from Knuth's work, together with the technique used in the following section to obtain an analogous result.
 
-In regard to the second choice, the use of successive powers of $2$ as alphabet sizes allows one to reason more easily in terms of bits about the rational numbers comprised in sequence $K$. In particular, Knuth uses this device to derive properties of the distribution of the $m$ most-significant bits of the terms in a $2^n$-ary Ford sequence, where $m \le n$.
+In regard to the second choice, Knuth's use of alphabet sizes which grow exponentially as powers of $2$ allows one to reason more easily about the rational numbers comprised in the sequence $K$ in terms of their binary representations. In particular, Knuth uses this device to derive properties of the distribution of the $m$ most-significant bits of the terms in a $2^n$-ary Ford sequence, where $m \le n$. See \cite[Lemma 2]{knuth-1965}.
 
-As seen in the next section, the second choice can be relaxed to using linearly increasing alphabet sizes while preserving the property of complete equidistribution, and at the same time allowing a much more reduced number of repetitions.
+In the next section, we show that it is possible to consider linearly increasing alphabet sizes instead, while preserving the property of complete equidistribution. In turn, this allows for a much more reduced number of repetitions of each $A$ sequence within a $B$ sequence.
 
 \section{Linearly Increasing Alphabet Sizes}
 
@@ -287,7 +287,7 @@ i) a $C$ sequence of order $n$, denoted $C^{(n)}$, as the finite sequence of rat
 and, ii) a $D$ sequence of order $n$, denoted $D^{(n)}$, as $t(n)$ consecutive copies of $C^{(n)}$:
 
 \begin{equation*}
-  D^{(n)} = \left< \underbrace{C^{(n)} ; C^{(n)} ; \dots ; C^{(n)}}_{t(n) \text{ times}} \right>
+  D^{(n)} = \left< \underbrace{C^{(n)} ; C^{(n)} ; \dots ; C^{(n)}}_{t(n) \text{ times}} \right> \text{.}
 \end{equation*}
 
 Note again that the size of $C^{(n)}$ is $|C^{(n)}| = |F^{(n, n)}| = n^n$, and the size of $D^{(n)}$ is $|D^{(n)}| = t(n) |C^{(n)}| = t(n) n^n$. In this case, for any given $n$ all terms in $C^{(n)}$ and in $D^{(n)}$ are numbers in the set $\left \{ 0, \frac{1}{n}, \frac{2}{n}, \dots, \frac{n - 1}{n} \right \} \subset [0, 1)$.
@@ -306,21 +306,21 @@ For example, when $n = 3$ and $t$ is equal to the identity function:
 
 and $|C^{(3)}| = 27$, $|D^{(3)}| = 81$.
 
-We now define sequence $L$ as the infinite sequence of real numbers resulting from the concatenation of all possible $D$ sequences in increasing order:
+We now define the sequence $L$ as the infinite sequence of real numbers resulting from the concatenation of all possible $D$ sequences in increasing order:
 
 \begin{equation*}
-  L = \left< D^{(1)} ; D^{(2)} ;  D^{(3)} ; \dots \right>
+  L = \left< D^{(1)} ; D^{(2)} ;  D^{(3)} ; \dots \right> \text{.}
 \end{equation*}
 
 \begin{theorem}\label{theorem:l-is-completely-equidistributed}
-  If $t$ is non-decreasing and $\lim_{n \to \infty} n / t(n) = 0$, then sequence $L$ is completely equidistributed.
+  If $t$ is non-decreasing and $\lim_{n \to \infty} n / t(n) = 0$, then the sequence $L$ is completely equidistributed.
 \end{theorem}
 
 \begin{exmp*}
   If $t(n) = n^2$, then:
 
   \begin{equation*}
-    L = \left< C^{(1)} ; \underbrace{C^{(2)} ; \dots ;  C^{(2)}}_{4 \text{ copies}} ;  \underbrace{C^{(3)} ; \dots ;  C^{(3)}}_{9 \text{ copies}} ; \dots \right>
+    L = \left< C^{(1)} ; \underbrace{C^{(2)} ; \dots ;  C^{(2)}}_{4 \text{ copies}} ;  \underbrace{C^{(3)} ; \dots ;  C^{(3)}}_{9 \text{ copies}} ; \dots \right> \text{,}
   \end{equation*}
 
   and $L$ is completely equidistributed.
@@ -343,20 +343,20 @@ By considering the length of the sequence on each side of the previous equation,
 \begin{equation}\label{equation:n-p-q-r}
   \begin{aligned}
     N & = \sum_{s = 1}^{r - 1} |D(s)| + q |C(r)| + p \\
-      & = \sum_{s = 1}^{r - 1} t(s) s^s + q r^r + p
+      & = \sum_{s = 1}^{r - 1} t(s) s^s + q r^r + p \text{.}
   \end{aligned}
 \end{equation}
 
-Let $k$ be a positive integer and $I = [u_1, v_1) \times [u_2, v_2) \times \dots \times [u_k, v_k)$ a set such that $I \subseteq [0, 1)^k$, where both $k$ and $I$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers, and the quantity $\nu_N$ denote the number of windows of $L$ of size $k$ starting at indices $i = 1 \dots N$ that belong to the set $I$:
+Let $k$ be a positive integer and $I = [u_1, v_1)  \times \dots \times [u_k, v_k)$ a set such that $I \subseteq [0, 1)^k$, where both $k$ and $I$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers, and the quantity $\nu_N$ denote the number of windows of $L$ of size $k$ starting at indices $i = 1 \dots N$ that belong to the set $I$:
 
 \begin{equation*}
-  \nu_N = \sum_{i = 1}^{N} \sigma\Big( \big( W_k(L) \big)_i \in I \Big)
+  \nu_N = \sum_{i = 1}^{N} \sigma\Big( \big( W_k(L) \big)_i \in I \Big) \text{.}
 \end{equation*}
 
 We can now express the probability, in the sense defined in chapter \ref{chapter:preliminaries}, of any given window of $L$ of size $k$ belonging to the set $I$ as:
 
 \begin{equation*}
-  Pr\Big( \big( W_k(L) \big)_i \in I \Big) = \lim_{N \to \infty} \frac{\nu_N}{N}
+  Pr\Big( \big( W_k(L) \big)_i \in I \Big) = \lim_{N \to \infty} \frac{\nu_N}{N} \text{.}
 \end{equation*}
 
 Consider sufficiently large values of $N$ such that $k < r$. This is always possible since $r$ is an unbounded, non-decreasing function of $N$. We can decompose $L_{1:N}$ into four consecutive sections; namely, sequences $S^{(1)}$, $S^{(2)}$, $S^{(3)}$ and $S^{(4)}$:
@@ -367,7 +367,7 @@ Consider sufficiently large values of $N$ such that $k < r$. This is always poss
     S^{(1)} & = \left< D^{(1)} ; D^{(2)} ; \dots ; D^{(k - 1)} \right> \\
     S^{(2)} & = \left< D^{(k)} ; D^{(k + 1)} ; \dots ; D^{(r - 1)} \right> \\
     S^{(3)} & = \left< \underbrace{C^{(r)} ; \dots ; C^{(r)}}_{q \text{ times}} \right> \\ 
-    S^{(4)} & = C^{(r)}_{1:p}
+    S^{(4)} & = C^{(r)}_{1:p} \text{.}
   \end{aligned}
 \end{equation*}
 
@@ -392,394 +392,20 @@ Before obtaining more precise expressions for these quantities, we first state t
   If $n \in \mathbb{N}$ and $x, y \in \mathbb{R}$ such that $[x, y) \subseteq [0, n)$, then the number of integers from the set $\left \{ 0, 1, \dots, n - 1 \right \}$ contained in $\left[x, y\right)$ is equal to $y - x + \varepsilon$ for some $\varepsilon \in (-1, 1)$.
 \end{proposition}
 
+\begin{proof}
+  Since $0 \le y$, there are exactly $\lceil y \rceil = y + \varepsilon_y$ non-negative integers in the set $[0, y)$ for some $\varepsilon_y \in [0, 1)$. Similarly for $x$, there are exactly $\lceil x \rceil = x + \varepsilon_x$ non-negative integers in the set $[0, x)$ for some $\varepsilon_x \in [0, 1)$. The difference between these two quantities is equal to the number of non-negative integers contained in the set $[x, y)$, which is $y - x + (\varepsilon_y - \varepsilon_x)$. Observing that $(\varepsilon_y - \varepsilon_x) \in (-1, 1)$, and that all non-negative integers between $x$ and $y$ belong to the set $\left \{ 0, 1, \dots, n - 1 \right \}$, the proof is complete.
+\end{proof}
+
 \begin{proposition}\label{proposition:product-of-sums}
-  Given two sequences $a_1, a_2, \dots, a_k$ and $b_1, b_2, \dots, b_k$ of real numbers, the product of their element-by-element sums can be expanded in the following way:
+  If $k$ is a positive integer and $a_1, a_2, \dots, a_k$, $b_1, b_2, \dots, b_k$ are sequences of real numbers of length $k$, then the product of their element-by-element sums can be expanded in the following way:
   \begin{equation*}
     \prod_{d = 1}^{k} a_d + b_d = \prod_{d = 1}^{k} a_d + \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
       \left \{ \begin{array}{lr}
         a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
         b_d & \text{otherwise}
-      \end{array} \right \} \right ]
+      \end{array} \right \} \right ] \text{.}
   \end{equation*}
 \end{proposition}
-
-\begin{proposition}\label{proposition:sum-i-to-the-i-m-1}
-  Given $n \in \mathbb{N}$:
-  \begin{equation*}
-    \sum_{i = 1}^{n} i^{i - 1} \le 2 n^{n - 1}
-  \end{equation*}
-\end{proposition}
-
-Proofs of Propositions \ref{proposition:inequality-sandwich}, \ref{proposition:product-of-sums}, and \ref{proposition:sum-i-to-the-i-m-1} are given in Appendix A.
-
-We now obtain an expression for the number of windows of a $C$ sequence which are contained in the set $I$. This is useful for evaluating $\nu_N$, as seen later on.
-
-\begin{lemma}\label{lemma:count-windows-c-sequence-cyclic}
-  Given $n \in \mathbb{N}$ such that $k \le n$, if we consider the sequence $C^{(n)}$ as a cyclic sequence, then for some $\varepsilon \in (-1, 1)$:
-  \begin{equation*}
-    \sum_{i = 1}^{n^n} \sigma\Big( \big( W_k^{c}(C^{(n)}) \big)_i \in I \Big) = n^n |I| + n^{n - 1} (2^k - 1) \varepsilon
-  \end{equation*}
-\end{lemma}
-
-\begin{proof}
-  The expression on the left-hand side counts the number of windows of size $k$ in $C^{(n)}$ that are contained in $I$. First, note that any given window is contained in the set $I$ if and only if the following is true:
-  
-  \begin{equation*}
-    \begin{aligned}
-        \begin{array}{cccc}
-          \big( W_k^{c}(C^{(n)}) \big)_i \in I \Longleftrightarrow & u_1 \le & C^{(n)}_{i}         & < v_1 \\
-                              & & \vdots & \\
-                              & u_k \le & C^{(n)}_{i + k - 1} & < v_k
-        \end{array}
-    \end{aligned}
-  \end{equation*}
-  
-  where $i = 1 \dots n^n$ and indices are taken modulo $n^n$.
-
-   Since all terms in $C^{(n)}$ are numbers in the set $ \left \{ 0, \frac{1}{n}, \dots, \frac{n - 1}{n} \right \}$, we multiply both sides of each inequality by $n$, allowing us to reason about integers belonging to a Ford sequence instead of rational numbers. We obtain the following:
-
-  \begin{equation*}
-    \begin{aligned}
-        \begin{array}{cccc}
-          \big( W_k^{c}(C^{(n)}) \big)_i \in I \Longleftrightarrow & n u_1 \le & F^{(n, n)}_{i}         & < n v_1 \\
-                              & & \vdots & \\
-                              & n u_k \le & F^{(n, n)}_{i + k - 1} & < n v_k
-        \end{array}
-    \end{aligned}
-  \end{equation*}
-
-  As per Proposition \ref{proposition:inequality-sandwich}, for each inequality above with $d = 1 \dots k$ there are exactly $n v_d - n u_d + \varepsilon_d$ possible solutions in the set $ \left \{ 0, 1, \dots, n - 1 \right \} $ for some value $\varepsilon_d \in (-1, 1)$. This yields a total of $\prod_{d = 1}^{k} [n (v_d - u_d) + \varepsilon_d]$ possible solutions to the system of inequalities. Each solution, when seen as an $n$-ary sequence of length $k$, appears exactly $n^{n - k}$ times in $F^{(n, n)}$. This is true because there are  $n^{n - k}$ ways of extending an $n$-ary sequence of length $k$ to one of length $n$ and, by construction, each of these appears exactly once in $F^{(n, n)}$ when viewed as a cycle. Since $i$ ranges exactly once over each possible window of $F^{(n, n)}$, then:
-
-  \begin{equation}\label{equation:count-windows-c-n}
-    \begin{aligned}
-      \sum_{i = 1}^{n^n} \sigma\Big( \big( W_k^{c}(C^{(n)}) \big)_i \in I \Big) & = n^{n - k} \prod_{d = 1}^{k} [n (v_d - u_d) + \varepsilon_d] \\
-      & = n^n \prod_{d = 1}^{k} [(v_d - u_d) + \varepsilon_d / n]
-    \end{aligned}
-  \end{equation}
-
-  Using Proposition \ref{proposition:product-of-sums}, we can expand this into the following:
-
-  \begin{equation}\label{equation:product-expansion}
-    \begin{aligned}
-      n^n \prod_{d = 1}^{k} [(v_d - u_d) + \varepsilon_d / n]
-      & = n^n \prod_{d = 1}^{k} (v_d - u_d) \\
-      & \hspace*{4mm} + n^n \mathlarger{\sum}_{j = 1}^{2^k - 1}
-      \left [ \mathlarger{\prod}_{d = 1}^{k} \left \{ \begin{array}{lr}
-      (v_d - u_d) & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
-      \varepsilon_d / n & \text{otherwise}
-    \end{array} \right \} \right ]
-    \end{aligned}
-  \end{equation}
-
-  If we define $\varepsilon'_j$ for $j = 1 \dots 2^k - 1$ as:
-
-  \begin{equation*}
-    \varepsilon'_j / n = \mathlarger{\prod}_{d = 1}^{k} \left \{ \begin{array}{lr}
-      (v_d - u_d) & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
-      \varepsilon_d / n & \text{otherwise}
-    \end{array} \right \}
-  \end{equation*}
-
-  then, for each $j$, the value $\varepsilon'_j \in (-1, 1)$. This is true because the product on the right-hand side is composed of terms $(v_d - u_d) \in (-1, 1)$ and $\varepsilon_d / n \in (-1/n, 1/n)$ and, since $j > 0$, there is always at least one term of the second kind. Given that $|I| = \prod_{d = 1}^{k} (v_d - u_d)$, we can further simplify equation \ref{equation:product-expansion} to get:
-
-  \begin{equation}\label{equation:sum-of-epsilons}
-    n^n \prod_{d = 1}^{k} [(v_d - u_d) + \varepsilon_d / n] = n^n |I| + n^n \sum_{j = 1}^{2^k - 1} \varepsilon'_j / n
-  \end{equation}
-
-  Finally, since $- (2^k - 1) < \sum_{j = 1}^{2^k - 1} \varepsilon'_j < (2^k - 1)$, there exists some $\varepsilon \in (-1, 1)$ such that:
-
-  \begin{equation*}
-    \mathlarger{\sum}_{j = 1}^{2^k - 1} \varepsilon'_j = (2^k - 1) \varepsilon
-  \end{equation*}
-
-  and hence, by \ref{equation:count-windows-c-n} and \ref{equation:sum-of-epsilons}:
-
-  \begin{equation*}
-    \sum_{i = 1}^{n^n} \sigma\Big( \big( W_k^{c}(C^{(n)}) \big)_i \in I \Big) = n^n |I| + n^{n - 1} (2^k - 1) \varepsilon
-  \end{equation*}
-\end{proof}
-
-\begin{proof}[Proof of Theorem 1]
-
-  We now obtain an expression for $\nu_N / N$ and compute its limit when $N \to \infty$. Recall the following definitions:
-
-  \begin{equation*}
-    \begin{aligned}
-      \nu^{(2)}_N & = \sum_{i = 1}^{|S^{(2)}| - k + 1} \sigma\Big( \big( W_k(S^{(2)}) \big)_i \in I \Big) \\
-      \nu^{(3)}_N & = \sum_{i = 1}^{|S^{(3)}| - k + 1} \sigma\Big( \big( W_k(S^{(3)}) \big)_i \in I \Big) \\
-      S^{(2)} & = \left< D^{(k)} ; D^{(k + 1)} ; \dots ; D^{(r - 1)} \right> \\
-      S^{(3)} & = \left< \underbrace{C^{(r)} ; \dots ; C^{(r)}}_{q \text{ times}} \right>
-    \end{aligned}
-  \end{equation*}
-
-  Note that the sequences $S^{(2)}$ and $S^{(3)}$ are entirely composed of complete $C$ sequences of increasing orders which are larger than or equal to $k$. Moreover, with the exception of the last, rightmost instance in each of $S^{(2)}$ and $S^{(3)}$, every single $C$ sequence is immediately succeeded by another $C$ sequence of the same or the following order, including those which are part of a $D$ sequence. Additionally, any window starting at the right-hand end of a $C$ sequence necessarily finishes within the first $k - 1$ elements of the following $C$ sequence, all of which are guaranteed to be $0$.
-
-  Therefore, the amount of windows of size $k$ contained in $I$ ranging over $S^{(2)}$ and $S^{(3)}$ is equal to the sum over each composing $C$ sequence \textit{viewed as a cycle}, with an error of at most $k - 1$ due to the fact that we are counting only windows entirely contained within each sequence:
-
-  \begin{equation*}
-    \begin{aligned}
-      \nu^{(2)}_N & = \sum_{s = k}^{r - 1} \underbrace{\left[ t(s) \sum_{i = 1}^{s^s} \sigma\Big( \big( W^c_k(C^{(s)}) \big)_i \in I \Big) \right]}_{\text{$C$ sequences contained in $D^{(s)}$}} + \varepsilon_{\nu^{(2)}_N} \\
-      \nu^{(3)}_N & = q \sum_{i = 1}^{r^r} \sigma\Big( \big( W^c_k(C^{(r)}) \big)_i \in I \Big)  + \varepsilon_{\nu^{(3)}_N}
-    \end{aligned}
-  \end{equation*}
-  for some values $\varepsilon_{\nu^{(2)}_N} \le k - 1$, and $\varepsilon_{\nu^{(3)}_N} \le k - 1$.
-
-  From Lemma \ref{lemma:count-windows-c-sequence-cyclic}:
-
-  \begin{equation*}
-    \begin{aligned}
-      \nu^{(2)}_N & = \sum_{s = k}^{r - 1} \left[ t(s) \left( s^s |I| + s^{s - 1} (2^k - 1) \varepsilon_s \right) \right] + \varepsilon_{\nu^{(2)}_N} \\
-      \nu^{(3)}_N & = q \left( r^r |I| + r^{r - 1} (2^k - 1) \varepsilon_r \right)  + \varepsilon_{\nu^{(3)}_N}
-    \end{aligned}
-  \end{equation*}
-
-  for some values of $\varepsilon_i \in (-1, 1)$, $i = k \dots r$.
-
-  Substituting back into $\nu_N$ from equation \ref{equation:nu-n-split-five-parts}:
-
-  \begin{equation*}
-    \begin{aligned}
-      \nu_N
-        & = \nu^{(1)}_N \\
-        & \hspace*{4mm} + \sum_{s = k}^{r - 1} \left[ t(s) \left( s^s |I| + s^{s - 1} (2^k - 1) \varepsilon_s \right) \right] + \varepsilon_{\nu^{(2)}_N} \\
-        & \hspace*{4mm} + q \left( r^r |I| + r^{r - 1} (2^k - 1) \varepsilon_r \right)  + \varepsilon_{\nu^{(3)}_N} \\
-        & \hspace*{4mm} + \nu^{(4)}_N + \varepsilon_b
-    \end{aligned}
-  \end{equation*}
-
-  and factoring out terms multiplied by $|I|$, we get:
-
-  \begin{equation*}
-    \begin{aligned}
-      \nu_N
-        & = |I| \left[ \sum_{s = k}^{r - 1} t(s) s^s + q r^r \right] \\
-        & \hspace*{4mm} + \nu^{(1)}_N \\
-        & \hspace*{4mm} + \sum_{s = k}^{r - 1} \left[ t(s) s^{s - 1} (2^k - 1) \varepsilon_s \right] + \varepsilon_{\nu^{(2)}_N} \\
-        & \hspace*{4mm} + q r^{r - 1} (2^k - 1) \varepsilon_r  + \varepsilon_{\nu^{(3)}_N} \\
-        & \hspace*{4mm} + \nu^{(4)}_N + \varepsilon_b
-    \end{aligned}
-  \end{equation*}
-
-  We now rewrite the first term using the relationship between $p$, $r$, $q$, and $N$ from equation \ref{equation:n-p-q-r}:
-
-  \begin{equation*}
-    \begin{aligned}
-      \nu_N
-        & = |I| \left[ N - \sum_{s = 1}^{k - 1} t(s) s^s - p \right] \\
-        & \hspace*{4mm} + \nu^{(1)}_N \\
-        & \hspace*{4mm} + \sum_{s = k}^{r - 1} \left[ t(s) s^{s - 1} (2^k - 1) \varepsilon_s \right] + \varepsilon_{\nu^{(2)}_N} \\
-        & \hspace*{4mm} + q r^{r - 1} (2^k - 1) \varepsilon_r  + \varepsilon_{\nu^{(3)}_N} \\
-        & \hspace*{4mm} + \nu^{(4)}_N + \varepsilon_b
-    \end{aligned}
-  \end{equation*}
-
-  and after dividing both sides by $N$ and rearranging terms we obtain:
-
-  \begin{equation*}
-    \begin{aligned}
-      \frac{\nu_N}{N} - |I|
-        & = \frac{p}{N} \left[ \frac{\nu^{(4)}_N}{p} - |I| \right] \\
-        & \hspace*{4mm} + \frac{2^k - 1}{N} \left[ \sum_{s = k}^{r - 1} t(s) s^{s - 1} \varepsilon_s + q r^{r - 1} \varepsilon_r \right] \\
-        & \hspace*{4mm} + \frac{1}{N} \left[ \nu^{(1)}_N - |I| \sum_{s = 1}^{k - 1} t(s) s^s + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \varepsilon_b \right]
-    \end{aligned}
-  \end{equation*}
-
-  Taking limits on both sides as $N \to \infty$, the third term on the right-hand side approaches $0$ since the contents of the brackets are dependent on $k$ and bounded as a function of $N$. In regard to the second term, using the fact that $t$ is non-decreasing together with Proposition \ref{proposition:sum-i-to-the-i-m-1} we can see that:
-
-  \begin{equation*}
-    \begin{aligned}
-      & \frac{\sum_{s = k}^{r - 1} t(s) s^{s - 1} \varepsilon_s}{N} \le \frac{t(r - 1) \sum_{s = 1}^{r - 1} s^{s - 1}}{t(r - 1) (r - 1)^{(r - 1)}} \le \frac{2 (r - 1)^{(r - 2)}}{(r - 1)^{(r - 1)}} = \frac{2}{r - 1} \text{, and} \\
-      & \frac{q r^{r - 1} \varepsilon_r}{N} \le \frac{q r^{r - 1}}{q r^r} = \frac{1}{r} \text{,}
-    \end{aligned}
-  \end{equation*}
-
-  and since $r$ is an unbounded, non-decreasing function of $N$, this term approaches $0$ as well.
-
-  Finally, consider the first term on the right-hand side and note that $\left[ \frac{\nu^{(4)}_N}{p} - |I| \right] \in [-1, 1]$, since both $\frac{\nu^{(4)}_N}{p}, |I| \in [0, 1]$. Moreover, since $p \le r^r$ and using the identity:
-
-  \begin{equation*}
-    \frac{(x + 1)^{(x + 1)}}{x^x} = (x + 1) \left(1 + \frac{1}{x} \right)^x
-  \end{equation*}
-
-  for $x = r - 1$, we can see that for large values of $r$:
-
-  \begin{equation*}
-    \frac{p}{N} \le \frac{r^r}{t(r - 1) (r - 1)^{(r - 1)}} = \frac{r}{t(r - 1)} \left( 1 + \frac{1}{r - 1} \right)^{r - 1} \le \frac{r}{t(r - 1)} e
-  \end{equation*}
-
-  which by hypothesis also approaches $0$ as $N \to \infty$. Hence,
-
-  \begin{equation*}
-    \lim_{N \to \infty} \frac{\nu_N}{N} = |I|
-  \end{equation*}
-
-  and, since $k$ and $I$ were chosen arbitrarily, sequence $L$ is completely equidistributed and the proof of Theorem \ref{theorem:l-is-completely-equidistributed} is complete.
-
-\end{proof}
-
-\subsection{Alternative Proof of Theorem 1}
-
-We provide an alternative proof of Theorem 1 based on Weyl's Criterion, as stated in section \ref{section:weyls-criterion}, using a proposition from the theory of linear modular congruences and a well-known fact from the study of the roots of unity.
-
-Let $k$ be a positive integer and $\bar{l} = (l_1, \dots, l_k)$ a non-zero $k$-dimensional vector of integers, where both $k$ and $\bar{l}$ have arbitrary but fixed values.
-
-Before applying Weyl's Criterion to sequence $L$, we first prove the following lemma.
-
-\begin{lemma}\label{lemma:weyl-sum-over-cyclic-c-sequences}
-  Given a number $n \in \mathbb{N}$ such that $n > max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$, let
-
-  \begin{equation*}
-    W_k^c\left(C^{(n)}\right) = \bar{w}_1, \bar{w}_2, \dots, \bar{w}_{n^n}
-  \end{equation*}
-  
-  denote the windows sequence of order $k$ of $C^{(n)}$ viewed as a cyclic sequence. Then:
-
-  \begin{equation}\label{equation:weyl-sum-over-cyclic-c-sequence}
-    \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot \bar{w}_j} = 0 \text{.}
-  \end{equation}
-\end{lemma}
-
-\begin{proof}
-  If we let:
-
-  \begin{equation*}
-    W_k^c\left(F^{(n, n)}\right) = \bar{f}_1, \bar{f}_2, \dots, \bar{f}_{n^n}
-  \end{equation*}
-
-  then from the definition of a $C$ sequence, it follows that $\bar{w}_j = \frac{1}{n} \bar{f}_j$ for $j = 1 \dots n^n$.
-  
-  Then, if we define $\Gamma = \left \{ 0, 1, \dots, n - 1 \right \} $, every $\bar{\gamma} \in \Gamma^k$ appears exactly $n^{n - k}$ times in the sequence $W_k^c\left(F^{(n, n)}\right)$. This is true because there are  $n^{n - k}$ ways of extending an $n$-ary sequence of length $k$ to one of length $n$ and, by construction, each of these appears exactly once in $F^{(n, n)}$ when viewed as a cycle.
-  
-  Substituting into the left-hand side of equation \ref{equation:weyl-sum-over-cyclic-c-sequence}:
-  
-  \begin{equation*}
-    \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot (\frac{1}{n} \bar{f}_j)} = \sum_{j = 1}^{n^n} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{f}_j} = n^{n - k} \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{\gamma}}
-  \end{equation*}
-
-  Since $\bar{l} \cdot \bar{\gamma} \in \mathbb{Z}$ and the function $exp : \mathbb{Z} \to \mathbb{C}$, $exp(m) = e^{\frac{2 \pi i}{n} m}$ is periodic with a period equal to $n$, then:
-
-  \begin{equation*}
-    \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{\gamma}}
-    = \sum_{r = 0}^{n - 1}
-        \sum_{
-          \substack{
-            \bar{\gamma} \in \Gamma^k \\
-            \bar{l} \cdot \bar{\gamma} \equiv r
-          }
-        } e^{\frac{2 \pi i}{n} r}
-  \end{equation*}
-
-  where the congruence $\bar{l} \cdot \bar{\gamma} \equiv r$ is taken modulo $n$.
-
-  The conditions for the existence of solutions to equations of the form $\bar{l} \cdot \bar{\gamma} \equiv r \text{ (mod $n$)}$, $\bar{\gamma} \in \Gamma^k$, are well understood (see \cite{mccarthy-1986}, page 114). In particular, this equation only has solutions when $gcd(l_1, \dots, l_k, n) = g$ divides $r$ and, in such case, the total number of solutions is equal to $g n^{k - 1}$. Therefore:
-
-  \begin{equation*}
-    \begin{aligned}
-      \sum_{r = 0}^{n - 1}
-        \sum_{
-          \substack{
-            \bar{\gamma} \in \Gamma^k \\
-            \bar{l} \cdot \bar{\gamma} \equiv r
-          }
-        } e^{\frac{2 \pi i}{n} r}
-      & = \sum_{\substack{
-        r = 0 \\
-        g | r
-      }}^{n - 1} g n^{k - 1} e^{\frac{2 \pi i}{n} r} \\
-      & = g n^{k - 1} \sum_{\substack{
-        r' = 0
-      }}^{\left\lfloor \frac{n - 1}{g} \right\rfloor} e^{\frac{2 \pi i}{n} g r'}
-    \end{aligned}
-  \end{equation*}
-
-  where the last step comes from substituting $r = g r'$. If we also substitute $n = g n'$ and observe that $\left\lfloor \frac{n - 1}{g} \right\rfloor = n' - 1$:
-
-  \begin{equation*}
-    \begin{aligned}
-      \sum_{\substack{
-        r' = 0
-      }}^{\left\lfloor \frac{n - 1}{g} \right\rfloor} e^{\frac{2 \pi i}{n} g r'}
-      & = \sum_{\substack{
-        r' = 0
-      }}^{n' - 1} e^{\frac{2 \pi i}{n'} r'}
-    \end{aligned}
-  \end{equation*}
-
-  The term on the right-hand side is the sum of all the roots of unity of order $n'$. It is a well-known fact that this sum is equal to $0$ whenever $n' > 1$. Finally, since $n > min(|l_1|, \dots, |l_k|) \ge g$, then $n' = n / g > 1$, and the proof is complete.
-
-\end{proof}
-
-\begin{proof}[Proof of Theorem 1]
-  Similarly to section \ref{subsection:proof-of-theorem 1}, we consider a prefix of sequence $L$ of length $N$, denoted $L_{1:N}$, and we define the values $p$, $q$, and $r$ equivalently.
-
-  Letting $W_k(L) = \bar{w}_1, \bar{w}_2, \dots$, we analogously define the complex value $\nu_N$ as the Weyl sum over the first $N$ windows of size $k$ of $L$:
-
-  \begin{equation*}
-    \nu_N = \sum_{j = 1}^{N} e^{2 \pi i \bar{l} \cdot \bar{w}_j}
-  \end{equation*}
-
-  Let $m = max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$, and consider sufficiently large values of $N$ such that $m < r$. Like before, this is always possible since $r$ is an unbounded, non-decreasing function of $N$. We can decompose $L_{1:N}$ into four consecutive sections; namely, sequences $S^{(1)}$, $S^{(2)}$, $S^{(3)}$ and $S^{(4)}$:
-
-  \begin{equation*}
-    \begin{aligned}
-      L_{1:N} & = \left< S^{(1)} ; S^{(2)} ; S^{(3)} ; S^{(4)} \right> \text{, \hspace*{5mm} where} \\
-      S^{(1)} & = \left< D^{(1)} ; D^{(2)} ; \dots ; D^{(m - 1)} \right> \\
-      S^{(2)} & = \left< D^{(m)} ; D^{(m + 1)} ; \dots ; D^{(r - 1)} \right> \\
-      S^{(3)} & = \left< \underbrace{C^{(r)} ; \dots ; C^{(r)}}_{q \text{ times}} \right> \\ 
-      S^{(4)} & = C^{(r)}_{1:p}
-    \end{aligned}
-  \end{equation*}
-
-  and define $\nu_N^{(1)}$, $\nu_N^{(2)}$, $\nu_N^{(3)}$ and $\nu_N^{(4)}$ as the Weyl sums over windows entirely contained within each respective section, such that:
-
-  \begin{equation*}
-    \begin{aligned}
-      \nu_N & = \nu^{(1)}_N + \nu^{(2)}_N + \nu^{(3)}_N + \nu^{(4)}_N + \varepsilon_b
-    \end{aligned}
-  \end{equation*}
-  for some complex number $\varepsilon_b$ with $|\varepsilon_b| \le 3 (k - 1)$, accounting for all windows crossing over any border.
-
-  Following the same reasoning from section \ref{subsection:proof-of-theorem 1}, the values of $\nu_N^{(2)}$ and $\nu_N^{(3)}$ can be computed as the Weyl sums over the $C$ sequences composing $S^{(2)}$ and $S^{(3)}$ viewed as cycles, plus two error terms accounting for right borders. However, in this case, due to Lemma \ref{lemma:weyl-sum-over-cyclic-c-sequences} and the fact that all $C$ sequences in $S^{(2)}$ and $S^{(3)}$ have orders greater than $m$, these sums vanish to zero. Therefore, $\nu_N = \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \nu^{(4)}_N + \varepsilon_b$, for some complex values $\varepsilon_{\nu^{(2)}_N}, \varepsilon_{\nu^{(3)}_N}$ with $|\varepsilon_{\nu^{(2)}_N}|, |\varepsilon_{\nu^{(3)}_N}| \le k - 1$.
-
-  We now consider the limit of $\nu_N / N$ as $N \to \infty$. Note that:
-
-  \begin{equation*}
-    \begin{aligned}
-      \left| \frac{\nu_N}{N} \right|
-        & \le \frac{1}{N} \left| \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \varepsilon_b \right| + \frac{1}{N} \left| \nu^{(4)}_N \right| \\
-        & \le \frac{1}{N} \left[ \left| \nu^{(1)}_N \right| + | \varepsilon_{\nu^{(2)}_N} | + | \varepsilon_{\nu^{(3)}_N} | + \left| \varepsilon_b \right| \right] + \frac{p}{N} \\
-        & \le \frac{1}{N} \left[ \left| \nu^{(1)}_N \right| + (k - 1) + (k - 1) + 3 (k - 1) \right] + \frac{p}{N}
-    \end{aligned}
-  \end{equation*}
-
-  The numerator in the first term is dependent on $k$ and $m$, and constant as a function of $N$. As shown before, the second term approaches $0$ as $r \to \infty$. Therefore, the sum of both terms approaches $0$ as $N \to \infty$, which in turn implies that $\nu_N / N$ vanishes as well.
-
-  Given that $k$ and $\bar{l}$ were chosen arbitrarily, Weyl's Criterion is satisfied for all values of $k$ and sequence $L$ is completely equidistributed.
-
-\end{proof}
-
-\appendix
-
-\section*{Appendix A}
-
-\begin{repproposition}{proposition:inequality-sandwich}
-  If $n \in \mathbb{N}$ and $x, y \in \mathbb{R}$ such that $[x, y) \subseteq [0, n)$, then the number of integers from the set $\left \{ 0, 1, \dots, n - 1 \right \}$ contained in $\left[x, y\right)$ is equal to $y - x + \varepsilon$ for some $\varepsilon \in (-1, 1)$.
-\end{repproposition}
-
-\begin{proof}
-  Since $0 \le y$, there's exactly $\lceil y \rceil = y + \varepsilon_y$ non-negative integers in the set $[0, y)$ for some $\varepsilon_y \in [0, 1)$. Similarly for $x$, there's exactly $\lceil x \rceil = x + \varepsilon_x$ non-negative integers in the set $[0, x)$ for some $\varepsilon_x \in [0, 1)$. The difference between these two quantities is equal to the number of non-negative integers contained in the set $[x, y)$, which is $y - x + (\varepsilon_y - \varepsilon_x)$. Observing that $(\varepsilon_y - \varepsilon_x) \in (-1, 1)$, and that all non-negative integers between $x$ and $y$ belong to the set $\left \{ 0, 1, \dots, n - 1 \right \}$, the proof is complete.
-\end{proof}
-
-\begin{repproposition}{proposition:product-of-sums}
-  Let $k$ be an arbitrary positive integer. Given two sequences $a_1, a_2, \dots, a_k$ and $b_1, b_2, \dots, b_k$ of real numbers, the product of their element-by-element sums can be expanded in the following way:
-  \begin{equation*}
-    \prod_{d = 1}^{k} a_d + b_d = \prod_{d = 1}^{k} a_d + \mathlarger{\sum}_{j = 1}^{2^k - 1} \left [ \mathlarger{\prod}_{d = 1}^{k}
-      \left \{ \begin{array}{lr}
-        a_d & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
-        b_d & \text{otherwise}
-      \end{array} \right \} \right ]
-  \end{equation*}
-\end{repproposition}
 
 \begin{proof}
   By induction on $k$. First, note that the property holds for $k = 1$:
@@ -850,12 +476,12 @@ Before applying Weyl's Criterion to sequence $L$, we first prove the following l
 
 \end{proof}
 
-\begin{repproposition}{proposition:sum-i-to-the-i-m-1}
-  Given $n \in \mathbb{N}$:
+\begin{proposition}\label{proposition:sum-i-to-the-i-m-1}
+  Given $n \in \mathbb{N}$, the following holds:
   \begin{equation*}
-    \sum_{i = 1}^{n} i^{i - 1} \le 2 n^{n - 1}
+    \sum_{i = 1}^{n} i^{i - 1} \le 2 n^{n - 1} \text{.}
   \end{equation*}
-\end{repproposition}
+\end{proposition}
 
 \begin{proof}
   By induction on $n$. The property holds for $n = 1$ and $n = 2$:
@@ -879,6 +505,349 @@ Before applying Weyl's Criterion to sequence $L$, we first prove the following l
   \end{equation*}
 
   Therefore, the property holds for all $n \in \mathbb{N}$.
+\end{proof}
+
+We now obtain an expression for the number of windows of a $C$ sequence which are contained in the set $I$. This is useful for evaluating $\nu_N$, as seen later on.
+
+\begin{lemma}\label{lemma:count-windows-c-sequence-cyclic}
+  Given a positive integer $k$ and a set $I = [u_1, v_1) \times \dots \times [u_k, v_k)$ where $I \subseteq [0, 1)^k$, let $n \in \mathbb{N}$ such that $k \le n$ and consider the sequence $C^{(n)}$ as a cyclic sequence. Then, for some $\varepsilon \in (-1, 1)$:
+  \begin{equation*}
+    \sum_{i = 1}^{n^n} \sigma\Big( \big( W_k^{c}(C^{(n)}) \big)_i \in I \Big) = n^n |I| + n^{n - 1} (2^k - 1) \varepsilon \text{.}
+  \end{equation*}
+\end{lemma}
+
+\begin{proof}
+  The expression on the left-hand side counts the number of windows of size $k$ in $C^{(n)}$ that are contained in $I$. First, note that any given window is contained in the set $I$ if and only if the following is true:
+  
+  \begin{equation*}
+    \begin{aligned}
+        \begin{array}{cccc}
+          \big( W_k^{c}(C^{(n)}) \big)_i \in I \Longleftrightarrow & u_1 \le & C^{(n)}_{i}         & < v_1 \\
+                              & & \vdots & \\
+                              & u_k \le & C^{(n)}_{i + k - 1} & < v_k
+        \end{array}
+    \end{aligned}
+  \end{equation*}
+  
+  where $i = 1 \dots n^n$ and indices are taken modulo $n^n$.
+
+   Since all terms in $C^{(n)}$ are numbers in the set $ \left \{ 0, \frac{1}{n}, \dots, \frac{n - 1}{n} \right \}$, we multiply both sides of each inequality by $n$, allowing us to reason about integers belonging to a Ford sequence instead of rational numbers. We obtain the following:
+
+  \begin{equation*}
+    \begin{aligned}
+        \begin{array}{cccc}
+          \big( W_k^{c}(C^{(n)}) \big)_i \in I \Longleftrightarrow & n u_1 \le & F^{(n, n)}_{i}         & < n v_1 \\
+                              & & \vdots & \\
+                              & n u_k \le & F^{(n, n)}_{i + k - 1} & < n v_k \text{.}
+        \end{array}
+    \end{aligned}
+  \end{equation*}
+
+  As per Proposition \ref{proposition:inequality-sandwich}, for each inequality above with $d = 1 \dots k$ there are exactly $n v_d - n u_d + \varepsilon_d$ possible solutions in the set $ \left \{ 0, 1, \dots, n - 1 \right \} $ for some value $\varepsilon_d \in (-1, 1)$. This yields a total of $\prod_{d = 1}^{k} [n (v_d - u_d) + \varepsilon_d]$ possible solutions to the system of inequalities. Each solution, when seen as an $n$-ary sequence of length $k$, appears exactly $n^{n - k}$ times in $F^{(n, n)}$. This is true because there are  $n^{n - k}$ ways of extending an $n$-ary sequence of length $k$ to one of length $n$ and, by construction, each of these appears exactly once in $F^{(n, n)}$ when viewed as a cycle. Since $i$ ranges exactly once over each possible window of $F^{(n, n)}$, then:
+
+  \begin{equation}\label{equation:count-windows-c-n}
+    \begin{aligned}
+      \sum_{i = 1}^{n^n} \sigma\Big( \big( W_k^{c}(C^{(n)}) \big)_i \in I \Big) & = n^{n - k} \prod_{d = 1}^{k} [n (v_d - u_d) + \varepsilon_d] \\
+      & = n^n \prod_{d = 1}^{k} [(v_d - u_d) + \varepsilon_d / n] \text{.}
+    \end{aligned}
+  \end{equation}
+
+  Using Proposition \ref{proposition:product-of-sums}, we can expand this into the following:
+
+  \begin{equation}\label{equation:product-expansion}
+    \begin{aligned}
+      n^n \prod_{d = 1}^{k} [(v_d - u_d) + \varepsilon_d / n]
+      & = n^n \prod_{d = 1}^{k} (v_d - u_d) \\
+      & \hspace*{4mm} + n^n \mathlarger{\sum}_{j = 1}^{2^k - 1}
+      \left [ \mathlarger{\prod}_{d = 1}^{k} \left \{ \begin{array}{lr}
+      (v_d - u_d) & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
+      \varepsilon_d / n & \text{otherwise}
+    \end{array} \right \} \right ] \text{.}
+    \end{aligned}
+  \end{equation}
+
+  If we define $\varepsilon'_j$ for $j = 1 \dots 2^k - 1$ as:
+
+  \begin{equation*}
+    \varepsilon'_j / n = \mathlarger{\prod}_{d = 1}^{k} \left \{ \begin{array}{lr}
+      (v_d - u_d) & \left\lfloor \frac{j}{2^{d - 1}} \right\rfloor \text{is even} \\
+      \varepsilon_d / n & \text{otherwise}
+    \end{array} \right \}
+  \end{equation*}
+
+  then, for each $j$, the value $\varepsilon'_j \in (-1, 1)$. This is true because the product on the right-hand side is composed of terms $(v_d - u_d) \in (-1, 1)$ and $\varepsilon_d / n \in (-1/n, 1/n)$ and, since $j > 0$, there is always at least one term of the second kind. Given that $|I| = \prod_{d = 1}^{k} (v_d - u_d)$, we can further simplify equation \ref{equation:product-expansion} to get:
+
+  \begin{equation}\label{equation:sum-of-epsilons}
+    n^n \prod_{d = 1}^{k} [(v_d - u_d) + \varepsilon_d / n] = n^n |I| + n^n \sum_{j = 1}^{2^k - 1} \varepsilon'_j / n \text{.}
+  \end{equation}
+
+  Finally, since $- (2^k - 1) < \sum_{j = 1}^{2^k - 1} \varepsilon'_j < (2^k - 1)$, there exists some $\varepsilon \in (-1, 1)$ such that:
+
+  \begin{equation*}
+    \mathlarger{\sum}_{j = 1}^{2^k - 1} \varepsilon'_j = (2^k - 1) \varepsilon
+  \end{equation*}
+
+  and hence, by \ref{equation:count-windows-c-n} and \ref{equation:sum-of-epsilons}:
+
+  \begin{equation*}
+    \sum_{i = 1}^{n^n} \sigma\Big( \big( W_k^{c}(C^{(n)}) \big)_i \in I \Big) = n^n |I| + n^{n - 1} (2^k - 1) \varepsilon \text{.}
+  \end{equation*}
+\end{proof}
+
+\begin{proof}[Proof of Theorem 1]
+
+  Let $k$ be a positive integer and $I = [u_1, v_1) \times \dots \times [u_k, v_k)$ a set such that $I \subseteq [0, 1)^k$, where both $k$ and $I$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers. Next, we obtain an expression for $\nu_N / N$ and compute its limit when $N \to \infty$. Recall the following definitions:
+
+  \begin{equation*}
+    \begin{aligned}
+      \nu^{(2)}_N & = \sum_{i = 1}^{|S^{(2)}| - k + 1} \sigma\Big( \big( W_k(S^{(2)}) \big)_i \in I \Big) \\
+      \nu^{(3)}_N & = \sum_{i = 1}^{|S^{(3)}| - k + 1} \sigma\Big( \big( W_k(S^{(3)}) \big)_i \in I \Big) \\
+      S^{(2)} & = \left< D^{(k)} ; D^{(k + 1)} ; \dots ; D^{(r - 1)} \right> \\
+      S^{(3)} & = \left< \underbrace{C^{(r)} ; \dots ; C^{(r)}}_{q \text{ times}} \right> \text{.}
+    \end{aligned}
+  \end{equation*}
+
+  Note that the sequences $S^{(2)}$ and $S^{(3)}$ are entirely composed of complete $C$ sequences of increasing orders which are larger than or equal to $k$. Moreover, with the exception of the last, rightmost instance in each of $S^{(2)}$ and $S^{(3)}$, every single $C$ sequence is immediately succeeded by another $C$ sequence of the same or the following order, including those which are part of a $D$ sequence. Additionally, any window starting at the right-hand end of a $C$ sequence necessarily finishes within the first $k - 1$ elements of the following $C$ sequence, all of which are guaranteed to be $0$.
+
+  Therefore, the amount of windows of size $k$ contained in $I$ ranging over $S^{(2)}$ and $S^{(3)}$ is equal to the sum over each composing $C$ sequence \textit{viewed as a cycle}, with an error of at most $k - 1$ due to the fact that we are counting only windows entirely contained within each sequence:
+
+  \begin{equation*}
+    \begin{aligned}
+      \nu^{(2)}_N & = \sum_{s = k}^{r - 1} \underbrace{\left[ t(s) \sum_{i = 1}^{s^s} \sigma\Big( \big( W^c_k(C^{(s)}) \big)_i \in I \Big) \right]}_{\text{$C$ sequences contained in $D^{(s)}$}} + \varepsilon_{\nu^{(2)}_N} \\
+      \nu^{(3)}_N & = q \sum_{i = 1}^{r^r} \sigma\Big( \big( W^c_k(C^{(r)}) \big)_i \in I \Big)  + \varepsilon_{\nu^{(3)}_N}
+    \end{aligned}
+  \end{equation*}
+  for some values $\varepsilon_{\nu^{(2)}_N} \le k - 1$, and $\varepsilon_{\nu^{(3)}_N} \le k - 1$.
+
+  From Lemma \ref{lemma:count-windows-c-sequence-cyclic}:
+
+  \begin{equation*}
+    \begin{aligned}
+      \nu^{(2)}_N & = \sum_{s = k}^{r - 1} \left[ t(s) \left( s^s |I| + s^{s - 1} (2^k - 1) \varepsilon_s \right) \right] + \varepsilon_{\nu^{(2)}_N} \\
+      \nu^{(3)}_N & = q \left( r^r |I| + r^{r - 1} (2^k - 1) \varepsilon_r \right)  + \varepsilon_{\nu^{(3)}_N}
+    \end{aligned}
+  \end{equation*}
+
+  for some values of $\varepsilon_i \in (-1, 1)$, $i = k \dots r$.
+
+  Substituting back into $\nu_N$ from equation \ref{equation:nu-n-split-five-parts}:
+
+  \begin{equation*}
+    \begin{aligned}
+      \nu_N
+        & = \nu^{(1)}_N \\
+        & \hspace*{4mm} + \sum_{s = k}^{r - 1} \left[ t(s) \left( s^s |I| + s^{s - 1} (2^k - 1) \varepsilon_s \right) \right] + \varepsilon_{\nu^{(2)}_N} \\
+        & \hspace*{4mm} + q \left( r^r |I| + r^{r - 1} (2^k - 1) \varepsilon_r \right)  + \varepsilon_{\nu^{(3)}_N} \\
+        & \hspace*{4mm} + \nu^{(4)}_N + \varepsilon_b
+    \end{aligned}
+  \end{equation*}
+
+  and factoring out terms multiplied by $|I|$, we get:
+
+  \begin{equation*}
+    \begin{aligned}
+      \nu_N
+        & = |I| \left[ \sum_{s = k}^{r - 1} t(s) s^s + q r^r \right] \\
+        & \hspace*{4mm} + \nu^{(1)}_N \\
+        & \hspace*{4mm} + \sum_{s = k}^{r - 1} \left[ t(s) s^{s - 1} (2^k - 1) \varepsilon_s \right] + \varepsilon_{\nu^{(2)}_N} \\
+        & \hspace*{4mm} + q r^{r - 1} (2^k - 1) \varepsilon_r  + \varepsilon_{\nu^{(3)}_N} \\
+        & \hspace*{4mm} + \nu^{(4)}_N + \varepsilon_b \text{.}
+    \end{aligned}
+  \end{equation*}
+
+  We now rewrite the first term using the relationship between $p$, $r$, $q$, and $N$ from equation \ref{equation:n-p-q-r}:
+
+  \begin{equation*}
+    \begin{aligned}
+      \nu_N
+        & = |I| \left[ N - \sum_{s = 1}^{k - 1} t(s) s^s - p \right] \\
+        & \hspace*{4mm} + \nu^{(1)}_N \\
+        & \hspace*{4mm} + \sum_{s = k}^{r - 1} \left[ t(s) s^{s - 1} (2^k - 1) \varepsilon_s \right] + \varepsilon_{\nu^{(2)}_N} \\
+        & \hspace*{4mm} + q r^{r - 1} (2^k - 1) \varepsilon_r  + \varepsilon_{\nu^{(3)}_N} \\
+        & \hspace*{4mm} + \nu^{(4)}_N + \varepsilon_b
+    \end{aligned}
+  \end{equation*}
+
+  and after dividing both sides by $N$ and rearranging terms we obtain:
+
+  \begin{equation*}
+    \begin{aligned}
+      \frac{\nu_N}{N} - |I|
+        & = \frac{p}{N} \left[ \frac{\nu^{(4)}_N}{p} - |I| \right] \\
+        & \hspace*{4mm} + \frac{2^k - 1}{N} \left[ \sum_{s = k}^{r - 1} t(s) s^{s - 1} \varepsilon_s + q r^{r - 1} \varepsilon_r \right] \\
+        & \hspace*{4mm} + \frac{1}{N} \left[ \nu^{(1)}_N - |I| \sum_{s = 1}^{k - 1} t(s) s^s + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \varepsilon_b \right] \text{.}
+    \end{aligned}
+  \end{equation*}
+
+  Taking limits on both sides as $N \to \infty$, the third term on the right-hand side approaches $0$ since the contents of the brackets are dependent on $k$ and bounded as a function of $N$. In regard to the second term, using the fact that $t$ is non-decreasing together with Proposition \ref{proposition:sum-i-to-the-i-m-1} we can see that:
+
+  \begin{equation*}
+    \begin{aligned}
+      & \frac{\sum_{s = k}^{r - 1} t(s) s^{s - 1} \varepsilon_s}{N} \le \frac{t(r - 1) \sum_{s = 1}^{r - 1} s^{s - 1}}{t(r - 1) (r - 1)^{(r - 1)}} \le \frac{2 (r - 1)^{(r - 2)}}{(r - 1)^{(r - 1)}} = \frac{2}{r - 1} \text{, and} \\
+      & \frac{q r^{r - 1} \varepsilon_r}{N} \le \frac{q r^{r - 1}}{q r^r} = \frac{1}{r} \text{,}
+    \end{aligned}
+  \end{equation*}
+
+  and since $r$ is an unbounded, non-decreasing function of $N$, this term approaches $0$ as well.
+
+  Finally, consider the first term on the right-hand side and note that $\left[ \frac{\nu^{(4)}_N}{p} - |I| \right] \in [-1, 1]$, since both $\frac{\nu^{(4)}_N}{p}, |I| \in [0, 1]$. Moreover, since $p \le r^r$ and using the identity:
+
+  \begin{equation*}
+    \frac{(x + 1)^{(x + 1)}}{x^x} = (x + 1) \left(1 + \frac{1}{x} \right)^x
+  \end{equation*}
+
+  for $x = r - 1$, we can see that for large values of $r$:
+
+  \begin{equation*}
+    \frac{p}{N} \le \frac{r^r}{t(r - 1) (r - 1)^{(r - 1)}} = \frac{r}{t(r - 1)} \left( 1 + \frac{1}{r - 1} \right)^{r - 1} \le \frac{r}{t(r - 1)} e
+  \end{equation*}
+
+  which by hypothesis also approaches $0$ as $N \to \infty$. Hence,
+
+  \begin{equation*}
+    \lim_{N \to \infty} \frac{\nu_N}{N} = |I|
+  \end{equation*}
+
+  and, since $k$ and $I$ were chosen arbitrarily, the sequence $L$ is completely equidistributed and the proof of Theorem \ref{theorem:l-is-completely-equidistributed} is complete.
+
+\end{proof}
+
+\subsection{Alternative Proof of Theorem 1}
+
+We provide an alternative proof of Theorem 1 based on Weyl's Criterion, as stated in section \ref{section:weyls-criterion}, using a proposition from the theory of linear modular congruences and a well-known fact from the study of the roots of unity.
+
+Before applying Weyl's Criterion to the sequence $L$, we first prove the following lemma.
+
+\begin{lemma}\label{lemma:weyl-sum-over-cyclic-c-sequences}
+  Given a positive integer $k$ and a non-zero $k$-dimensional vector of integers $\bar{l} = (l_1, \dots, l_k)$, let $n \in \mathbb{N}$ such that $n > max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$ and consider the sequence $C^{(n)}$ as a cyclic sequence. Then:
+
+  \begin{equation}\label{equation:weyl-sum-over-cyclic-c-sequence}
+    \begin{aligned}
+      & \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot \bar{w}_j} = 0 \text{, where} \\
+      & W_k^c\left(C^{(n)}\right) = \bar{w}_1, \bar{w}_2, \dots, \bar{w}_{n^n} \text{.}
+    \end{aligned}
+  \end{equation}
+
+\end{lemma}
+
+\begin{proof}
+  If we let:
+
+  \begin{equation*}
+    W_k^c\left(F^{(n, n)}\right) = \bar{f}_1, \bar{f}_2, \dots, \bar{f}_{n^n}
+  \end{equation*}
+
+  then from the definition of a $C$ sequence, it follows that $\bar{w}_j = \frac{1}{n} \bar{f}_j$ for $j = 1 \dots n^n$.
+  
+  Then, if we define $\Gamma = \left \{ 0, 1, \dots, n - 1 \right \} $, every $\bar{\gamma} \in \Gamma^k$ appears exactly $n^{n - k}$ times in the sequence $W_k^c\left(F^{(n, n)}\right)$. This is true because there are  $n^{n - k}$ ways of extending an $n$-ary sequence of length $k$ to one of length $n$ and, by construction, each of these appears exactly once in $F^{(n, n)}$ when viewed as a cycle.
+  
+  Substituting into the left-hand side of equation \ref{equation:weyl-sum-over-cyclic-c-sequence}:
+  
+  \begin{equation*}
+    \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot (\frac{1}{n} \bar{f}_j)} = \sum_{j = 1}^{n^n} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{f}_j} = n^{n - k} \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{\gamma}} \text{.}
+  \end{equation*}
+
+  Since $\bar{l} \cdot \bar{\gamma} \in \mathbb{Z}$ and the function $exp : \mathbb{Z} \to \mathbb{C}$, $exp(m) = e^{\frac{2 \pi i}{n} m}$ is periodic with a period equal to $n$, then:
+
+  \begin{equation*}
+    \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{\gamma}}
+    = \sum_{r = 0}^{n - 1}
+        \sum_{
+          \substack{
+            \bar{\gamma} \in \Gamma^k \\
+            \bar{l} \cdot \bar{\gamma} \equiv r
+          }
+        } e^{\frac{2 \pi i}{n} r}
+  \end{equation*}
+
+  where the congruence $\bar{l} \cdot \bar{\gamma} \equiv r$ is taken modulo $n$.
+
+  The conditions for the existence of solutions to equations of the form $\bar{l} \cdot \bar{\gamma} \equiv r \text{ (mod $n$)}$, $\bar{\gamma} \in \Gamma^k$, are well understood (see \cite{mccarthy-1986}, page 114). In particular, this equation only has solutions when $gcd(l_1, \dots, l_k, n) = g$ divides $r$ and, in such case, the total number of solutions is equal to $g n^{k - 1}$. Therefore:
+
+  \begin{equation*}
+    \begin{aligned}
+      \sum_{r = 0}^{n - 1}
+        \sum_{
+          \substack{
+            \bar{\gamma} \in \Gamma^k \\
+            \bar{l} \cdot \bar{\gamma} \equiv r
+          }
+        } e^{\frac{2 \pi i}{n} r}
+      & = \sum_{\substack{
+        r = 0 \\
+        g | r
+      }}^{n - 1} g n^{k - 1} e^{\frac{2 \pi i}{n} r} \\
+      & = g n^{k - 1} \sum_{\substack{
+        r' = 0
+      }}^{\left\lfloor \frac{n - 1}{g} \right\rfloor} e^{\frac{2 \pi i}{n} g r'}
+    \end{aligned}
+  \end{equation*}
+
+  where the last step comes from substituting $r = g r'$. If we also substitute $n = g n'$ and observe that $\left\lfloor \frac{n - 1}{g} \right\rfloor = n' - 1$:
+
+  \begin{equation*}
+    \begin{aligned}
+      \sum_{\substack{
+        r' = 0
+      }}^{\left\lfloor \frac{n - 1}{g} \right\rfloor} e^{\frac{2 \pi i}{n} g r'}
+      & = \sum_{\substack{
+        r' = 0
+      }}^{n' - 1} e^{\frac{2 \pi i}{n'} r'} \text{.}
+    \end{aligned}
+  \end{equation*}
+
+  The term on the right-hand side is the sum of all the roots of unity of order $n'$. It is a well-known fact that this sum is equal to $0$ whenever $n' > 1$. Finally, since $n > min(|l_1|, \dots, |l_k|) \ge g$, then $n' = n / g > 1$, and the proof is complete.
+
+\end{proof}
+
+\begin{proof}[Proof of Theorem 1]
+
+  Let $k$ be a positive integer and $\bar{l} = (l_1, \dots, l_k)$ a $k$-dimensional vector of integers, not all zero, where both $k$ and $\bar{l}$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers. Similarly to section \ref{subsection:proof-of-theorem 1}, we consider a prefix of the sequence $L$ of length $N$, denoted $L_{1:N}$, and we define the values $p$, $q$, and $r$ equivalently.
+
+  Letting $W_k(L) = \bar{w}_1, \bar{w}_2, \dots$, we analogously define the complex value $\nu_N$ as the Weyl sum over the first $N$ windows of size $k$ of $L$:
+
+  \begin{equation*}
+    \nu_N = \sum_{j = 1}^{N} e^{2 \pi i \bar{l} \cdot \bar{w}_j} \text{.}
+  \end{equation*}
+
+  Let $m = max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$, and consider sufficiently large values of $N$ such that $m < r$. Like before, this is always possible since $r$ is an unbounded, non-decreasing function of $N$. We can decompose $L_{1:N}$ into four consecutive sections; namely, sequences $S^{(1)}$, $S^{(2)}$, $S^{(3)}$ and $S^{(4)}$:
+
+  \begin{equation*}
+    \begin{aligned}
+      L_{1:N} & = \left< S^{(1)} ; S^{(2)} ; S^{(3)} ; S^{(4)} \right> \text{, \hspace*{5mm} where} \\
+      S^{(1)} & = \left< D^{(1)} ; D^{(2)} ; \dots ; D^{(m - 1)} \right> \\
+      S^{(2)} & = \left< D^{(m)} ; D^{(m + 1)} ; \dots ; D^{(r - 1)} \right> \\
+      S^{(3)} & = \left< \underbrace{C^{(r)} ; \dots ; C^{(r)}}_{q \text{ times}} \right> \\ 
+      S^{(4)} & = C^{(r)}_{1:p}
+    \end{aligned}
+  \end{equation*}
+
+  and define $\nu_N^{(1)}$, $\nu_N^{(2)}$, $\nu_N^{(3)}$ and $\nu_N^{(4)}$ as the Weyl sums over windows entirely contained within each respective section, such that:
+
+  \begin{equation*}
+    \begin{aligned}
+      \nu_N & = \nu^{(1)}_N + \nu^{(2)}_N + \nu^{(3)}_N + \nu^{(4)}_N + \varepsilon_b
+    \end{aligned}
+  \end{equation*}
+  for some complex number $\varepsilon_b$ with $|\varepsilon_b| \le 3 (k - 1)$, accounting for all windows crossing over any border.
+
+  Following the same reasoning from section \ref{subsection:proof-of-theorem 1}, the values of $\nu_N^{(2)}$ and $\nu_N^{(3)}$ can be computed as the Weyl sums over the $C$ sequences composing $S^{(2)}$ and $S^{(3)}$ viewed as cycles, plus two error terms accounting for right borders. However, in this case, due to Lemma \ref{lemma:weyl-sum-over-cyclic-c-sequences} and the fact that all $C$ sequences in $S^{(2)}$ and $S^{(3)}$ have orders greater than $m$, these sums vanish to zero. Therefore, $\nu_N = \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \nu^{(4)}_N + \varepsilon_b$, for some complex values $\varepsilon_{\nu^{(2)}_N}, \varepsilon_{\nu^{(3)}_N}$ with $|\varepsilon_{\nu^{(2)}_N}|, |\varepsilon_{\nu^{(3)}_N}| \le k - 1$.
+
+  We now consider the limit of $\nu_N / N$ as $N \to \infty$. Note that:
+
+  \begin{equation*}
+    \begin{aligned}
+      \left| \frac{\nu_N}{N} \right|
+        & \le \frac{1}{N} \left| \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \varepsilon_b \right| + \frac{1}{N} \left| \nu^{(4)}_N \right| \\
+        & \le \frac{1}{N} \left[ \left| \nu^{(1)}_N \right| + | \varepsilon_{\nu^{(2)}_N} | + | \varepsilon_{\nu^{(3)}_N} | + \left| \varepsilon_b \right| \right] + \frac{p}{N} \\
+        & \le \frac{1}{N} \left[ \left| \nu^{(1)}_N \right| + (k - 1) + (k - 1) + 3 (k - 1) \right] + \frac{p}{N} \text{.}
+    \end{aligned}
+  \end{equation*}
+
+  The numerator in the first term is dependent on $k$ and $m$, and constant as a function of $N$. As shown before, the second term approaches $0$ as $r \to \infty$. Therefore, the sum of both terms approaches $0$ as $N \to \infty$, which in turn implies that $\nu_N / N$ vanishes as well.
+
+  Given that $k$ and $\bar{l}$ were chosen arbitrarily, Weyl's Criterion is satisfied for all values of $k$ and the sequence $L$ is completely equidistributed.
+
 \end{proof}
 
 %%%% BIBLIOGRAFIA
