@@ -168,13 +168,13 @@ First formulated by Hermann Weyl in a paper from 1916 \cite{weyl-1916}, Weyl's C
 
 which allows questions about equidistribution to be reduced to bounds on exponential sums.
 
-The criterion can also be generalized into higher dimensions in the following way. If $\bar{X} = \bar{x}_1, \bar{x}_2, \dots$ is a sequence of $k$-dimensional vectors of real numbers, then $\bar{X}$ is equidistributed in the unit cube if and only if for all non-zero $k$-dimensional vectors of integers $\bar{l} = (l_1, \dots, l_k)$:
+The criterion can also be generalized into higher dimensions in the following way. If $\bar{X} = \bar{x}_1, \bar{x}_2, \dots$ is a sequence of $k$-dimensional vectors of real numbers, then $\bar{X}$ is equidistributed in the unit cube if and only if for all non-zero $k$-dimensional vectors of integers $\bar{\ell} = (l_1, \dots, l_k)$:
 
 \begin{equation*}
-  \lim_{N \to \infty} \frac{1}{N} \sum_{n = 1}^{N} e^{2 \pi i \bar{l} \cdot \bar{x}_n} = 0 \text{,}
+  \lim_{N \to \infty} \frac{1}{N} \sum_{n = 1}^{N} e^{2 \pi i \bar{\ell} \cdot \bar{x}_n} = 0 \text{,}
 \end{equation*}
 
-where $\bar{l} \cdot \bar{x}_n$ denotes the dot product of $\bar{l}$ and $\bar{x}_n$.
+where $\bar{\ell} \cdot \bar{x}_n$ denotes the dot product of $\bar{\ell}$ and $\bar{x}_n$.
 
 See \cite{tijdeman-1975}, pages 7 and 48, for proof of these statements.
 
@@ -212,7 +212,7 @@ In general, there exist a total of $\frac{(b!)^{b^{k - 1}}}{b^k}$ different $b$-
 
 A simple algorithm for producing a $b$-ary De Bruijn sequence of order $k$ is as follows. First, set $x_1 = x_2 = \dots = x_k = 0$. Then, pick $x_{k + i} \in \left\{ 0, 1, \dots, b - 1 \right\}$ for $i = 1 \dots b^k - k$ according to the following rules: i) $x_{1 + i}, \dots, x_{k + i}$ does not duplicate any previous contiguous subsequence of size $k$, and ii) $x_{k + i} = 0$ only when no other options are available that satisfy rule i).
 
-The algorithm as stated above is given by Knuth in \cite{knuth-1965} and attributed to an unpublished manuscript from 1957 by Ford \cite{ford-1957}. However, according to a survey by Fredricksen in \cite{fredricksen-1982}, multiple variants of the same algorithm can be found in the literature tracing back to 1934 in a paper by Martin \cite{martin-1934}. In chapter \ref{chapter:cesbofs}, we use lexicographically least De Bruijn sequences for constructing completely equidistributed sequences, to which we refer as Ford sequences following the work by Fredricksen.
+The algorithm as stated above is given by Knuth in \cite{knuth-1965} and attributed to an unpublished manuscript from 1957 by Ford \cite{ford-1957}. However, according to a survey by Fredricksen in \cite{fredricksen-1982}, multiple variants of the same algorithm can be found in the literature tracing back to 1934 in a paper by Martin \cite{martin-1934}. In Chapter \ref{chapter:cesbofs}, we use lexicographically least De Bruijn sequences for constructing completely equidistributed sequences, to which we refer as Ford sequences following the work by Fredricksen.
 
 \begin{definition*}
   A $b$-ary Ford sequence of order $k$, denoted $F^{(b, k)}$, is the lexicographically least $b$-ary De Bruijn sequence of order $k$.
@@ -226,7 +226,7 @@ In \cite{fredricksen-1978}, Fredricksen and Maiorana introduce an algorithm to g
 
 \chapter{Completely Equidistributed Sequences Based on De Bruijn Sequences}\label{chapter:cesbofs}
 
-In this chapter, we first present the completely equidistributed sequence given by Knuth in \cite{knuth-1965}. Next, we discuss the given construction and motivate the variant introduced in section \ref{section:lias}. We then state the main result of this work about the complete equidistribution of the newly introduced sequence, and provide an elementary proof of this fact based only on the defining characteristic of De Bruijn sequences. Finally, we present a simpler alternative proof based on Weyl's Criterion and a proposition from the theory of linear modular congruences.
+In this chapter, we first present the completely equidistributed sequence given by Knuth in \cite{knuth-1965}. Next, we discuss the given construction and motivate the variant introduced in Section \ref{section:lias}. We then state the main result of this work about the complete equidistribution of the newly introduced sequence, and provide an elementary proof of this fact based only on the defining characteristic of De Bruijn sequences. Finally, we present a simpler alternative proof based on Weyl's Criterion and a proposition from the theory of linear modular congruences.
 
 \section{Knuth's Sequence}\label{section:knuth-sequence}
 
@@ -273,9 +273,9 @@ We now define Knuth's sequence, denoted as $K$, as the infinite sequence of real
   The sequence $K$ is completely equidistributed.
 \end{theorem*}
 
-Two choices in the construction yielding $K$ may seem arbitrary at first glance, but play an important role in the proof of the theorem stated above. Namely, that the number of repetitions of each $A$ sequence within a $B$ sequence is $n 2^{2n}$, and the fact that the alphabet sizes of the composing Ford sequences grow exponentially as $2^n$.
+Knuth provides an elementary proof of the theorem stated above. Two choices in the construction yielding $K$ may seem arbitrary at first glance, but play an important role in this proof. Namely, that the number of repetitions of each $A$ sequence within a $B$ sequence is $n 2^{2n}$, and the fact that the alphabet sizes of the composing Ford sequences grow exponentially as $2^n$.
 
-On account of the first choice, one can adapt Knuth's proof in a rather straightforward manner to show that a sufficient condition for the complete equidistribution of $K$ is for the number of repetitions to grow asymptotically faster than $2^{2n}$. A proof of this fact is omitted here since it follows from Knuth's work, together with the technique used in the following section to obtain an analogous result.
+On account of the first choice, one can adapt Knuth's proof in a rather straightforward manner to show that a sufficient condition for the complete equidistribution of $K$ is for the number of repetitions to grow asymptotically faster than $2^{2n}$. A proof of this fact is omitted here since it follows from Knuth's work, together with the technique used in the following section to obtain an analogous result. Knuth's choice of $n 2^{2n}$ repetitions is sufficient to achieve complete equidistribution, but a more reduced number of repetitions such as $\lceil log(n + 1) \rceil 2^{2n}$ would suffice as well.
 
 In regard to the second choice, Knuth's use of alphabet sizes which grow exponentially as powers of $2$ allows one to reason more easily about the rational numbers comprised in the sequence $K$ in terms of their binary representations. In particular, Knuth uses this device to derive properties of the distribution of the $m$ most-significant bits of the terms in a $2^n$-ary Ford sequence, where $m \le n$. See \cite[Lemma 2]{knuth-1965}.
 
@@ -283,9 +283,9 @@ In the next section, we show that it is possible to construct the sequence using
 
 \section{Linearly Increasing Alphabet Sizes}\label{section:lias}
 
-We now provide a variant of Knuth's sequence based on Ford sequences with linearly increasing alphabet sizes. Within the current section, consider $t : \mathbb{N} \mapsto \mathbb{N}$ to be an arbitrary but fixed function. Later, we study which conditions $t$ must satisfy in order for the generated sequence to be completely equidistributed.
+We now introduce the main contribution of this work, which is a variant of Knuth's sequence based on Ford sequences with linearly increasing alphabet sizes.
 
-Similar to the previous section, we define for any given natural number $n$:
+Within the current section, consider $t : \mathbb{N} \mapsto \mathbb{N}$ to be an arbitrary but fixed function. Later, we study which conditions $t$ must satisfy in order for the generated sequence to be completely equidistributed. Similar to the previous section, we define for any given natural number $n$:
 
 i) a $C$ sequence of order $n$, denoted $C^{(n)}$, as the finite sequence of rational numbers obtained from dividing by $n$ each of the terms in an $n$-ary Ford sequence of order $n$:
 
@@ -365,7 +365,7 @@ Let $k$ be a positive integer and $I = [u_1, v_1)  \times \dots \times [u_k, v_k
   \nu_N = \sum_{i = 1}^{N} \sigma\Big( \big( W_k(L) \big)_i \in I \Big) \text{.}
 \end{equation*}
 
-We can now express the probability, in the sense defined in chapter \ref{chapter:preliminaries}, of any given window of $L$ of size $k$ belonging to the set $I$ as:
+We can now express the probability, in the sense defined in Chapter \ref{chapter:preliminaries}, of any given window of $L$ of size $k$ belonging to the set $I$ as:
 
 \begin{equation*}
   Pr\Big( \big( W_k(L) \big)_i \in I \Big) = \lim_{N \to \infty} \frac{\nu_N}{N} \text{.}
@@ -697,7 +697,7 @@ We now obtain an expression for the number of windows of a $C$ sequence which ar
 
   \begin{equation*}
     \begin{aligned}
-      & \frac{\sum_{s = k}^{r - 1} t(s) s^{s - 1} \varepsilon_s}{N} \le \frac{t(r - 1) \sum_{s = 1}^{r - 1} s^{s - 1}}{t(r - 1) (r - 1)^{(r - 1)}} \le \frac{2 (r - 1)^{(r - 2)}}{(r - 1)^{(r - 1)}} = \frac{2}{r - 1} \text{, and} \\
+      & \frac{\sum\limits_{s = k}^{r - 1} t(s) s^{s - 1} \varepsilon_s}{N} \le \frac{t(r - 1) \sum\limits_{s = 1}^{r - 1} s^{s - 1}}{t(r - 1) (r - 1)^{(r - 1)}} \le \frac{2 (r - 1)^{(r - 2)}}{(r - 1)^{(r - 1)}} = \frac{2}{r - 1} \text{, and} \\
       & \frac{q r^{r - 1} \varepsilon_r}{N} \le \frac{q r^{r - 1}}{q r^r} = \frac{1}{r} \text{,}
     \end{aligned}
   \end{equation*}
@@ -728,16 +728,16 @@ We now obtain an expression for the number of windows of a $C$ sequence which ar
 
 \subsection{Alternative Proof of Theorem 1}
 
-We provide an alternative proof of Theorem 1 based on Weyl's Criterion, as stated in section \ref{section:weyls-criterion}, using a proposition from the theory of linear modular congruences and a well-known fact from the study of the roots of unity.
+We provide an alternative proof of Theorem 1 based on Weyl's Criterion, as stated in Section \ref{section:weyls-criterion}, using a proposition from the theory of linear modular congruences and a well-known fact from the study of the roots of unity.
 
 Before applying Weyl's Criterion to the sequence $L$, we first prove the following lemma.
 
 \begin{lemma}\label{lemma:weyl-sum-over-cyclic-c-sequences}
-  Given a positive integer $k$ and a non-zero $k$-dimensional vector of integers $\bar{l} = (l_1, \dots, l_k)$, let $n \in \mathbb{N}$ such that $n > max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$ and consider the sequence $C^{(n)}$ as a cyclic sequence. Then:
+  Given a positive integer $k$ and a non-zero $k$-dimensional vector of integers $\bar{\ell} = (l_1, \dots, l_k)$, let $n \in \mathbb{N}$ such that $n > max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$ and consider the sequence $C^{(n)}$ as a cyclic sequence. Then:
 
   \begin{equation}\label{equation:weyl-sum-over-cyclic-c-sequence}
     \begin{aligned}
-      \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot \bar{w}_j} & = 0 \text{,} \\
+      \sum_{j = 1}^{n^n} e^{2 \pi i \bar{\ell} \cdot \bar{w}_j} & = 0 \text{,} \\
       \text{where } W_k^c\left(C^{(n)}\right) & = \bar{w}_1, \bar{w}_2, \dots, \bar{w}_{n^n} \text{.}
     \end{aligned}
   \end{equation}
@@ -758,25 +758,25 @@ Before applying Weyl's Criterion to the sequence $L$, we first prove the followi
   Substituting into the left-hand side of equation \ref{equation:weyl-sum-over-cyclic-c-sequence}:
   
   \begin{equation*}
-    \sum_{j = 1}^{n^n} e^{2 \pi i \bar{l} \cdot (\frac{1}{n} \bar{f}_j)} = \sum_{j = 1}^{n^n} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{f}_j} = n^{n - k} \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{\gamma}} \text{.}
+    \sum_{j = 1}^{n^n} e^{2 \pi i \bar{\ell} \cdot (\frac{1}{n} \bar{f}_j)} = \sum_{j = 1}^{n^n} e^{\frac{2 \pi i}{n} \bar{\ell} \cdot \bar{f}_j} = n^{n - k} \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{\ell} \cdot \bar{\gamma}} \text{.}
   \end{equation*}
 
-  Since $\bar{l} \cdot \bar{\gamma} \in \mathbb{Z}$ and the function $exp : \mathbb{Z} \to \mathbb{C}$, $exp(m) = e^{\frac{2 \pi i}{n} m}$ is periodic with a period equal to $n$, then:
+  Since $\bar{\ell} \cdot \bar{\gamma} \in \mathbb{Z}$ and the function $exp : \mathbb{Z} \to \mathbb{C}$, $exp(m) = e^{\frac{2 \pi i}{n} m}$ is periodic with a period equal to $n$, then:
 
   \begin{equation*}
-    \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{l} \cdot \bar{\gamma}}
+    \sum_{\bar{\gamma} \in \Gamma^k} e^{\frac{2 \pi i}{n} \bar{\ell} \cdot \bar{\gamma}}
     = \sum_{r = 0}^{n - 1}
         \sum_{
           \substack{
             \bar{\gamma} \in \Gamma^k \\
-            \bar{l} \cdot \bar{\gamma} \equiv r
+            \bar{\ell} \cdot \bar{\gamma} \equiv r
           }
         } e^{\frac{2 \pi i}{n} r}
   \end{equation*}
 
-  where the congruence $\bar{l} \cdot \bar{\gamma} \equiv r$ is taken modulo $n$.
+  where the congruence $\bar{\ell} \cdot \bar{\gamma} \equiv r$ is taken modulo $n$.
 
-  The conditions for the existence of solutions to equations of the form $\bar{l} \cdot \bar{\gamma} \equiv r \text{ (mod $n$)}$, $\bar{\gamma} \in \Gamma^k$, are well understood (see \cite{mccarthy-1986}, page 114). In particular, this equation only has solutions when $gcd(l_1, \dots, l_k, n) = g$ divides $r$ and, in such case, the total number of solutions is equal to $g n^{k - 1}$. Therefore:
+  The conditions for the existence of solutions to equations of the form $\bar{\ell} \cdot \bar{\gamma} \equiv r \text{ (mod $n$)}$, $\bar{\gamma} \in \Gamma^k$, are well understood (see \cite{mccarthy-1986}, page 114). In particular, this equation only has solutions when $gcd(l_1, \dots, l_k, n) = g$ divides $r$ and, in such case, the total number of solutions is equal to $g n^{k - 1}$. Therefore:
 
   \begin{equation*}
     \begin{aligned}
@@ -784,7 +784,7 @@ Before applying Weyl's Criterion to the sequence $L$, we first prove the followi
         \sum_{
           \substack{
             \bar{\gamma} \in \Gamma^k \\
-            \bar{l} \cdot \bar{\gamma} \equiv r
+            \bar{\ell} \cdot \bar{\gamma} \equiv r
           }
         } e^{\frac{2 \pi i}{n} r}
       & = \sum_{\substack{
@@ -816,12 +816,12 @@ Before applying Weyl's Criterion to the sequence $L$, we first prove the followi
 
 \begin{proof}[Proof of Theorem 1]
 
-  Remember that $k$ is a positive integer and $\bar{l} = (l_1, \dots, l_k)$ is a non-zero $k$-dimensional vector of integers, where both $k$ and $\bar{l}$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers. Similarly to section \ref{subsection:proof-of-theorem 1}, we consider a prefix of the sequence $L$ of length $N$, denoted $L_{1:N}$, and we define the values $p$, $q$, and $r$ equivalently.
+  Remember that $k$ is a positive integer and $\bar{\ell} = (l_1, \dots, l_k)$ is a non-zero $k$-dimensional vector of integers, where both $k$ and $\bar{\ell}$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers. Similarly to Section \ref{subsection:proof-of-theorem 1}, we consider a prefix of the sequence $L$ of length $N$, denoted $L_{1:N}$, and we define the values $p$, $q$, and $r$ equivalently.
 
   Letting $W_k(L) = \bar{w}_1, \bar{w}_2, \dots$, we analogously define the complex value $\nu_N$ as the Weyl sum over the first $N$ windows of size $k$ of $L$:
 
   \begin{equation*}
-    \nu_N = \sum_{j = 1}^{N} e^{2 \pi i \bar{l} \cdot \bar{w}_j} \text{.}
+    \nu_N = \sum_{j = 1}^{N} e^{2 \pi i \bar{\ell} \cdot \bar{w}_j} \text{.}
   \end{equation*}
 
   Let $m = max\left(k, min\left(|l_1|, \dots, |l_k|\right)\right)$, and consider sufficiently large values of $N$ such that $m < r$. Like before, this is always possible since $r$ is an unbounded, non-decreasing function of $N$. We can decompose $L_{1:N}$ into four consecutive sections; namely, sequences $S^{(1)}$, $S^{(2)}$, $S^{(3)}$ and $S^{(4)}$:
@@ -845,7 +845,7 @@ Before applying Weyl's Criterion to the sequence $L$, we first prove the followi
   \end{equation*}
   for some complex number $\varepsilon_b$ with $|\varepsilon_b| \le 3 (k - 1)$ which accounts for all windows crossing over any border.
 
-  Following the same reasoning from section \ref{subsection:proof-of-theorem 1}, the values of $\nu_N^{(2)}$ and $\nu_N^{(3)}$ can be computed as the Weyl sums over the $C$ sequences composing $S^{(2)}$ and $S^{(3)}$ viewed as cycles, plus two error terms accounting for right borders. However, in this case, due to Lemma \ref{lemma:weyl-sum-over-cyclic-c-sequences} and the fact that all $C$ sequences in $S^{(2)}$ and $S^{(3)}$ have orders greater than $m$, these sums vanish to zero. Therefore, $\nu_N = \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \nu^{(4)}_N + \varepsilon_b$, for some complex values $\varepsilon_{\nu^{(2)}_N}, \varepsilon_{\nu^{(3)}_N}$ with $|\varepsilon_{\nu^{(2)}_N}|, |\varepsilon_{\nu^{(3)}_N}| \le k - 1$.
+  Following the same reasoning from Section \ref{subsection:proof-of-theorem 1}, the values of $\nu_N^{(2)}$ and $\nu_N^{(3)}$ can be computed as the Weyl sums over the $C$ sequences composing $S^{(2)}$ and $S^{(3)}$ viewed as cycles, plus two error terms accounting for right borders. However, in this case, due to Lemma \ref{lemma:weyl-sum-over-cyclic-c-sequences} and the fact that all $C$ sequences in $S^{(2)}$ and $S^{(3)}$ have orders greater than $m$, these sums vanish to zero. Therefore, $\nu_N = \nu^{(1)}_N + \varepsilon_{\nu^{(2)}_N} + \varepsilon_{\nu^{(3)}_N} + \nu^{(4)}_N + \varepsilon_b$, for some complex values $\varepsilon_{\nu^{(2)}_N}, \varepsilon_{\nu^{(3)}_N}$ with $|\varepsilon_{\nu^{(2)}_N}|, |\varepsilon_{\nu^{(3)}_N}| \le k - 1$.
 
   We now consider the limit of $\nu_N / N$ as $N \to \infty$. Note that:
 
@@ -860,7 +860,7 @@ Before applying Weyl's Criterion to the sequence $L$, we first prove the followi
 
   The numerator in the first term is dependent on $k$ and $m$, and constant as a function of $N$. As shown before, the second term approaches $0$ as $r \to \infty$. Therefore, the sum of both terms approaches $0$ as $N \to \infty$, which in turn implies that $\nu_N / N$ vanishes as well.
 
-  Given that $k$ and $\bar{l}$ were chosen arbitrarily, Weyl's Criterion is satisfied for all values of $k$ and the sequence $L$ is completely equidistributed.
+  Given that $k$ and $\bar{\ell}$ were chosen arbitrarily, Weyl's Criterion is satisfied for all values of $k$ and the sequence $L$ is completely equidistributed.
 
 \end{proof}
 
