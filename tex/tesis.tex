@@ -208,11 +208,11 @@ Note that all possible binary sequences of length 3 appear exactly once as a con
   \end{equation*}  
 \end{exmp*}
 
-In general, there exist a total of $\frac{(b!)^{b^{k - 1}}}{b^k}$ different $b$-ary De Bruijn sequences of order $k$. This result first became well-known due to De Bruijn \cite{de-bruijn-1946}, although a later paper by the same author credits C. Flye Sainte-Marie with having previously proven the result for the case $b = 2$ in 1894.
+In general, there exists a total of $\frac{(b!)^{b^{k - 1}}}{b^k}$ different $b$-ary De Bruijn sequences of order $k$. This result first became well-known due to De Bruijn \cite{de-bruijn-1946}, although a later paper by the same author credits C. Flye Sainte-Marie with having previously proven the result for the case $b = 2$ in 1894.
 
 A simple algorithm for producing a $b$-ary De Bruijn sequence of order $k$ is as follows. First, set $x_1 = x_2 = \dots = x_k = 0$. Then, pick $x_{k + i} \in \left\{ 0, 1, \dots, b - 1 \right\}$ for $i = 1 \dots b^k - k$ according to the following rules: i) $x_{1 + i}, \dots, x_{k + i}$ does not duplicate any previous contiguous subsequence of size $k$, and ii) $x_{k + i} = 0$ only when no other options are available that satisfy rule i).
 
-The algorithm as stated above is given by Knuth in \cite{knuth-1965} and attributed to an unpublished manuscript from 1957 by Ford \cite{ford-1957}. However, according to a survey by Fredricksen in \cite{fredricksen-1982}, multiple variants of the same algorithm can be found in the literature tracing back to 1934 in a paper by Martin \cite{martin-1934}. In Chapter \ref{chapter:cesbofs}, we use lexicographically least De Bruijn sequences for constructing completely equidistributed sequences, to which we refer as Ford sequences following the work by Fredricksen.
+The algorithm as stated above is given by Knuth in \cite{knuth-1965} and attributed to an unpublished manuscript from 1957 by Ford \cite{ford-1957}. However, according to a survey by Fredricksen in \cite{fredricksen-1982}, multiple variants of the same algorithm can be found in the literature tracing back to 1934 in a paper by Martin \cite{martin-1934}. In Chapter \ref{chapter:cesbofs}, we use lexicographically least De Bruijn sequences, to which we refer as Ford sequences following the work by Fredricksen, for constructing completely equidistributed sequences.
 
 \begin{definition*}
   A $b$-ary Ford sequence of order $k$, denoted $F^{(b, k)}$, is the lexicographically least $b$-ary De Bruijn sequence of order $k$.
