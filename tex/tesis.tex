@@ -160,7 +160,7 @@ where the indices are taken modulo $l$.
 
 \section{Weyl's Criterion}\label{section:weyls-criterion}
 
-First formulated by Hermann Weyl in his paper from 1916 \cite{weyl-1916}, Weyl's Criterion states that a sequence $X = x_1, x_2, \dots$ of real numbers is equidistributed in the unit interval if and only if for all non-zero integers $l$:
+First formulated by Hermann Weyl in a paper from 1916 \cite{weyl-1916}, Weyl's Criterion states that a sequence $X = x_1, x_2, \dots$ of real numbers is equidistributed in the unit interval if and only if for all non-zero integers $l$:
 
 \begin{equation*}
   \lim_{N \to \infty} \frac{1}{N} \sum_{n = 1}^{N} e^{2 \pi i l x_n} = 0 \text{,}
@@ -180,7 +180,7 @@ See \cite{tijdeman-1975}, pages 7 and 48, for proof of these statements.
 
 \section{De Bruijn Sequences and Ford Sequences}
 
-For the constructions presented in chapter \ref{chapter:cesbofs}, we use Ford sequences as a basic primitive, which are themselves a specific type of De Bruijn sequences. Having been originally defined over a binary alphabet (see \cite{de-bruijn-1946}) and later generalized to larger alphabets, their definition varies slightly accross the literature. Throughout this work, we use these terms according to the following definitions.
+De Bruijn sequences are well-studied sequences from the field of combinatorics on words; see \cite{berstel-2007} for a historical introduction. Their properties are relevant to equidistribution since for any $k$ one can always obtain a $k$-distributed sequence simply by extending a De Bruijn sequence of order $k$ naturally into a periodic sequence. Having been originally defined over a binary alphabet and later generalized to larger alphabets, their definition varies slightly accross the literature. Throughout this work, we use these terms according to the following definitions.
 
 \begin{definition*}
   A $b$-ary De Bruijn sequence of order $k$ is any sequence of length $b^k$ which, when viewed as a cycle, contains every possible $b$-ary sequence of length $k$ exactly once as a contiguous subsequence.
@@ -208,21 +208,29 @@ Note that all possible binary sequences of length 3 appear exactly once as a con
   \end{equation*}  
 \end{exmp*}
 
-In general, there may exist multiple different $b$-ary De Bruijn sequences of order $k$. The lexicographically smallest one is often also called a Ford sequence. More precisely:
+In general, there exist a total of $\frac{(b!)^{b^{k - 1}}}{b^k}$ different $b$-ary De Bruijn sequences of order $k$. This result first became well-known due to De Bruijn \cite{de-bruijn-1946}, although a later paper by the same author credits C. Flye Sainte-Marie with having previously proven the result for the case $b = 2$ in 1894.
+
+A simple algorithm for producing a $b$-ary De Bruijn sequence of order $k$ is as follows. First, set $x_1 = x_2 = \dots = x_k = 0$. Then, pick $x_{k + i} \in \left\{ 0, 1, \dots, b - 1 \right\}$ for $i = 1 \dots b^k - k$ according to the following rules: i) $x_{1 + i}, \dots, x_{k + i}$ does not duplicate any previous contiguous subsequence of size $k$, and ii) $x_{k + i} = 0$ only when no other options are available that satisfy rule i).
+
+The algorithm as stated above is attributed by Knuth \cite{knuth-1965} to an unpublished manuscript from 1957 by Ford \cite{ford-1957}. However, according to a survey by Fredricksen in \cite{fredricksen-1982}, multiple variants of the same algorithm can be found in the literature tracing back to 1934 in a paper by Martin \cite{martin-1934}. In chapter \ref{chapter:cesbofs}, we use lexicographically least De Bruijn sequences for constructing completely equidistributed sequences, to which we refer as Ford sequences following Fredricksen.
 
 \begin{definition*}
-  A $b$-ary Ford sequence of order $k$, denoted $F^{(b, k)}$, is the lexicographically smallest $b$-ary De Bruijn sequence of order $k$.
+  A $b$-ary Ford sequence of order $k$, denoted $F^{(b, k)}$, is the lexicographically least $b$-ary De Bruijn sequence of order $k$.
 \end{definition*}
 
 \begin{exmp*}
   The first sequences in each of the examples above are, respectively, the binary Ford sequence of order 3, and the 4-ary Ford sequence of order 2.
 \end{exmp*}
 
+In \cite{fredricksen-1978}, Fredricksen and Maiorana extend a previous result by Fredricksen and Kessler, introducing an algorithm to generate a $b$-ary Ford sequence of order $k$. Ruskey, Savage, and Wang later refer to this algorithm as the FKM (Fredricksen, Kessler, Maiorana) algorithm, and prove that it has a constant amortized running time (see \cite{ruskey-1991}).
+
 \chapter{Completely Equidistributed Sequences Based on De Bruijn Sequences}\label{chapter:cesbofs}
 
-\section{Knuth's Sequence}
+In this chapter, we first present the completely equidistributed sequence given by Knuth in \cite{knuth-1965}. Next, we discuss different aspects of the given construction and motivate the variant introduced in section \ref{section:lias}. We then state the main result of this work about the complete equidistribution of the newly introduced sequence, and provide an elementary proof based only on the defining characteristic of De Bruijn sequences. Finally, we present a simpler alternative proof based on Weyl's Criterion and a proposition from the theory of linear modular congruences.
 
-In this section, we define Knuth's sequence, denoted as $K$, following the construction presented in \cite{knuth-1965}. In its original formulation, the sequence $K$ can be constructed using any given family of De Bruijn sequences. Here, we specifically use Ford sequences since they are easily defined in a univocal manner and can be generated efficiently. Given a natural number $n$, we define:
+\section{Knuth's Sequence}\label{section:knuth-sequence}
+
+We define Knuth's sequence, denoted as $K$, following the construction presented in \cite{knuth-1965}. In its original formulation, the sequence $K$ can be constructed using any given family of De Bruijn sequences. Here, we specifically use Ford sequences since they are easily defined in a univocal manner and can be generated efficiently. Given a natural number $n$, we define:
 
 i) an $A$ sequence of order $n$, denoted $A^{(n)}$, as the finite sequence of rational numbers obtained from dividing by $2^n$ each of the terms in a $2^n$-ary Ford sequence of order $n$:
 
@@ -271,7 +279,7 @@ In regard to the second choice, Knuth's use of alphabet sizes which grow exponen
 
 In the next section, we show that it is possible to construct the sequence using linearly increasing alphabet sizes instead, while preserving the property of complete equidistribution. In turn, this allows for a much more reduced number of repetitions of each $A$ sequence within a $B$ sequence.
 
-\section{Linearly Increasing Alphabet Sizes}
+\section{Linearly Increasing Alphabet Sizes}\label{section:lias}
 
 We now provide a variant of Knuth's sequence based on Ford sequences with linearly increasing alphabet sizes. Within the current section, consider $t : \mathbb{N} \mapsto \mathbb{N}$ to be an arbitrary but fixed function. Later, we study which conditions $t$ must satisfy in order for the generated sequence to be completely equidistributed. Similar to the previous section, we define for any given natural number $n$:
 
@@ -595,6 +603,8 @@ We now obtain an expression for the number of windows of a $C$ sequence which ar
 \end{proof}
 
 \begin{proof}[Proof of Theorem 1]
+
+  Using Lemma \ref{lemma:count-windows-c-sequence-cyclic}, we now prove the main result of this work.
 
   Remember that $k$ is a positive integer and $I = [u_1, v_1) \times \dots \times [u_k, v_k)$ is a set such that $I \subseteq [0, 1)^k$, where both $k$ and $I$ have arbitrary but fixed values. Let $N$ range freely over the natural numbers. Next, we obtain an expression for $\nu_N / N$ and compute its limit when $N \to \infty$. Recall the following definitions:
 
