@@ -77,9 +77,9 @@ In engineering, computer science, and other branches of science we are often req
 
 Significant work has been done in this direction. In a paper by Franklin \cite{franklin-1963}, the notion of equidistribution is discussed and presented as a first requirement for randomness. Franklin proves that the sequence of powers $\alpha, \alpha^2, \alpha^3, ...$ is completely equidistributed modulo $1$ for \textit{almost all} $\alpha > 1$. However, no specific value of $\alpha$ is provided that verifies this property. A concrete construction yielding a completely equidistributed sequence is given by Knuth \cite{knuth-1965}, and based on De Bruijn sequences of increasing order and alphabet size. In this work, we provide a similar albeit simpler construction and prove that the sequence it yields is also completely equidistributed.
 
-Since any real computer has a finite word-length and a finite amount of memory, it can only produce numbers of limited precision and sequences that are ultimately periodic. Thus, in practice a pseudo-random number generator (PRNG) is unable to produce a truly completely equidistributed sequence. Instead, practical PRNGs are evaluated by empirical randomness tests to show that they possess suitable equidistribution properties (see \cite{l-ecuyer-2007}), and are often equidistributed only up to a finite number of dimensions. For example, numbers produced by the Mersenne Twister, introduced by Matsumoto and Nishimura in \cite{matsumoto-1998}, show $623$-dimensional equidistribution.
+Since any real computer has a finite word-length and a finite amount of memory, it can only produce numbers of limited precision and sequences that are ultimately periodic. Thus, in practice a pseudo-random number generator (PRNG) is unable to produce a truly completely equidistributed sequence of real numbers. Instead, practical PRNGs are evaluated by empirical randomness tests to show that they possess suitable equidistribution properties (see \cite{l-ecuyer-2007}), and are often equidistributed only up to a finite number of dimensions. For example, numbers produced by the Mersenne Twister, introduced by Matsumoto and Nishimura in \cite{matsumoto-1998}, show $623$-dimensional equidistribution.
 
-In subsequent sections, we study theoretical properties of sequences based on De Bruijn sequences, ignoring any practical limitations by considering a computational model with infinite memory and with infinite word-length, where real numbers can be stored and computed with perfect precision.
+In subsequent sections, we ignore any practical limitations by considering a computational model with infinite memory and with infinite word-length, where real numbers can be stored and computed with perfect precision.
 
 \section{Notational Conventions}
 
@@ -180,7 +180,7 @@ See \cite{tijdeman-1975}, pages 7 and 48, for proof of these statements.
 
 \section{De Bruijn Sequences and Ford Sequences}
 
-De Bruijn sequences are well-studied sequences from the field of combinatorics on words; see \cite{berstel-2007} for a historical introduction. Their properties are relevant to equidistribution since for any positive integer $k$ one can always obtain a $k$-distributed sequence simply by extending a De Bruijn sequence of order $k$ into a periodic sequence. Having been originally defined over a binary alphabet and later generalized to larger alphabets, their definition varies slightly accross the literature. Throughout this work, we use these terms according to the following definitions.
+De Bruijn sequences are well-studied sequences from the field of combinatorics on words; see \cite{berstel-2007} for a historical introduction. Additionally, these sequences show a close link to the property of equidistribution; namely, that any De Bruijn sequence $X$ of order $k$ can be extended into a $k$-distributed sequence $X' = \left< X ; X ; \dots \right>$. Throughout this work, we use the terms De Bruijn sequence and Ford sequence according to the following definitions.
 
 \begin{definition*}
   A $b$-ary De Bruijn sequence of order $k$ is any sequence of length $b^k$ which, when viewed as a cycle, contains every possible $b$-ary sequence of length $k$ exactly once as a contiguous subsequence.
@@ -208,11 +208,11 @@ Note that all possible binary sequences of length 3 appear exactly once as a con
   \end{equation*}  
 \end{exmp*}
 
-In general, there exists a total of $\frac{(b!)^{b^{k - 1}}}{b^k}$ different $b$-ary De Bruijn sequences of order $k$. This result first became well-known due to De Bruijn \cite{de-bruijn-1946}, although a later paper by the same author credits C. Flye Sainte-Marie with having previously proven the result for the case $b = 2$ in 1894.
+There exists a total of $\frac{(b!)^{b^{k - 1}}}{b^k}$ different $b$-ary De Bruijn sequences of order $k$. This result first became well-known due to De Bruijn \cite{de-bruijn-1946}, although a later paper by the same author credits C. Flye Sainte-Marie with having previously proven the result for the case $b = 2$ in 1894.
 
 A simple algorithm for producing a $b$-ary De Bruijn sequence of order $k$ is as follows. First, set $x_1 = x_2 = \dots = x_k = 0$. Then, pick $x_{k + i} \in \left\{ 0, 1, \dots, b - 1 \right\}$ for $i = 1 \dots b^k - k$ according to the following rules: i) $x_{1 + i}, \dots, x_{k + i}$ does not duplicate any previous contiguous subsequence of size $k$, and ii) $x_{k + i} = 0$ only when no other options are available that satisfy rule i).
 
-The algorithm as stated above is given by Knuth in \cite{knuth-1965} and attributed to an unpublished manuscript from 1957 by Ford \cite{ford-1957}. However, according to a survey by Fredricksen in \cite{fredricksen-1982}, multiple variants of the same algorithm can be found in the literature tracing back to 1934 in a paper by Martin \cite{martin-1934}. In Chapter \ref{chapter:cesbofs}, we use lexicographically least De Bruijn sequences, to which we refer as Ford sequences following the work by Fredricksen, for constructing completely equidistributed sequences.
+The algorithm as stated above is exhibited by Knuth in \cite{knuth-1965} and attributed to a manuscript from 1957 by Ford \cite{ford-1957}. However, according to a survey by Fredricksen in \cite{fredricksen-1982}, multiple variants of the same algorithm can be found in the literature tracing back to 1934 in a paper by Martin \cite{martin-1934}. In Chapter \ref{chapter:cesbofs}, we use lexicographically least De Bruijn sequences, to which we refer as Ford sequences following the work by Fredricksen, for constructing completely equidistributed sequences.
 
 \begin{definition*}
   A $b$-ary Ford sequence of order $k$, denoted $F^{(b, k)}$, is the lexicographically least $b$-ary De Bruijn sequence of order $k$.
@@ -226,11 +226,11 @@ In \cite{fredricksen-1978}, Fredricksen and Maiorana introduce an algorithm to g
 
 \chapter{Completely Equidistributed Sequences Based on De Bruijn Sequences}\label{chapter:cesbofs}
 
-In this chapter, we first present the completely equidistributed sequence given by Knuth in \cite{knuth-1965}. Next, we discuss the given construction and motivate the variant introduced in Section \ref{section:lias}. We then state the main result of this work about the complete equidistribution of the newly introduced sequence, and provide an elementary proof of this fact based only on the defining characteristic of De Bruijn sequences. Finally, we present a simpler alternative proof based on Weyl's Criterion and a proposition from the theory of linear modular congruences.
+In this chapter, we first present the completely equidistributed sequence given by Knuth in \cite{knuth-1965}. Next, we discuss the given construction and motivate the variant introduced in Section \ref{section:lias}. We then state the main result of this work about the complete equidistribution of the newly introduced sequence, and provide an elementary proof of this fact based only on the defining property of De Bruijn sequences. Finally, we present a simpler alternative proof based on Weyl's Criterion and a proposition from the theory of linear modular congruences.
 
 \section{Knuth's Sequence}\label{section:knuth-sequence}
 
-We define Knuth's sequence, denoted as $K$, following the construction presented in \cite{knuth-1965}. In its original formulation, the sequence $K$ can be constructed using any given family of De Bruijn sequences. Here, we specifically use Ford sequences since they are easily defined in a univocal manner and can be generated efficiently.
+We define Knuth's sequence, denoted as $K$, following the construction presented in \cite{knuth-1965}. In its original formulation, the sequence $K$ can be constructed using any given family of De Bruijn sequences. Here, we exhibit the construction using Ford sequences since they are easily defined in a univocal manner and can be generated efficiently, but any other fixed family of De Bruijn sequences would yield the same result.
 
 Given a natural number $n$, we define:
 
@@ -275,7 +275,7 @@ We now define Knuth's sequence, denoted as $K$, as the infinite sequence of real
 
 Knuth provides an elementary proof of the theorem stated above. Two choices in the construction yielding $K$ may seem arbitrary at first glance, but play an important role in this proof. Namely, that the number of repetitions of each $A$ sequence within a $B$ sequence is $n 2^{2n}$, and the fact that the alphabet sizes of the composing Ford sequences grow exponentially as $2^n$.
 
-On account of the first choice, one can adapt Knuth's proof in a rather straightforward manner to show that a sufficient condition for the complete equidistribution of $K$ is for the number of repetitions to grow asymptotically faster than $2^{2n}$. A proof of this fact is omitted here since it follows from Knuth's work, together with the technique used in the following section to obtain an analogous result. Knuth's choice of $n 2^{2n}$ repetitions is sufficient to achieve complete equidistribution, but a more reduced number of repetitions such as $\lceil log(n + 1) \rceil 2^{2n}$ would suffice as well.
+On account of the first choice, one can adapt Knuth's proof in a rather straightforward manner to show that a sufficient condition for the complete equidistribution of $K$ is for the number of repetitions to grow asymptotically faster than $2^{2n}$. A proof of this fact is omitted here since it follows from Knuth's work, together with the technique used in the following section to obtain an analogous result. Knuth's choice of $n 2^{2n}$ repetitions is sufficient to achieve complete equidistribution, but a more reduced number of repetitions such as $\lceil \log(n + 1) \rceil 2^{2n}$ would suffice as well.
 
 In regard to the second choice, Knuth's use of alphabet sizes which grow exponentially as powers of $2$ allows one to reason more easily about the rational numbers comprised in the sequence $K$ in terms of their binary representations. In particular, Knuth uses this device to derive properties of the distribution of the $m$ most-significant bits of the terms in a $2^n$-ary Ford sequence, where $m \le n$. See \cite[Lemma 2]{knuth-1965}.
 
@@ -325,7 +325,7 @@ We now define the sequence $L$ as the infinite sequence of real numbers resultin
 \end{equation*}
 
 \begin{theorem}\label{theorem:l-is-completely-equidistributed}
-  If $t$ is non-decreasing and $\lim_{n \to \infty} n / t(n) = 0$, then the sequence $L$ is completely equidistributed.
+  If $t : \mathbb{N} \mapsto \mathbb{N}$ is a non-decreasing function and $\lim_{n \to \infty} n / t(n) = 0$, then the sequence $L$ is completely equidistributed.
 \end{theorem}
 
 \begin{exmp*}
