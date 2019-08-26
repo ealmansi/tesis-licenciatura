@@ -10,4 +10,17 @@ tex/tesis.synctex.gz
 tex/tesis.toc
 
 #
+slides/slides.aux
+slides/slides.bbl
+slides/slides.blg
+slides/slides.fdb_latexmk
+slides/slides.fls
+slides/slides.log
+slides/slides.out
+slides/slides.synctex.gz
+slides/slides.toc
+slides/slides.nav
+slides/slides.snm
+
+#
 docs/

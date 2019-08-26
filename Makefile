@@ -1,9 +1,15 @@
+all: tesis slides
 
-all:
+tesis:
 	cd tex/ && \
 		pdflatex tesis.tex && \
 		bibtex tesis && \
 		pdflatex tesis.tex && \
 		pdflatex tesis.tex
 
-.PHONY: all
+slides:
+	cd slides/ && \
+		pdflatex slides.tex && \
+		pdflatex slides.tex
+
+.PHONY: all tesis slides
