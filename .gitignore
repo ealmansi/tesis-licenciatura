@@ -1,13 +1,13 @@
 #
-tex/tesis.aux
-tex/tesis.bbl
-tex/tesis.blg
-tex/tesis.fdb_latexmk
-tex/tesis.fls
-tex/tesis.log
-tex/tesis.out
-tex/tesis.synctex.gz
-tex/tesis.toc
+tesis/tesis.aux
+tesis/tesis.bbl
+tesis/tesis.blg
+tesis/tesis.fdb_latexmk
+tesis/tesis.fls
+tesis/tesis.log
+tesis/tesis.out
+tesis/tesis.synctex.gz
+tesis/tesis.toc
 
 #
 slides/slides.aux
