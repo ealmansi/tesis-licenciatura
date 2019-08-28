@@ -9,6 +9,7 @@
 \usepackage{setspace}
 \usepackage{url}
 \usepackage{xcolor}
+\usepackage{bbm}
 
 \mode<presentation>{
 	\usecolortheme{}
@@ -16,15 +17,27 @@
 	\useoutertheme{}
 }
 
+\setbeamertemplate{caption}[numbered]
 \setbeamertemplate{frametitle}[default][left,leftskip=0.5cm]
 \setbeamersize{text margin left = 1cm}
 \beamertemplatenavigationsymbolsempty
-\addtobeamertemplate{frametitle}{\vspace*{0.5cm}}{\vspace*{0.5cm}}
+\addtobeamertemplate{frametitle}{\vspace*{0.5cm}}{\vspace*{1cm}}
 
 \setlength{\parskip}{\baselineskip}
 \expandafter\def\expandafter\item\expandafter{\item \setlength{\parskip}{0.5\baselineskip}}
 \expandafter\def\expandafter\definition\expandafter{\definition \setlength{\parskip}{0.5\baselineskip}}
 
+\languagepath{spanish}
+\deftranslation[to=spanish]{Theorem}{Teorema}
+\deftranslation[to=spanish]{theorem}{teorema}
+\deftranslation[to=spanish]{Definition}{Definición}
+\deftranslation[to=spanish]{definition}{definición}
+\deftranslation[to=spanish]{Problem}{Problema}
+\deftranslation[to=spanish]{problem}{problema}
+\deftranslation[to=spanish]{Corollary}{Corolario}
+\deftranslation[to=spanish]{corollary}{corolario}
+\deftranslation[to=spanish]{Lemma}{Lema}
+\deftranslation[to=spanish]{lemma}{lema}
 \newtheorem{observation}{Observation}
 \newtheorem{conjecture}{Conjecture}
 \newtheorem{belief}{Belief}
@@ -50,18 +63,6 @@
 \newcommand{\uno}{\mathbbm{1}}
 \newcommand{\alocc}[2]{|\!|#1|\!|_{#2}}
 \newcommand{\occ}[2]{|#1|_{#2}}
-
-\languagepath{spanish}
-\deftranslation[to=spanish]{Theorem}{Teorema}
-\deftranslation[to=spanish]{theorem}{teorema}
-\deftranslation[to=spanish]{Definition}{Definición}
-\deftranslation[to=spanish]{definition}{definición}
-\deftranslation[to=spanish]{Problem}{Problema}
-\deftranslation[to=spanish]{problem}{problema}
-\deftranslation[to=spanish]{Corollary}{Corolario}
-\deftranslation[to=spanish]{corollary}{corolario}
-\deftranslation[to=spanish]{Lemma}{Lema}
-\deftranslation[to=spanish]{lemma}{lema}
 
 \author{\large Emilio Almansi}
 
@@ -98,23 +99,96 @@
 \begin{frame}
   \frametitle{Sobre secuencias aleatorias}
 
-  Vestibulum efficitur erat quis ex ullamcorper, non pellentesque leo scelerisque. Phasellus vel ex turpis.
-  \pause
-
-  Pellentesque congue dictum lectus, sit amet iaculis magna sollicitudin posuere.
+  ¿Qué tienen en común las siguientes disciplinas?
   \pause
 
   \begin{itemize}
-    \item Proin sapien nulla, convallis non finibus nec, egestas ut lorem. Aenean maximus ex ut ex luctus consectetur.
-    \pause
-
-    \item Cras laoreet mauris at felis porttitor rutrum. Proin elementum nunc nec imperdiet viverra. In a nibh a nulla accumsan consequat.
-    \pause
-
-    \item Donec ex mauris, vulputate nec mauris quis, finibus convallis tellus.
+    \item Criptografía, seguridad informática.\pause
+    \item Predicción del clima, medicina nuclear, simulación de proteínas.\pause
+    \item Aprendizaje automático, algoritmos probabilistas.\pause
+    \item Juegos de azar, videojuegos, deportes.
   \end{itemize}
+  \pause
+
+  {\color{orange} Generación de números aleatorios.}
+  \pause
+
+  Pero, ¿qué es una secuencia de números aleatorios?
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Sobre secuencias aleatorias}
+
+  \textbf{Intuición}: si tiro un dado muchas veces seguidas, el resultado de cada tirada tiene que ser \textit{impredecible} y cualquier número del 1 al 6 tiene que ser \textit{equiprobable}.
+  \pause
+
+  Respecto a la parte de \textit{impredecible}:
+  \begin{quote}
+    If ``random`` means that the sequence satisfies no predictable rules, the title of this paper is contradictory.
+    \begin{flushright}
+      \small{---Donald Knuth, 1965}
+    \end{flushright}
+  \end{quote}
+  \pause
+
+  En este trabajo, nos enfocamos en la parte de \textit{equiprobable}. \pause Es posible construir secuencias determinísticas que cumplen con esta propiedad.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Equidistribución}
+
+  \begin{definition}
+    Dado un entero $b$, una secuencia de \textit{números enteros} $x_1, x_2, \dots$ del conjunto $\{ 0, 1, \dots, b - 1 \}$ es \textbf{equidistribuida} si todo valor posible aparece con frecuencia asintótica igual a $\frac{1}{b}$:
+    \pause
+
+    \begin{equation*}
+      \begin{aligned}
+        Pr \left( x_i = j \right) = \frac{1}{b} \hspace*{1cm} \text{para } j = 0, \dots, b - 1 \text{,}
+      \end{aligned}
+    \end{equation*}
+
+    donde $Pr(x_i = j) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(x_i = j)$.
+  \end{definition}
+  \pause
+
+  Ahora, definimos una noción equivalente para secuencias de números reales.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Equidistribución}
+
+  \begin{definition}
+    Una secuencia de \textit{números reales} $x_1, x_2, \dots$ en el intervalo unitario $\left[0, 1\right)$ es \textbf{equidistribuida} si la frecuencia de valores dentro de cualquier subconjunto $I$ es igual a su tamaño:
+    \pause
+
+    \begin{equation*}
+      \begin{aligned}
+        Pr \left( x_i \in I\, \right) = \left| I\, \right| \hspace*{1cm} \text{para todo } I \in \left[0, 1\right) \text{,}
+      \end{aligned}
+    \end{equation*}
+
+    donde $Pr \left( x_i \in I\, \right) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(x_i \in I\,)$.
+  \end{definition}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Sobre secuencias aleatorias}
+
+  \begin{figure}
+    \includegraphics[width=\textwidth]{resources/discrepancia.png}
+    \caption{Baja y alta discrepancia.}
+  \end{figure}
+\end{frame}
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -162,22 +236,90 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{La secuencia de Knuth}
+  \frametitle{La secuencia de Knuth (1)}
 
-  Nam sagittis dolor in enim tincidunt, sit amet pellentesque urna vulputate. Nam porta purus neque, ultrices vulputate orci ullamcorper eu.
+  Nam sagittis dolor in enim tincidunt, sit amet pellentesque urna.
+
+  \begin{equation*}
+    \begin{aligned}
+      & F^{(2^n, n)}  & = \; & f_1, \dots, f_{2^{n^2}} \\[0.3cm]
+      \pause
+      & A^{(n)}       & = \; & \frac{f_1}{2^n}, \frac{f_2}{2^n}, \dots, \frac{f_{2^{n^2}}}{2^n} \\
+      &               & = \; & \bigg( \frac{f_i}{2^n} \bigg)_{i = 1}^{2^{n^2}} \\[0.3cm]
+      \pause
+      & B^{(n)}       & = \; & \left< \underbrace{A^{(n)} ; A^{(n)} ; \dots ; A^{(n)}}_{n 2^{2 n} \text{ veces}} \right>
+    \end{aligned}
+  \end{equation*}
   \pause
 
-  \medskip
-  \begin{problem}
-    Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
-  \end{problem}
-  \pause
-
-  \medskip
-  \begin{theorem}[{{\scriptsize  Champernowne, 1933}}]
-    Curabitur varius in ligula nec laoreet. Aenean ultricies eget mi quis maximus. Mauris ornare interdum vestibulum.
-  \end{theorem}
+  Porta purus neque, ultrices vulputate orci ullamcorper eu.
 \end{frame}
+
+  % \medskip
+  % \begin{problem}
+  %   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
+  % \end{problem}
+  % \pause
+
+  % \medskip
+  % \begin{theorem}[{{\scriptsize  Champernowne, 1933}}]
+  %   Curabitur varius in ligula nec laoreet. Aenean ultricies eget mi quis maximus. Mauris ornare interdum vestibulum.
+  % \end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{La secuencia de Knuth (2)}
+
+  For example, when $n = 2$:
+
+  \begin{equation*}
+    \begin{aligned}
+      & F^{(4, 2)} = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\
+      \pause
+      & F^{(4, 2)} = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\
+    \end{aligned}
+  \end{equation*}
+  % \begin{equation*}
+  %   \begin{aligned}
+  
+
+  %     & B^{(2)} = \left< \underbrace{A^{(2)} ; \dots ; A^{(2)}}_{32 \text{ times}} \right> = \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}, \dots, \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}
+  %   \end{aligned}
+  % \end{equation*}
+  % \pause
+
+  and $|A^{(2)}| = 16$, $|B^{(2)}| = 512$.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{La secuencia de Knuth (3)}
+
+  Curabitur varius in ligula nec laoreet.
+  \begin{equation*}
+    K = \left< B^{(1)} ; B^{(2)} ;  B^{(3)} ; \dots \right>
+  \end{equation*}
+  \pause
+
+  \medskip
+  \begin{theorem}[{{\scriptsize  Knuth, 1965}}]
+    Nam sagittis dolor in enim tincidunt, sit amet pellentesque urna vulputate.
+  \end{theorem}
+  \pause
+  
+  Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
+  \pause
+
+  Aenean ultricies eget mi quis maximus. Mauris ornare interdum vestibulum.
+\end{frame}
+
+  % \medskip
+  % \begin{problem}
+  %   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
+  % \end{problem}
+  % \pause
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
