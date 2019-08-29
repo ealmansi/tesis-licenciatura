@@ -17,10 +17,10 @@
 	\useoutertheme{}
 }
 
+\beamertemplatenavigationsymbolsempty
+\setbeamersize{text margin left = 1cm}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{frametitle}[default][left,leftskip=0.5cm]
-\setbeamersize{text margin left = 1cm}
-\beamertemplatenavigationsymbolsempty
 \addtobeamertemplate{frametitle}{\vspace*{0.5cm}}{\vspace*{1cm}}
 
 \setlength{\parskip}{\baselineskip}
@@ -28,41 +28,41 @@
 \expandafter\def\expandafter\definition\expandafter{\definition \setlength{\parskip}{0.5\baselineskip}}
 
 \languagepath{spanish}
-\deftranslation[to=spanish]{Theorem}{Teorema}
-\deftranslation[to=spanish]{theorem}{teorema}
-\deftranslation[to=spanish]{Definition}{Definición}
-\deftranslation[to=spanish]{definition}{definición}
-\deftranslation[to=spanish]{Problem}{Problema}
-\deftranslation[to=spanish]{problem}{problema}
 \deftranslation[to=spanish]{Corollary}{Corolario}
 \deftranslation[to=spanish]{corollary}{corolario}
+\deftranslation[to=spanish]{Definition}{Definición}
+\deftranslation[to=spanish]{definition}{definición}
 \deftranslation[to=spanish]{Lemma}{Lema}
 \deftranslation[to=spanish]{lemma}{lema}
-\newtheorem{observation}{Observation}
-\newtheorem{conjecture}{Conjecture}
+\deftranslation[to=spanish]{Problem}{Problema}
+\deftranslation[to=spanish]{problem}{problema}
+\deftranslation[to=spanish]{Theorem}{Teorema}
+\deftranslation[to=spanish]{theorem}{teorema}
 \newtheorem{belief}{Belief}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{observation}{Observation}
 \newtheorem{question}{Question}
 
-\newcommand{\Z}{{\mathbb{Z}}}
-\newcommand{\N}{{\mathbb{N}}}
-\newcommand{\Q}{{\mathbb{Q}}}
-\newcommand{\R}{{\mathbb{R}}}
-\newcommand{\floor}[1]{\lfloor #1 \rfloor } 
-\newcommand{\ceil}[1]{\lceil #1 \rceil }
-\newcommand{\abs}[1]{\left| #1 \right|}
-\newcommand{\card}{\mbox{\raisebox{.13em}{{$\scriptstyle \#$}}}}
-\newcommand{\expa}[1]{\{#1\}}
 \newcommand {\base}[2]{\langle{#1};{#2}\rangle}
-\newcommand{\ybar}{{\overline{y}}}
-\newcommand{\xbar}{{\overline{x}}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\alocc}[2]{|\!|#1|\!|_{#2}}
+\newcommand{\card}{\mbox{\raisebox{.13em}{{$\scriptstyle \#$}}}}
+\newcommand{\ceil}[1]{\lceil #1 \rceil }
 \newcommand{\cf}{\text{\em cf}}
 \newcommand{\eps}{\varepsilon}
-\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\expa}[1]{\{#1\}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor } 
+\newcommand{\N}{{\mathbb{N}}}
 \newcommand{\NN}{\mathbb{N}}
+\newcommand{\occ}[2]{|#1|_{#2}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\R}{{\mathbb{R}}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\uno}{\mathbbm{1}}
-\newcommand{\alocc}[2]{|\!|#1|\!|_{#2}}
-\newcommand{\occ}[2]{|#1|_{#2}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\xbar}{{\overline{x}}}
+\newcommand{\ybar}{{\overline{y}}}
+\newcommand{\Z}{{\mathbb{Z}}}
 
 \author{\large Emilio Almansi}
 
@@ -97,7 +97,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Sobre secuencias aleatorias}
+  \frametitle{Sobre secuencias aleatorias {$^{(1)}$}}
 
   ¿Qué tienen en común las siguientes disciplinas?
   \pause
@@ -106,7 +106,7 @@
     \item Criptografía, seguridad informática.\pause
     \item Predicción del clima, medicina nuclear, simulación de proteínas.\pause
     \item Aprendizaje automático, algoritmos probabilistas.\pause
-    \item Juegos de azar, videojuegos, deportes.
+    \item Juegos de azar, videojuegos, simulaciones físicas.
   \end{itemize}
   \pause
 
@@ -119,37 +119,40 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Sobre secuencias aleatorias}
+  \frametitle{Sobre secuencias aleatorias {$^{(2)}$}}
 
-  \textbf{Intuición}: si tiro un dado muchas veces seguidas, el resultado de cada tirada tiene que ser \textit{impredecible} y cualquier número del 1 al 6 tiene que ser \textit{equiprobable}.
+  \textbf{Intuición}: si tiro un dado muchas veces seguidas, el resultado de cada tirada tiene que ser \textit{impredecible} y todo número del 1 al 6 tiene que ser \textit{equiprobable}.
   \pause
 
   Respecto a la parte de \textit{impredecible}:
   \begin{quote}
     If ``random`` means that the sequence satisfies no predictable rules, the title of this paper is contradictory.
     \begin{flushright}
-      \small{---Donald Knuth, 1965}
+      \small{Construction of a Random Sequence \\}
+      \small{Donald Knuth, 1965}
     \end{flushright}
   \end{quote}
   \pause
 
-  En este trabajo, nos enfocamos en la parte de \textit{equiprobable}. \pause Es posible construir secuencias determinísticas que cumplen con esta propiedad.
+  En este trabajo, nos enfocamos en la parte de \textit{equiprobable}.
+  % Es posible construir secuencias determinísticas que cumplen con esta propiedad.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Equidistribución}
+  \frametitle{Equidistribución {$^{(1)}$}}
 
   \begin{definition}
-    Dado un entero $b$, una secuencia de \textit{números enteros} $x_1, x_2, \dots$ del conjunto $\{ 0, 1, \dots, b - 1 \}$ es \textbf{equidistribuida} si todo valor posible aparece con frecuencia asintótica igual a $\frac{1}{b}$:
+    Dado un entero $b$, una secuencia de \textit{números enteros} $X = x_1, x_2, \dots$ del conjunto $\{ 0, 1, \dots, b - 1 \}$ es \textbf{equidistribuida} si todo valor posible aparece con frecuencia asintótica igual a $\frac{1}{b}$:
     \pause
 
     \begin{equation*}
       \begin{aligned}
-        Pr \left( x_i = j \right) = \frac{1}{b} \hspace*{1cm} \text{para } j = 0, \dots, b - 1 \text{,}
+        Pr \left( x_i = j \right) = \frac{1}{b} \hspace*{1cm} \text{para todo } j \in \{ 0, \dots, b - 1 \} \text{,}
       \end{aligned}
     \end{equation*}
+    \pause
 
     donde $Pr(x_i = j) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(x_i = j)$.
   \end{definition}
@@ -161,40 +164,231 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Equidistribución}
+  \frametitle{Equidistribución {$^{(2)}$}}
 
   \begin{definition}
-    Una secuencia de \textit{números reales} $x_1, x_2, \dots$ en el intervalo unitario $\left[0, 1\right)$ es \textbf{equidistribuida} si la frecuencia de valores dentro de cualquier subconjunto $I$ es igual a su tamaño:
+    Una secuencia de \textit{números reales} $X = x_1, x_2, \dots$ en el intervalo unitario $\left[0, 1\right)$ es \textbf{equidistribuida} si, dado cualquier conjunto $I \subseteq \left[0, 1\right)$, la frecuencia asintótica con la que la secuencia toma valores en $I$ es igual a su tamaño:
     \pause
 
     \begin{equation*}
       \begin{aligned}
-        Pr \left( x_i \in I\, \right) = \left| I\, \right| \hspace*{1cm} \text{para todo } I \in \left[0, 1\right) \text{,}
+        Pr \left( x_i \in I\, \right) = \left| I\, \right| \hspace*{1cm} \text{para todo } I \subseteq \left[0, 1\right) \text{,}
       \end{aligned}
     \end{equation*}
+    \pause
 
     donde $Pr \left( x_i \in I\, \right) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(x_i \in I\,)$.
   \end{definition}
+  \pause
 
+  Si $X$ es equidistribuida en $[0, 1)$, entonces para cualquier $b$ la secuencia $Y = \left( \lfloor b x_i \rfloor \right)_{i = 1}^{\infty}$ es equidistribuida en $\{ 0, 1, \dots, b - 1 \}$.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Sobre secuencias aleatorias}
+  \frametitle{$k$-distribución {$^{(1)}$}}
 
+  % Ahora extendemos la noción de equidistribución a otras dimensiones.
+  % \pause
+
+  \textbf{Intuición}: cualquier seguidilla de tiradas tiene que aparecer con igual frecuencia. Por ejemplo, (1, 1) aparece con la misma frecuencia que (2, 2) y que (6, 4).
+  \pause
+
+  Trabajamos con ``ventanas`` de tamaño $k$ de la secuencia. Si $X = x_1, x_2, \dots$ es una secuencia de \textit{números reales}, entonces:
+  \pause
+
+  \vspace{-0.3cm}
+  \begin{equation*}
+    \begin{aligned}
+        w_1 & = (x_1, x_2, \dots, x_k      ), \\
+        w_2 & = (x_2, x_3, \dots, x_{k + 1}), \\
+        w_3 & = (x_3, x_4, \dots, x_{k + 2}), \\
+            & \dots
+    \end{aligned}
+  \end{equation*}
+
+  es la secuencia de ventanas de $X$, que llamamos $W_k(X)$.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{$k$-distribución {$^{(2)}$}}
+
+  \begin{definition}
+    Una secuencia de \textit{números reales} $X = x_1, x_2, \dots$ en el intervalo unitario $\left[0, 1\right)$ es \textbf{$k$-distribuida} si, dado cualquier conjunto $I \subseteq \left[0, 1\right)^k$, la frecuencia asintótica con la que la secuencia de ventanas de $X$ toma valores en $I$ es igual a su tamaño:
+    \pause
+
+    \begin{equation*}
+      \begin{aligned}
+        Pr \left( w_i \in I\, \right) = \left| I\, \right| \hspace*{1cm} \text{para todo } I \subseteq \left[0, 1\right)^k \text{,}
+      \end{aligned}
+    \end{equation*}
+    \pause
+
+    \vspace{-0.5cm}
+    \begin{equation*}
+      \hspace{-2.5cm}
+      \begin{aligned}
+          \text{donde } W_k(X) =\; & \left( w_i \right)_{i = 1}^{\infty} \\
+                               =\; & (x_1, x_2, \dots, x_k      ),\, (x_2, x_3, \dots, x_{k + 1}),\, \dots \, \text{.}
+      \end{aligned}
+    \end{equation*}
+    \vspace{-0.3cm}
+  \end{definition}
+  \pause
+
+  Si $X$ es $k$-distribuida para todo $k$, entonces $X$ es \textbf{completamente equidistribuida}.
+\end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Equidistribución completa}
+
+  ¿Por qué estudiar la propiedad de equidistribución?
+
+  \begin{itemize}
+    \item Requerimiento básico de pseudo-aleatoriedad. Propiedades de equipartición y autocorrelación con retraso. \pause
+    \item Calidad de un generador de números aleatorios o PNRG. Pruebas de aleatoriedad.\pause % Mersenne Twister
+    \item Integración de Montecarlo, criterio de la integral de Riemann. \pause
+    \item Vínculo: teoría de números, computación, probabilidad y estadística.
+  \end{itemize}
+  \pause
+
+  ¿Qué \textbf{no} es la equidistribución?
+\end{frame}
+ 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Discrepancia}
+
+  \vspace{-0.5cm}
   \begin{figure}
     \includegraphics[width=\textwidth]{resources/discrepancia.png}
-    \caption{Baja y alta discrepancia.}
+    \caption{Izq.) Secuencia Sobol 2,3. Der.) Secuencia pseudo-aleat.}
   \end{figure}
 \end{frame}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{Equidistribución completa}
+\begin{frame}{Secuencias de De Bruijn}
+  \only<1->{
+    Son secuencias muy estudiadas en combinatoria. Tienen la propiedad de ``contener`` a todas las posibles combinaciones de secuencias de un alfabeto y tamaño dados. Ejemplos:
+  }
 
-  Aenean laoreet, ligula vel aliquet consectetur, mi magna rutrum urna, vel volutpat nulla purus sed lorem.
+  \only<2->{Con $b = 2, k = 3$:}
+  \only<2->{\vspace{-0.3cm}}
+  \begin{center}
+    \only<2>{$0, 0, 0, 1, 0, 1, 1, 1$}
+    \only<3>{$\textbf{0, 0, 0}, 1, 0, 1, 1, 1$}
+    \only<4>{$0, \textbf{0, 0, 1}, 0, 1, 1, 1$}
+    \only<5>{$0, 0, \textbf{0, 1, 0}, 1, 1, 1$}
+    \only<6>{$0, 0, 0, \textbf{1, 0, 1}, 1, 1$}
+    \only<7>{$0, 0, 0, 1, \textbf{0, 1, 1}, 1$}
+    \only<8>{$0, 0, 0, 1, 0, \textbf{1, 1, 1}$}
+    \only<9>{$\textbf{0}, 0, 0, 1, 0, 1, \textbf{1, 1}$}
+    \only<10>{$\textbf{0, 0}, 0, 1, 0, 1, 1, \textbf{1}$}
+    \only<11->{$0, 0, 0, 1, 0, 1, 1, 1$}
+    \only<11->{\vspace{-0.3cm}}
+  \end{center}
+
+  \only<11->{Con $b = 4, k = 2$:}
+  \only<11->{\vspace{-0.3cm}}
+  \begin{center}
+    \only<12->{$0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3$}
+  \end{center}
+
+  \only<13->{Notar que siempre tienen longitud $b^k$.}
+  \only<14->{{\color{orange} ¿Qué relación tienen con las secuencias equidistribuidas?}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Secuencia de Knuth {$^{(1)}$}}
+
+  \vspace{-0.4cm}
+  \begin{definition}
+    Una \textbf{secuencia $A$ de órden $n$} es la secuencia que se obtiene al dividir cada elemento de una secuencia de De Bruijn de base $2^n$ y de órden $n$ por su base:
+    \pause
+
+    \vspace{-0.2cm}
+    \begin{equation*}
+      \begin{aligned}
+        A^{(n)} & = \frac{f_1}{2^n}, \frac{f_2}{2^n}, \dots, \frac{f_{2^{n^2}}}{2^n}
+      \end{aligned}
+    \end{equation*}
+    \pause
+
+    \vspace{-0.2cm}
+    donde $F^{(2^n, n)} = f_1, \dots, f_{2^{n^2}}$ denota una secuencia de De Bruijn de base $2^n$ y de órden $n$.
+    \pause
+
+    Una \textbf{secuencia $B$ de órden $n$} es la secuencia que se obtiene de concatenar $n 2^{2 n}$ copias de una secuencia $A$ de órden $n$:
+    \pause
+
+    \vspace{-0.2cm}
+    \begin{equation*}
+      B^{(n)} = \left< \underbrace{A^{(n)} ; A^{(n)} ; \dots ; A^{(n)}}_{n 2^{2 n} \text{ veces}} \right> \text{.}
+    \end{equation*}
+  \end{definition}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Secuencia de Knuth {$^{(2)}$}}
+
+  Ejemplo para $n = 2$:
+  \pause
+
+  \begin{equation*}
+    \begin{aligned}
+      F^{(4, 2)} & = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\[0.4cm] \pause
+      A^{(2)}    & = \frac{0}{4}, \frac{0}{4}, \frac{1}{4}, \frac{0}{4}, \frac{2}{4}, \frac{0}{4}, \frac{3}{4}, \frac{1}{4}, \frac{1}{4}, \frac{2}{4}, \frac{1}{4}, \frac{3}{4}, \frac{2}{4}, \frac{2}{4}, \frac{3}{4}, \frac{3}{4} \\[0.4cm] \pause
+      B^{(2)}   & = \left< \underbrace{A^{(2)} ; \dots ; A^{(2)}}_{2 \times 2^{2 \times 2} = 32 \text{ veces}} \right> \\[0.1cm] \pause
+                & = \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}, \dots, \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}} \text{.}
+    \end{aligned}
+  \end{equation*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Secuencia de Knuth {$^{(3)}$}}
+
+  Ahora sí, ya estamos en condiciones de definir la secuencia de Knuth.
+  \pause
+
+  \medskip
+  \begin{definition}
+    La secuencia de Knuth, que denominamos $K$, se define como la concatenación de todas las posibles secuencias $B$ en órden creciente:
+    \pause
+
+    \begin{equation*}
+      K = \left< B^{(1)} ; B^{(2)} ;  B^{(3)} ; \dots \right> \text{.}
+    \end{equation*}
+  \end{definition}
+  \pause
+
+  \begin{theorem}[{{\scriptsize  Knuth, 1965}}]
+    La secuencia $K$ es completamente equidistribuida.
+  \end{theorem}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Idea de la demostración}
+
+  Knuth primero formula el lema 2 y reduce el problema a probar la $k$-distribución de una familia de secuencias de números enteros.
+  \pause
+  
+  Para cada entero $m$, prueba que la secuencia $\lfloor 2^m K \rfloor$ de números enteros es $k$-distribuida para todo $k$. Esto implica que $K$ también lo es.
   \pause
 
   \medskip
@@ -210,252 +404,252 @@
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{Secuencias de De Bruijn}
+% \begin{frame}
+%   \frametitle{Secuencias de De Bruijn}
 
-  \medskip
-  \begin{definition}[{{\scriptsize  Borel, 1909}}]
-    Mauris euismod neque a lorem rutrum, id molestie eros consequat. In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque:
-    \begin{equation*}
-      \lim_{n \rightarrow \infty} \frac{\alocc{u[1,\ell n]}{v}}{n} = \frac{1}{|A|^{\ell}}.  
-    \end{equation*}
-    \pause
+%   \medskip
+%   \begin{definition}[{{\scriptsize  Borel, 1909}}]
+%     Mauris euismod neque a lorem rutrum, id molestie eros consequat. In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque:
+%     \begin{equation*}
+%       \lim_{n \rightarrow \infty} \frac{\alocc{u[1,\ell n]}{v}}{n} = \frac{1}{|A|^{\ell}}.  
+%     \end{equation*}
+%     \pause
 
-    Donec nec ex id nisl venenatis semper. Curabitur erat mi, sagittis nec tortor vel, tempor porta magna. Cras at maximus orci, non viverra neque.
-  \end{definition}
-  \pause
+%     Donec nec ex id nisl venenatis semper. Curabitur erat mi, sagittis nec tortor vel, tempor porta magna. Cras at maximus orci, non viverra neque.
+%   \end{definition}
+%   \pause
 
-  \medskip
-  \begin{problem}[{{\scriptsize  Borel, 1909}}]
-    In eget enim feugiat, cursus tellus eget, dapibus libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-  \end{problem}
-\end{frame}
+%   \medskip
+%   \begin{problem}[{{\scriptsize  Borel, 1909}}]
+%     In eget enim feugiat, cursus tellus eget, dapibus libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+%   \end{problem}
+% \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{La secuencia de Knuth (1)}
+% \begin{frame}
+%   \frametitle{La secuencia de Knuth {$^{(1)}$}}
 
-  Nam sagittis dolor in enim tincidunt, sit amet pellentesque urna.
+%   Nam sagittis dolor in enim tincidunt, sit amet pellentesque urna.
 
-  \begin{equation*}
-    \begin{aligned}
-      & F^{(2^n, n)}  & = \; & f_1, \dots, f_{2^{n^2}} \\[0.3cm]
-      \pause
-      & A^{(n)}       & = \; & \frac{f_1}{2^n}, \frac{f_2}{2^n}, \dots, \frac{f_{2^{n^2}}}{2^n} \\
-      &               & = \; & \bigg( \frac{f_i}{2^n} \bigg)_{i = 1}^{2^{n^2}} \\[0.3cm]
-      \pause
-      & B^{(n)}       & = \; & \left< \underbrace{A^{(n)} ; A^{(n)} ; \dots ; A^{(n)}}_{n 2^{2 n} \text{ veces}} \right>
-    \end{aligned}
-  \end{equation*}
-  \pause
+%   \begin{equation*}
+%     \begin{aligned}
+%       & F^{(2^n, n)}  & = \; & f_1, \dots, f_{2^{n^2}} \\[0.3cm]
+%       \pause
+%       & A^{(n)}       & = \; & \frac{f_1}{2^n}, \frac{f_2}{2^n}, \dots, \frac{f_{2^{n^2}}}{2^n} \\
+%       &               & = \; & \bigg( \frac{f_i}{2^n} \bigg)_{i = 1}^{2^{n^2}} \\[0.3cm]
+%       \pause
+%       & B^{(n)}       & = \; & \left< \underbrace{A^{(n)} ; A^{(n)} ; \dots ; A^{(n)}}_{n 2^{2 n} \text{ veces}} \right>
+%     \end{aligned}
+%   \end{equation*}
+%   \pause
 
-  Porta purus neque, ultrices vulputate orci ullamcorper eu.
-\end{frame}
+%   Porta purus neque, ultrices vulputate orci ullamcorper eu.
+% \end{frame}
 
-  % \medskip
-  % \begin{problem}
-  %   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
-  % \end{problem}
-  % \pause
+%   % \medskip
+%   % \begin{problem}
+%   %   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
+%   % \end{problem}
+%   % \pause
 
-  % \medskip
-  % \begin{theorem}[{{\scriptsize  Champernowne, 1933}}]
-  %   Curabitur varius in ligula nec laoreet. Aenean ultricies eget mi quis maximus. Mauris ornare interdum vestibulum.
-  % \end{theorem}
+%   % \medskip
+%   % \begin{theorem}[{{\scriptsize  Champernowne, 1933}}]
+%   %   Curabitur varius in ligula nec laoreet. Aenean ultricies eget mi quis maximus. Mauris ornare interdum vestibulum.
+%   % \end{theorem}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{La secuencia de Knuth (2)}
+% \begin{frame}
+%   \frametitle{La secuencia de Knuth {$^{(2)}$}}
 
-  For example, when $n = 2$:
+%   For example, when $n = 2$:
 
-  \begin{equation*}
-    \begin{aligned}
-      & F^{(4, 2)} = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\
-      \pause
-      & F^{(4, 2)} = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\
-    \end{aligned}
-  \end{equation*}
-  % \begin{equation*}
-  %   \begin{aligned}
+%   \begin{equation*}
+%     \begin{aligned}
+%       & F^{(4, 2)} = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\
+%       \pause
+%       & F^{(4, 2)} = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\
+%     \end{aligned}
+%   \end{equation*}
+%   % \begin{equation*}
+%   %   \begin{aligned}
   
 
-  %     & B^{(2)} = \left< \underbrace{A^{(2)} ; \dots ; A^{(2)}}_{32 \text{ times}} \right> = \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}, \dots, \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}
-  %   \end{aligned}
-  % \end{equation*}
-  % \pause
+%   %     & B^{(2)} = \left< \underbrace{A^{(2)} ; \dots ; A^{(2)}}_{32 \text{ times}} \right> = \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}, \dots, \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}
+%   %   \end{aligned}
+%   % \end{equation*}
+%   % \pause
 
-  and $|A^{(2)}| = 16$, $|B^{(2)}| = 512$.
-\end{frame}
+%   and $|A^{(2)}| = 16$, $|B^{(2)}| = 512$.
+% \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{La secuencia de Knuth (3)}
+% \begin{frame}
+%   \frametitle{La secuencia de Knuth (3)}
 
-  Curabitur varius in ligula nec laoreet.
-  \begin{equation*}
-    K = \left< B^{(1)} ; B^{(2)} ;  B^{(3)} ; \dots \right>
-  \end{equation*}
-  \pause
+%   Curabitur varius in ligula nec laoreet.
+%   \begin{equation*}
+%     K = \left< B^{{$^{(1)}$}} ; B^{(2)} ;  B^{(3)} ; \dots \right>
+%   \end{equation*}
+%   \pause
 
-  \medskip
-  \begin{theorem}[{{\scriptsize  Knuth, 1965}}]
-    Nam sagittis dolor in enim tincidunt, sit amet pellentesque urna vulputate.
-  \end{theorem}
-  \pause
+%   \medskip
+%   \begin{theorem}[{{\scriptsize  Knuth, 1965}}]
+%     Nam sagittis dolor in enim tincidunt, sit amet pellentesque urna vulputate.
+%   \end{theorem}
+%   \pause
   
-  Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
-  \pause
+%   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
+%   \pause
 
-  Aenean ultricies eget mi quis maximus. Mauris ornare interdum vestibulum.
-\end{frame}
+%   Aenean ultricies eget mi quis maximus. Mauris ornare interdum vestibulum.
+% \end{frame}
 
-  % \medskip
-  % \begin{problem}
-  %   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
-  % \end{problem}
-  % \pause
+%   % \medskip
+%   % \begin{problem}
+%   %   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
+%   % \end{problem}
+%   % \pause
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{Tamaños de alfabeto linealmente crecientes}
+% \begin{frame}
+%   \frametitle{Tamaños de alfabeto linealmente crecientes}
 
-  \medskip
-  \begin{theorem}[{{\scriptsize  Agafonov 1968}}]
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
-  \end{theorem}
-  \pause
+%   \medskip
+%   \begin{theorem}[{{\scriptsize  Agafonov 1968}}]
+%     Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
+%   \end{theorem}
+%   \pause
 
-  \medskip
-  \begin{corollary}
-    Vestibulum quis dolor quam. Sed viverra, diam ac fringilla fringilla, ex dui consequat leo, nec tempus augue mi eu quam.
-  \end{corollary}
-  \pause
+%   \medskip
+%   \begin{corollary}
+%     Vestibulum quis dolor quam. Sed viverra, diam ac fringilla fringilla, ex dui consequat leo, nec tempus augue mi eu quam.
+%   \end{corollary}
+%   \pause
 
-  \medskip
-  \begin{theorem}[{{\scriptsize  Vandehey 2016}}]
-    Phasellus quis aliquam nulla, non rutrum lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-  \end{theorem}
-\end{frame}
+%   \medskip
+%   \begin{theorem}[{{\scriptsize  Vandehey 2016}}]
+%     Phasellus quis aliquam nulla, non rutrum lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+%   \end{theorem}
+% \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{Teorema principal}
+% \begin{frame}
+%   \frametitle{Teorema principal}
 
-  Nullam posuere tincidunt urna et elementum. Donec elementum at tellus sit amet tempus.
-  \pause
+%   Nullam posuere tincidunt urna et elementum. Donec elementum at tellus sit amet tempus.
+%   \pause
 
-  \medskip
-  \begin{problem}
-    Cras id accumsan risus, sed elementum elit. Suspendisse aliquet hendrerit gravida.
-  \end{problem}
-  \pause
+%   \medskip
+%   \begin{problem}
+%     Cras id accumsan risus, sed elementum elit. Suspendisse aliquet hendrerit gravida.
+%   \end{problem}
+%   \pause
 
-  \medskip
-  \begin{theorem}[\color{magenta} Resultado principal de esta tesis\color{black}]
-    Nullam vehicula erat ante, hendrerit euismod elit luctus nec. Duis sagittis tincidunt metus, in dapibus lorem ullamcorper ut.
-  \end{theorem}
-\end{frame}
+%   \medskip
+%   \begin{theorem}[\color{magenta} Resultado principal de esta tesis\color{black}]
+%     Nullam vehicula erat ante, hendrerit euismod elit luctus nec. Duis sagittis tincidunt metus, in dapibus lorem ullamcorper ut.
+%   \end{theorem}
+% \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{Idea de la demostración}
+% \begin{frame}
+%   \frametitle{Idea de la demostración}
 
-  \medskip
-  \begin{definition}
-    Curabitur imperdiet tempus massa $A=\{0,1, \ldots, b-1\}$, pellentesque id turpis at mauris tempor auctor at pellentesque ex.
-    \pause
+%   \medskip
+%   \begin{definition}
+%     Curabitur imperdiet tempus massa $A=\{0,1, \ldots, b-1\}$, pellentesque id turpis at mauris tempor auctor at pellentesque ex.
+%     \pause
 
-    Pellentesque urna arcu, pellentesque sit amet volutpat eget, venenatis sed leo. Phasellus tempus eu urna a lacinia.
-    \pause
+%     Pellentesque urna arcu, pellentesque sit amet volutpat eget, venenatis sed leo. Phasellus tempus eu urna a lacinia.
+%     \pause
 
-    Vestibulum aliquam augue et tortor pulvinar suscipit $w^{\star}_n$.
-    \pause
+%     Vestibulum aliquam augue et tortor pulvinar suscipit $w^{\star}_n$.
+%     \pause
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat nulla a vulputate ultrices. Ut et magna ac lacus elementum tincidunt a id ante.
+%     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat nulla a vulputate ultrices. Ut et magna ac lacus elementum tincidunt a id ante.
 
-    {\color{magenta}
-      Donec $u=v_1 v_2 \ldots v_m$ aenean ullamcorper odio vitae $v_i$ erat $\ell_n$  rhoncus quis
-      \[
-      e_n(u)=e_n(v_1)\ldots e_n(v_m)
-      \]
-    }
-  \end{definition}
-\end{frame}
+%     {\color{magenta}
+%       Donec $u=v_1 v_2 \ldots v_m$ aenean ullamcorper odio vitae $v_i$ erat $\ell_n$  rhoncus quis
+%       \[
+%       e_n(u)=e_n(v_1)\ldots e_n(v_m)
+%       \]
+%     }
+%   \end{definition}
+% \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{Criterio de Weyl}
+% \begin{frame}
+%   \frametitle{Criterio de Weyl}
 
-  \medskip
-  \begin{definition}
-    Suspendisse ut hendrerit $A$,  \textit{finibus semper neque non congue tortor dictum $\ell$} laoreet ex nec pulvinar $u\in A^*$ tellus
-    \begin{equation*}
-      \Delta_{A,\ell}(u) = 
-      \max_{v \in A^{\ell}}\left(\left|\frac{\alocc{u}{v}}{\lfloor|u|/\ell \rfloor} - \frac{1}{|A|^{\ell}}\right|\right).
-    \end{equation*}
-  \end{definition}
-  \pause
+%   \medskip
+%   \begin{definition}
+%     Suspendisse ut hendrerit $A$,  \textit{finibus semper neque non congue tortor dictum $\ell$} laoreet ex nec pulvinar $u\in A^*$ tellus
+%     \begin{equation*}
+%       \Delta_{A,\ell}(u) = 
+%       \max_{v \in A^{\ell}}\left(\left|\frac{\alocc{u}{v}}{\lfloor|u|/\ell \rfloor} - \frac{1}{|A|^{\ell}}\right|\right).
+%     \end{equation*}
+%   \end{definition}
+%   \pause
 
-  Nam sagittis dolor in enim tincidunt $v\in A^\omega$ sit amet pellentesque urna vulputate $\ell$
-  $$\lim_{n \rightarrow \infty} \Delta_{A, \ell}(v[1,\ell n]) = 0$$
-\end{frame}
+%   Nam sagittis dolor in enim tincidunt $v\in A^\omega$ sit amet pellentesque urna vulputate $\ell$
+%   $$\lim_{n \rightarrow \infty} \Delta_{A, \ell}(v[1,\ell n]) = 0$$
+% \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{Prueba alternativa}
+% \begin{frame}
+%   \frametitle{Prueba alternativa}
 
-  \medskip
-  \begin{definition}
-    Curabitur imperdiet tempus massa $A=\{0,1, \ldots, b-1\}$, pellentesque id turpis at mauris tempor auctor at pellentesque ex.
-    \pause
+%   \medskip
+%   \begin{definition}
+%     Curabitur imperdiet tempus massa $A=\{0,1, \ldots, b-1\}$, pellentesque id turpis at mauris tempor auctor at pellentesque ex.
+%     \pause
 
-    Pellentesque urna arcu, pellentesque sit amet volutpat eget, venenatis sed leo. Phasellus tempus eu urna a lacinia.
-    \pause
+%     Pellentesque urna arcu, pellentesque sit amet volutpat eget, venenatis sed leo. Phasellus tempus eu urna a lacinia.
+%     \pause
 
-    Vestibulum aliquam augue et tortor pulvinar suscipit $w^{\star}_n$.
-    \pause
+%     Vestibulum aliquam augue et tortor pulvinar suscipit $w^{\star}_n$.
+%     \pause
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat nulla a vulputate ultrices. Ut et magna ac lacus elementum tincidunt a id ante.
+%     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat nulla a vulputate ultrices. Ut et magna ac lacus elementum tincidunt a id ante.
 
-    {\color{magenta}
-      Donec $u=v_1 v_2 \ldots v_m$ aenean ullamcorper odio vitae $v_i$ erat $\ell_n$  rhoncus quis
-      \[
-      e_n(u)=e_n(v_1)\ldots e_n(v_m)
-      \]
-    }
-  \end{definition}
-\end{frame}
+%     {\color{magenta}
+%       Donec $u=v_1 v_2 \ldots v_m$ aenean ullamcorper odio vitae $v_i$ erat $\ell_n$  rhoncus quis
+%       \[
+%       e_n(u)=e_n(v_1)\ldots e_n(v_m)
+%       \]
+%     }
+%   \end{definition}
+% \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-  \frametitle{Problemas abiertos}
+% \begin{frame}
+%   \frametitle{Problemas abiertos}
 
-  Cras id accumsan risus, sed elementum elit.
-  \pause
+%   Cras id accumsan risus, sed elementum elit.
+%   \pause
 
-  \begin{itemize}
-    \item Donec eu sollicitudin lacus. Vestibulum facilisis eu tellus quis gravida. Proin faucibus tellus nec tempus maximus.
-    \pause
+%   \begin{itemize}
+%     \item Donec eu sollicitudin lacus. Vestibulum facilisis eu tellus quis gravida. Proin faucibus tellus nec tempus maximus.
+%     \pause
     
-    \item Proin at facilisis orci. Nunc at orci in ante semper elementum ullamcorper in est. Praesent maximus aliquet lorem, in tincidunt odio tempus vel.
-    \pause
+%     \item Proin at facilisis orci. Nunc at orci in ante semper elementum ullamcorper in est. Praesent maximus aliquet lorem, in tincidunt odio tempus vel.
+%     \pause
 
-    \item Etiam vulputate nunc eget mauris vestibulum, nec viverra massa lacinia. Donec volutpat tempus nunc, vitae malesuada odio ultricies nec. 
-  \end{itemize}
-\end{frame}
+%     \item Etiam vulputate nunc eget mauris vestibulum, nec viverra massa lacinia. Donec volutpat tempus nunc, vitae malesuada odio ultricies nec. 
+%   \end{itemize}
+% \end{frame}
 
 \newcounter{finalframe}
 \setcounter{finalframe}{\value{framenumber}}
