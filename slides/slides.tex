@@ -16,6 +16,10 @@
 	\useinnertheme{}
 	\useoutertheme{}
 }
+\setbeamertemplate{sidebar right}{}
+\setbeamertemplate{footline}{%
+\hfill\usebeamertemplate***{navigation symbols}
+\hspace{1cm}\insertframenumber{}/\inserttotalframenumber}
 
 \beamertemplatenavigationsymbolsempty
 \setbeamersize{text margin left = 1cm}
@@ -99,7 +103,7 @@
 \begin{frame}
   \frametitle{Sobre secuencias aleatorias {$^{(1)}$}}
 
-  ¿Qué tienen en común las siguientes disciplinas?
+  ¿Qué tienen en común las siguientes áreas?
   \pause
 
   \begin{itemize}
@@ -184,6 +188,18 @@
   Si $X$ es equidistribuida en $[0, 1)$, entonces para cualquier $b$ la secuencia $Y = \left( \lfloor b x_i \rfloor \right)_{i = 1}^{\infty}$ es equidistribuida en $\{ 0, 1, \dots, b - 1 \}$.
 \end{frame}
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Equidistribución {$^{(3)}$}}
+
+  \vspace{-0.5cm}
+  \begin{figure}
+    \includegraphics[width=0.7\textwidth]{resources/equidistribucion.png}
+    \caption{Secuencias de partes fraccionarias.}
+  \end{figure}
+\end{frame}
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -245,7 +261,7 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Equidistribución completa}
+  \frametitle{Equidistribución completa {$^{(1)}$}}
 
   ¿Por qué estudiar la propiedad de equidistribución?
 
@@ -263,11 +279,11 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Discrepancia}
+  \frametitle{Equidistribución completa {$^{(2)}$}}
 
   \vspace{-0.5cm}
   \begin{figure}
-    \includegraphics[width=\textwidth]{resources/discrepancia.png}
+    \includegraphics[width=0.8\textwidth]{resources/discrepancia.png}
     \caption{Izq.) Secuencia Sobol 2,3. Der.) Secuencia pseudo-aleat.}
   \end{figure}
 \end{frame}
@@ -321,7 +337,6 @@
         A^{(n)} & = \frac{f_1}{2^n}, \frac{f_2}{2^n}, \dots, \frac{f_{2^{n^2}}}{2^n}
       \end{aligned}
     \end{equation*}
-    \pause
 
     \vspace{-0.2cm}
     donde $F^{(2^n, n)} = f_1, \dots, f_{2^{n^2}}$ denota una secuencia de De Bruijn de base $2^n$ y de órden $n$.
@@ -375,20 +390,40 @@
   \end{definition}
   \pause
 
+  \medskip
   \begin{theorem}[{{\scriptsize  Knuth, 1965}}]
+    \medskip
     La secuencia $K$ es completamente equidistribuida.
   \end{theorem}
 \end{frame}
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Secuencia de Knuth {$^{(4)}$}}
+  \vspace{-0.5cm}
+  \only<1>{
+    \begin{figure}
+      \includegraphics[width=0.7\textwidth]{resources/secuencia-knuth-1.png}
+      \caption{Secuencia de Knuth en dos dimensiones.}
+    \end{figure}
+  }
+  \only<2>{
+    \begin{figure}
+      \includegraphics[width=0.7\textwidth]{resources/secuencia-knuth-2.png}
+      \caption{Secuencia de Knuth en dos dimensiones.}
+    \end{figure}
+  }
+\end{frame}
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
   \frametitle{Idea de la demostración}
 
-  Knuth primero formula el lema 2 y reduce el problema a probar la $k$-distribución de una familia de secuencias de números enteros.
+  Mauris euismod neque a lorem rutrum, id molestie eros consequat.
   \pause
   
-  Para cada entero $m$, prueba que la secuencia $\lfloor 2^m K \rfloor$ de números enteros es $k$-distribuida para todo $k$. Esto implica que $K$ también lo es.
+  In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque.
   \pause
 
   \medskip
@@ -403,258 +438,202 @@
   In rutrum dapibus justo, at mattis lacus ultrices sed. Suspendisse suscipit luctus fermentum.
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Alfabetos linealmente crecientes}
+
+  \vspace{-0.4cm}
+  \begin{definition}
+    Una \textbf{secuencia $C$ de órden $n$} es la secuencia que se obtiene al dividir cada elemento de una secuencia de De Bruijn de base $n$ y de órden $n$ por su base:
+    \pause
+
+    \vspace{-0.2cm}
+    \begin{equation*}
+      \begin{aligned}
+        C^{(n)} & = \frac{f_1}{n}, \frac{f_2}{n}, \dots, \frac{f_{n^n}}{n}
+      \end{aligned}
+    \end{equation*}
+
+    \vspace{-0.2cm}
+    donde $F^{(n, n)} = f_1, \dots, f_{n^n}$ denota una secuencia de De Bruijn de base $n$ y de órden $n$.
+    \pause
+
+    Una \textbf{secuencia $D$ de órden $n$} es la secuencia que se obtiene de concatenar $t(n)$ copias de una secuencia $C$ de órden $n$:
+    \pause
+
+    \vspace{-0.2cm}
+    \begin{equation*}
+      D^{(n)} = \left< \underbrace{C^{(n)} ; C^{(n)} ; \dots ; C^{(n)}}_{t(n) \text{ veces}} \right> \text{.}
+    \end{equation*}
+  \end{definition}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Alfabetos linealmente crecientes}
+
+  \vspace{-0.4cm}
+  \begin{definition}
+    Una \textbf{secuencia $C$ de órden $n$} es la secuencia que se obtiene al dividir cada elemento de una secuencia de De Bruijn de {\color{orange} base $n$} y de órden $n$ por su base:
+
+    \vspace{-0.2cm}
+    \begin{equation*}
+      \begin{aligned}
+        C^{(n)} & = \frac{f_1}{{\color{orange} n}}, \frac{f_2}{{\color{orange} n}}, \dots, \frac{f_{{\color{orange} n^n}}}{{\color{orange} n}}
+      \end{aligned}
+    \end{equation*}
+
+    \vspace{-0.2cm}
+    donde $F^{({\color{orange} n}, n)} = f_1, \dots, f_{{\color{orange} n^n}}$ denota una secuencia de De Bruijn de base $n$ y de órden $n$.
+
+    Una \textbf{secuencia $D$ de órden $n$} es la secuencia que se obtiene de concatenar {\color{orange} $t(n)$ copias} de una secuencia $C$ de órden $n$:
+
+    \vspace{-0.2cm}
+    \begin{equation*}
+      D^{(n)} = \left< \underbrace{C^{(n)} ; C^{(n)} ; \dots ; C^{(n)}}_{{\color{orange} t(n)} \text{ veces}} \right> \text{.}
+    \end{equation*}
+  \end{definition}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Secuencia $L$ {$^{(1)}$}}
+
+  \begin{definition}
+    La secuencia $L$ se define como la concatenación de todas las posibles secuencias $D$ en órden creciente:
+    \pause
+
+    \begin{equation*}
+      L = \left< D^{(1)} ; D^{(2)} ;  D^{(3)} ; \dots \right> \text{.}
+    \end{equation*}
+  \end{definition}
+  \pause
+
+  {\color{orange} Ahora, enunciamos el aporte principal de esta tesis.}
+  \pause
+
+  \medskip
+  \begin{block}{Teorema 1}
+    \medskip
+    \textit{Si $t : \mathbb{N} \mapsto \mathbb{N}$ es una función no decreciente y $\lim_{n \to \infty} n / t(n) = 0$, entonces la secuencia $L$ es completamente equidistribuida.}
+  \end{block}
+\end{frame}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \begin{frame}
-%   \frametitle{Secuencias de De Bruijn}
+\begin{frame}{Secuencia $L$ {$^{(2)}$}}
+  \vspace{-0.5cm}
+  \only<1>{
+    \begin{figure}
+      \includegraphics[width=0.7\textwidth]{resources/secuencia-l-1.png}
+      \caption{Secuencia $L$ en dos dimensiones.}
+    \end{figure}
+  }
+  \only<2>{
+    \begin{figure}
+      \includegraphics[width=0.7\textwidth]{resources/secuencia-l-2.png}
+      \caption{Secuencia $L$ en dos dimensiones.}
+    \end{figure}
+  }
+\end{frame}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%   \medskip
-%   \begin{definition}[{{\scriptsize  Borel, 1909}}]
-%     Mauris euismod neque a lorem rutrum, id molestie eros consequat. In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque:
-%     \begin{equation*}
-%       \lim_{n \rightarrow \infty} \frac{\alocc{u[1,\ell n]}{v}}{n} = \frac{1}{|A|^{\ell}}.  
-%     \end{equation*}
-%     \pause
+\begin{frame}
+  \frametitle{Idea de la demostración}
 
-%     Donec nec ex id nisl venenatis semper. Curabitur erat mi, sagittis nec tortor vel, tempor porta magna. Cras at maximus orci, non viverra neque.
-%   \end{definition}
-%   \pause
-
-%   \medskip
-%   \begin{problem}[{{\scriptsize  Borel, 1909}}]
-%     In eget enim feugiat, cursus tellus eget, dapibus libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-%   \end{problem}
-% \end{frame}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-%   \frametitle{La secuencia de Knuth {$^{(1)}$}}
-
-%   Nam sagittis dolor in enim tincidunt, sit amet pellentesque urna.
-
-%   \begin{equation*}
-%     \begin{aligned}
-%       & F^{(2^n, n)}  & = \; & f_1, \dots, f_{2^{n^2}} \\[0.3cm]
-%       \pause
-%       & A^{(n)}       & = \; & \frac{f_1}{2^n}, \frac{f_2}{2^n}, \dots, \frac{f_{2^{n^2}}}{2^n} \\
-%       &               & = \; & \bigg( \frac{f_i}{2^n} \bigg)_{i = 1}^{2^{n^2}} \\[0.3cm]
-%       \pause
-%       & B^{(n)}       & = \; & \left< \underbrace{A^{(n)} ; A^{(n)} ; \dots ; A^{(n)}}_{n 2^{2 n} \text{ veces}} \right>
-%     \end{aligned}
-%   \end{equation*}
-%   \pause
-
-%   Porta purus neque, ultrices vulputate orci ullamcorper eu.
-% \end{frame}
-
-%   % \medskip
-%   % \begin{problem}
-%   %   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
-%   % \end{problem}
-%   % \pause
-
-%   % \medskip
-%   % \begin{theorem}[{{\scriptsize  Champernowne, 1933}}]
-%   %   Curabitur varius in ligula nec laoreet. Aenean ultricies eget mi quis maximus. Mauris ornare interdum vestibulum.
-%   % \end{theorem}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-%   \frametitle{La secuencia de Knuth {$^{(2)}$}}
-
-%   For example, when $n = 2$:
-
-%   \begin{equation*}
-%     \begin{aligned}
-%       & F^{(4, 2)} = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\
-%       \pause
-%       & F^{(4, 2)} = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\
-%     \end{aligned}
-%   \end{equation*}
-%   % \begin{equation*}
-%   %   \begin{aligned}
+  Mauris euismod neque a lorem rutrum, id molestie eros consequat.
+  \pause
   
+  In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque.
+  \pause
 
-%   %     & B^{(2)} = \left< \underbrace{A^{(2)} ; \dots ; A^{(2)}}_{32 \text{ times}} \right> = \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}, \dots, \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}
-%   %   \end{aligned}
-%   % \end{equation*}
-%   % \pause
+  \medskip
+  \begin{definition}
+    Fusce sit amet lacus viverra, viverra massa sit amet, placerat neque. Integer ipsum sapien, efficitur quis dui vitae, facilisis tempus dolor.
+    \pause
 
-%   and $|A^{(2)}| = 16$, $|B^{(2)}| = 512$.
-% \end{frame}
+    Duis ornare volutpat libero, at sodales dolor porttitor at.
+    \pause
+  \end{definition}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  In rutrum dapibus justo, at mattis lacus ultrices sed. Suspendisse suscipit luctus fermentum.
+\end{frame}
 
-% \begin{frame}
-%   \frametitle{La secuencia de Knuth (3)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%   Curabitur varius in ligula nec laoreet.
-%   \begin{equation*}
-%     K = \left< B^{{$^{(1)}$}} ; B^{(2)} ;  B^{(3)} ; \dots \right>
-%   \end{equation*}
-%   \pause
+\begin{frame}
+  \frametitle{Prueba alternativa {$^{(1)}$}}
 
-%   \medskip
-%   \begin{theorem}[{{\scriptsize  Knuth, 1965}}]
-%     Nam sagittis dolor in enim tincidunt, sit amet pellentesque urna vulputate.
-%   \end{theorem}
-%   \pause
+  Presentamos una prueba alternativa más sencilla, basada en el criterio de Weyl y en una proposición de la teoría de congruencias lineales.
+  \pause
+
+  \medskip
+  \begin{block}{Criterio de Weyl}
+    \medskip
+    Una secuencia $X = x_1, x_2, \dots$ de números reales en $[0, 1)$ es $k$-distribuida si, y solo si, para cualquier vector de enteros no nulo $\bar{\ell} = (l_1, \dots, l_k)$:
+    \pause
+
+    \begin{equation*}
+      \lim_{N \to \infty} \frac{1}{N} \sum_{n = 1}^{N} e^{2 \pi i \bar{\ell} \cdot \bar{w}_n} = 0 \text{,}
+    \end{equation*}
+
+    donde $W_k(X) = \bar{w}_1, \bar{w}_2, \dots$ es la secuencia de ventanas de órden $k$ de $X$.
+  \end{block}
+  \pause
+
+  Podemos reducir el problema a una cota sobre una suma exponencial.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Prueba alternativa {$^{(2)}$}}
+
+  Mauris euismod neque a lorem rutrum, id molestie eros consequat.
+  \pause
   
-%   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
-%   \pause
+  In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque.
+  \pause
 
-%   Aenean ultricies eget mi quis maximus. Mauris ornare interdum vestibulum.
-% \end{frame}
+  \medskip
+  \begin{definition}
+    Fusce sit amet lacus viverra, viverra massa sit amet, placerat neque. Integer ipsum sapien, efficitur quis dui vitae, facilisis tempus dolor.
+    \pause
 
-%   % \medskip
-%   % \begin{problem}
-%   %   Morbi euismod purus at cursus iaculis. Donec efficitur lorem rutrum, auctor justo id, rhoncus nibh.
-%   % \end{problem}
-%   % \pause
+    Duis ornare volutpat libero, at sodales dolor porttitor at.
+    \pause
+  \end{definition}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  In rutrum dapibus justo, at mattis lacus ultrices sed. Suspendisse suscipit luctus fermentum.
+\end{frame}
 
-% \begin{frame}
-%   \frametitle{Tamaños de alfabeto linealmente crecientes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%   \medskip
-%   \begin{theorem}[{{\scriptsize  Agafonov 1968}}]
-%     Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
-%   \end{theorem}
-%   \pause
+\begin{frame}
+  \frametitle{Problemas abiertos}
 
-%   \medskip
-%   \begin{corollary}
-%     Vestibulum quis dolor quam. Sed viverra, diam ac fringilla fringilla, ex dui consequat leo, nec tempus augue mi eu quam.
-%   \end{corollary}
-%   \pause
+  Quedan varias líneas claras de investigación futura:
+  \pause
 
-%   \medskip
-%   \begin{theorem}[{{\scriptsize  Vandehey 2016}}]
-%     Phasellus quis aliquam nulla, non rutrum lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-%   \end{theorem}
-% \end{frame}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-%   \frametitle{Teorema principal}
-
-%   Nullam posuere tincidunt urna et elementum. Donec elementum at tellus sit amet tempus.
-%   \pause
-
-%   \medskip
-%   \begin{problem}
-%     Cras id accumsan risus, sed elementum elit. Suspendisse aliquet hendrerit gravida.
-%   \end{problem}
-%   \pause
-
-%   \medskip
-%   \begin{theorem}[\color{magenta} Resultado principal de esta tesis\color{black}]
-%     Nullam vehicula erat ante, hendrerit euismod elit luctus nec. Duis sagittis tincidunt metus, in dapibus lorem ullamcorper ut.
-%   \end{theorem}
-% \end{frame}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-%   \frametitle{Idea de la demostración}
-
-%   \medskip
-%   \begin{definition}
-%     Curabitur imperdiet tempus massa $A=\{0,1, \ldots, b-1\}$, pellentesque id turpis at mauris tempor auctor at pellentesque ex.
-%     \pause
-
-%     Pellentesque urna arcu, pellentesque sit amet volutpat eget, venenatis sed leo. Phasellus tempus eu urna a lacinia.
-%     \pause
-
-%     Vestibulum aliquam augue et tortor pulvinar suscipit $w^{\star}_n$.
-%     \pause
-
-%     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat nulla a vulputate ultrices. Ut et magna ac lacus elementum tincidunt a id ante.
-
-%     {\color{magenta}
-%       Donec $u=v_1 v_2 \ldots v_m$ aenean ullamcorper odio vitae $v_i$ erat $\ell_n$  rhoncus quis
-%       \[
-%       e_n(u)=e_n(v_1)\ldots e_n(v_m)
-%       \]
-%     }
-%   \end{definition}
-% \end{frame}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-%   \frametitle{Criterio de Weyl}
-
-%   \medskip
-%   \begin{definition}
-%     Suspendisse ut hendrerit $A$,  \textit{finibus semper neque non congue tortor dictum $\ell$} laoreet ex nec pulvinar $u\in A^*$ tellus
-%     \begin{equation*}
-%       \Delta_{A,\ell}(u) = 
-%       \max_{v \in A^{\ell}}\left(\left|\frac{\alocc{u}{v}}{\lfloor|u|/\ell \rfloor} - \frac{1}{|A|^{\ell}}\right|\right).
-%     \end{equation*}
-%   \end{definition}
-%   \pause
-
-%   Nam sagittis dolor in enim tincidunt $v\in A^\omega$ sit amet pellentesque urna vulputate $\ell$
-%   $$\lim_{n \rightarrow \infty} \Delta_{A, \ell}(v[1,\ell n]) = 0$$
-% \end{frame}
-
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-%   \frametitle{Prueba alternativa}
-
-%   \medskip
-%   \begin{definition}
-%     Curabitur imperdiet tempus massa $A=\{0,1, \ldots, b-1\}$, pellentesque id turpis at mauris tempor auctor at pellentesque ex.
-%     \pause
-
-%     Pellentesque urna arcu, pellentesque sit amet volutpat eget, venenatis sed leo. Phasellus tempus eu urna a lacinia.
-%     \pause
-
-%     Vestibulum aliquam augue et tortor pulvinar suscipit $w^{\star}_n$.
-%     \pause
-
-%     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat nulla a vulputate ultrices. Ut et magna ac lacus elementum tincidunt a id ante.
-
-%     {\color{magenta}
-%       Donec $u=v_1 v_2 \ldots v_m$ aenean ullamcorper odio vitae $v_i$ erat $\ell_n$  rhoncus quis
-%       \[
-%       e_n(u)=e_n(v_1)\ldots e_n(v_m)
-%       \]
-%     }
-%   \end{definition}
-% \end{frame}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-%   \frametitle{Problemas abiertos}
-
-%   Cras id accumsan risus, sed elementum elit.
-%   \pause
-
-%   \begin{itemize}
-%     \item Donec eu sollicitudin lacus. Vestibulum facilisis eu tellus quis gravida. Proin faucibus tellus nec tempus maximus.
-%     \pause
+  \begin{itemize}
+    \item ¿Qué pasa cuando no se cumple que $\lim_{n \to \infty} n / t(n) = 0$? ¿La secuencia $L$ sigue siendo completamente equidistribuida?
+    \pause
     
-%     \item Proin at facilisis orci. Nunc at orci in ante semper elementum ullamcorper in est. Praesent maximus aliquet lorem, in tincidunt odio tempus vel.
-%     \pause
+    \item Para responder eso, es necesario entender mejor la discrepancia de la familia de secuencias de De Bruijn que se use para formar la secuencia $L$.
+    \pause
 
-%     \item Etiam vulputate nunc eget mauris vestibulum, nec viverra massa lacinia. Donec volutpat tempus nunc, vitae malesuada odio ultricies nec. 
-%   \end{itemize}
-% \end{frame}
+    \item Relacionado: ¿cumple la secuencia $L$ la propiedad de correlación de pares de Poisson?
+  \end{itemize}
+\end{frame}
 
 \newcounter{finalframe}
 \setcounter{finalframe}{\value{framenumber}}
 
-\addtocounter{framenumber}{-1}
+% \addtocounter{framenumber}{-1}
 
 % \begin{frame}
 % \scriptsize
