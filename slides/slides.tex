@@ -1,5 +1,6 @@
 \documentclass[t, 10pt, mathserif]{beamer}
-
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{resize to}[a4paper,landscape,border shrink=5mm]
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amscd}
@@ -29,7 +30,6 @@
 
 \setlength{\parskip}{\baselineskip}
 \expandafter\def\expandafter\item\expandafter{\item \setlength{\parskip}{0.5\baselineskip}}
-\expandafter\def\expandafter\definition\expandafter{\definition \setlength{\parskip}{0.5\baselineskip}}
 
 \languagepath{spanish}
 \deftranslation[to=spanish]{Corollary}{Corolario}
@@ -114,7 +114,7 @@
   \end{itemize}
   \pause
 
-  {\color{orange} Generación de números aleatorios.}
+  {\color{cyan} Generación de números aleatorios.}
   \pause
 
   Pero, ¿qué es una secuencia de números aleatorios?
@@ -147,22 +147,21 @@
 \begin{frame}
   \frametitle{Equidistribución {$^{(1)}$}}
 
-  \begin{definition}
-    Dado un entero $b$, una secuencia de \textit{números enteros} $X = x_1, x_2, \dots$ del conjunto $\{ 0, 1, \dots, b - 1 \}$ es \textbf{equidistribuida} si todo valor posible aparece con frecuencia asintótica igual a $\frac{1}{b}$:
-    \pause
-
-    \begin{equation*}
-      \begin{aligned}
-        Pr \left( x_i = j \right) = \frac{1}{b} \hspace*{1cm} \text{para todo } j \in \{ 0, \dots, b - 1 \} \text{,}
-      \end{aligned}
-    \end{equation*}
-    \pause
-
-    donde $Pr(x_i = j) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(x_i = j)$.
-  \end{definition}
+  Dado un entero $b \ge 2$, una secuencia de \textit{números enteros} $X = x_1, x_2, \dots$ del conjunto $\{ 0, 1, \dots, b - 1 \}$ es \textbf{equidistribuida} si todo valor posible aparece con la misma frecuencia asintótica:
   \pause
 
-  Ahora, definimos una noción equivalente para secuencias de números reales.
+  \begin{equation*}
+    \begin{aligned}
+      Pr \left( x_i = j \right) = \frac{1}{b} \hspace*{1cm} \text{para todo } j \in \{ 0, \dots, b - 1 \} \text{,}
+    \end{aligned}
+  \end{equation*}
+  \pause
+
+  \vspace{-0.5cm}
+  donde $\displaystyle Pr(x_i = j) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(x_i = j)$.
+  \pause
+
+  Ahora, damos una noción equivalente para secuencias de números reales.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -170,32 +169,31 @@
 \begin{frame}
   \frametitle{Equidistribución {$^{(2)}$}}
 
-  \begin{definition}
-    Una secuencia de \textit{números reales} $X = x_1, x_2, \dots$ en el intervalo unitario $\left[0, 1\right)$ es \textbf{equidistribuida} si, dado cualquier conjunto $I \subseteq \left[0, 1\right)$, la frecuencia asintótica con la que la secuencia toma valores en $I$ es igual a su tamaño:
-    \pause
-
-    \begin{equation*}
-      \begin{aligned}
-        Pr \left( x_i \in I\, \right) = \left| I\, \right| \hspace*{1cm} \text{para todo } I \subseteq \left[0, 1\right) \text{,}
-      \end{aligned}
-    \end{equation*}
-    \pause
-
-    donde $Pr \left( x_i \in I\, \right) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(x_i \in I\,)$.
-  \end{definition}
+  Una secuencia de \textit{números reales} $X = x_1, x_2, \dots$ en el intervalo unitario $\left[0, 1\right)$ es \textbf{equidistribuida} si, dado cualquier conjunto $I \subseteq \left[0, 1\right)$, la frecuencia asintótica con la que la secuencia toma valores en $I$ es igual a su tamaño:
   \pause
 
-  Si $X$ es equidistribuida en $[0, 1)$, entonces para cualquier $b$ la secuencia $Y = \left( \lfloor b x_i \rfloor \right)_{i = 1}^{\infty}$ es equidistribuida en $\{ 0, 1, \dots, b - 1 \}$.
+  \begin{equation*}
+    \begin{aligned}
+      Pr \left( x_i \in I\, \right) = \left| I\, \right| \hspace*{1cm} \text{para todo } I \subseteq \left[0, 1\right) \text{,}
+    \end{aligned}
+  \end{equation*}
+  \pause
+
+  \vspace{-0.5cm}
+  donde $\displaystyle Pr \left( x_i \in I\, \right) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(x_i \in I\,)$.
+  \pause
+
+  Si $X$ es equidistribuida en $[0, 1)$, entonces para cualquier $b \ge 2$ la secuencia $Y = \lfloor b x_1 \rfloor, \lfloor b x_2 \rfloor, \dots$ es equidistribuida en $\{ 0, 1, \dots, b - 1 \}$.
 \end{frame}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
   \frametitle{Equidistribución {$^{(3)}$}}
 
-  \vspace{-0.5cm}
+  \vspace{1cm}
   \begin{figure}
-    \includegraphics[width=0.7\textwidth]{resources/equidistribucion.png}
+    \includegraphics[scale=0.4]{resources/equidistribucion.png}
     \caption{Secuencias de partes fraccionarias.}
   \end{figure}
 \end{frame}
@@ -208,7 +206,7 @@
   % Ahora extendemos la noción de equidistribución a otras dimensiones.
   % \pause
 
-  \textbf{Intuición}: cualquier seguidilla de tiradas tiene que aparecer con igual frecuencia. Por ejemplo, (1, 1) aparece con la misma frecuencia que (2, 2) y que (6, 4).
+  \textbf{Intuición}: cualquier seguidilla de tiradas tiene que aparecer con igual frecuencia. Por ejemplo, (1, 2, 3) aparece con la misma frecuencia que (3, 2, 1) y que (6, 6, 6).
   \pause
 
   Trabajamos con ``ventanas`` de tamaño $k$ de la secuencia. Si $X = x_1, x_2, \dots$ es una secuencia de \textit{números reales}, entonces:
@@ -217,9 +215,9 @@
   \vspace{-0.3cm}
   \begin{equation*}
     \begin{aligned}
-        w_1 & = (x_1, x_2, \dots, x_k      ), \\
-        w_2 & = (x_2, x_3, \dots, x_{k + 1}), \\
-        w_3 & = (x_3, x_4, \dots, x_{k + 2}), \\
+        \bar{w}_1 & = (x_1, x_2, \dots, x_k      ), \\
+        \bar{w}_2 & = (x_2, x_3, \dots, x_{k + 1}), \\
+        \bar{w}_3 & = (x_3, x_4, \dots, x_{k + 2}), \\
             & \dots
     \end{aligned}
   \end{equation*}
@@ -232,33 +230,31 @@
 \begin{frame}
   \frametitle{$k$-distribución {$^{(2)}$}}
 
-  \begin{definition}
-    Una secuencia de \textit{números reales} $X = x_1, x_2, \dots$ en el intervalo unitario $\left[0, 1\right)$ es \textbf{$k$-distribuida} si, dado cualquier conjunto $I \subseteq \left[0, 1\right)^k$, la frecuencia asintótica con la que la secuencia de ventanas de $X$ toma valores en $I$ es igual a su tamaño:
-    \pause
+  Una secuencia de \textit{números reales} $X = x_1, x_2, \dots$ en el intervalo unitario $\left[0, 1\right)$ es \textbf{$k$-distribuida} si, dado cualquier conjunto $I \subseteq \left[0, 1\right)^k$, la frecuencia asintótica con la que la secuencia de ventanas de $X$ toma valores en $I$ es igual a su tamaño:
+  \pause
 
-    \begin{equation*}
-      \begin{aligned}
-        Pr \left( w_i \in I\, \right) = \left| I\, \right| \hspace*{1cm} \text{para todo } I \subseteq \left[0, 1\right)^k \text{,}
-      \end{aligned}
-    \end{equation*}
-    \pause
+  \begin{equation*}
+    \begin{aligned}
+      Pr \left( \bar{w}_i \in I\, \right) = \left| I\, \right| \hspace*{1cm} \text{para todo } I \subseteq \left[0, 1\right)^k \text{,}
+    \end{aligned}
+  \end{equation*}
+  \pause
 
-    \vspace{-0.5cm}
-    \begin{equation*}
-      \hspace{-2.5cm}
-      \begin{aligned}
-          \text{donde } W_k(X) =\; & \left( w_i \right)_{i = 1}^{\infty} \\
-                               =\; & (x_1, x_2, \dots, x_k      ),\, (x_2, x_3, \dots, x_{k + 1}),\, \dots \, \text{.}
-      \end{aligned}
-    \end{equation*}
-    \vspace{-0.3cm}
-  \end{definition}
+  \vspace{-0.5cm}
+  \begin{equation*}
+    \hspace{-2.5cm}
+    \begin{aligned}
+        \text{donde } W_k(X) =\; & \bar{w}_1, \bar{w}_2, \dots \\
+                              =\; & (x_1, x_2, \dots, x_k      ),\, (x_2, x_3, \dots, x_{k + 1}),\, \dots \, \text{.}
+    \end{aligned}
+  \end{equation*}
+  \vspace{-0.3cm}
   \pause
 
   Si $X$ es $k$-distribuida para todo $k$, entonces $X$ es \textbf{completamente equidistribuida}.
 \end{frame}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
   \frametitle{Equidistribución completa {$^{(1)}$}}
@@ -267,7 +263,7 @@
 
   \begin{itemize}
     \item Requerimiento básico de pseudo-aleatoriedad. Propiedades de equipartición y autocorrelación con retraso. \pause
-    \item Calidad de un generador de números aleatorios o PNRG. Pruebas de aleatoriedad.\pause % Mersenne Twister
+    \item Calidad de un generador de números aleatorios o PRNG. Pruebas de aleatoriedad.\pause % Mersenne Twister
     \item Integración de Montecarlo, criterio de la integral de Riemann. \pause
     \item Vínculo: teoría de números, computación, probabilidad y estadística.
   \end{itemize}
@@ -276,15 +272,15 @@
   ¿Qué \textbf{no} es la equidistribución?
 \end{frame}
  
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
   \frametitle{Equidistribución completa {$^{(2)}$}}
 
-  \vspace{-0.5cm}
+  \vspace{0.5cm}
   \begin{figure}
-    \includegraphics[width=0.8\textwidth]{resources/discrepancia.png}
-    \caption{Izq.) Secuencia Sobol 2,3. Der.) Secuencia pseudo-aleat.}
+    \includegraphics[width=0.6\textwidth]{resources/discrepancia.png}
+    \caption{Izq.) Sec. pseudo-aleatoria Der.) Sec. Sobol 2,3. }
   \end{figure}
 \end{frame}
  
@@ -292,10 +288,10 @@
 
 \begin{frame}{Secuencias de De Bruijn}
   \only<1->{
-    Son secuencias muy estudiadas en combinatoria. Tienen la propiedad de ``contener`` a todas las posibles combinaciones de secuencias de un alfabeto y tamaño dados. Ejemplos:
+    Son secuencias muy estudiadas en combinatoria. Una secuencia $b$-aria de De Bruijn de orden $k$ ``contiene`` a cada posible secuencia $b$-aria de longitud $k$ exactamente una vez. Ejemplos:
   }
 
-  \only<2->{Con $b = 2, k = 3$:}
+  \only<1->{Con $b = 2, k = 3$:}
   \only<2->{\vspace{-0.3cm}}
   \begin{center}
     \only<2>{$0, 0, 0, 1, 0, 1, 1, 1$}
@@ -318,34 +314,37 @@
   \end{center}
 
   \only<13->{Notar que siempre tienen longitud $b^k$.}
-  \only<14->{{\color{orange} ¿Qué relación tienen con las secuencias equidistribuidas?}}
+  \only<14->{{\color{cyan} ¿Qué relación tienen con las secuencias equidistribuidas?}}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
   \frametitle{Secuencia de Knuth {$^{(1)}$}}
+  \pause
 
-  \vspace{-0.4cm}
+  \vspace{-0.5cm}
   \begin{definition}
-    Una \textbf{secuencia $A$ de órden $n$} es la secuencia que se obtiene al dividir cada elemento de una secuencia de De Bruijn de base $2^n$ y de órden $n$ por su base:
+    \medskip
+    Una \textbf{secuencia $A$ de orden $n$} es la secuencia que se obtiene al dividir cada elemento de una secuencia $2^n$-aria de De Bruijn de orden $n$ por $2^n$:
     \pause
 
-    \vspace{-0.2cm}
     \begin{equation*}
       \begin{aligned}
-        A^{(n)} & = \frac{f_1}{2^n}, \frac{f_2}{2^n}, \dots, \frac{f_{2^{n^2}}}{2^n}
+        A^{(n)} & = \frac{x_1}{2^n}, \frac{x_2}{2^n}, \dots, \frac{x_{2^{n^2}}}{2^n}
       \end{aligned}
     \end{equation*}
 
-    \vspace{-0.2cm}
-    donde $F^{(2^n, n)} = f_1, \dots, f_{2^{n^2}}$ denota una secuencia de De Bruijn de base $2^n$ y de órden $n$.
+    \medskip
+    donde $x_1, \dots, x_{2^{n^2}}$ es una secuencia $2^n$-aria de De Bruijn de orden $n$.
+  \end{definition}
+  \pause
+
+  \begin{definition}
+    \medskip
+    Una \textbf{secuencia $B$ de orden $n$} es la secuencia que se obtiene de concatenar $n 2^{2 n}$ copias de una secuencia $A$ de orden $n$:
     \pause
 
-    Una \textbf{secuencia $B$ de órden $n$} es la secuencia que se obtiene de concatenar $n 2^{2 n}$ copias de una secuencia $A$ de órden $n$:
-    \pause
-
-    \vspace{-0.2cm}
     \begin{equation*}
       B^{(n)} = \left< \underbrace{A^{(n)} ; A^{(n)} ; \dots ; A^{(n)}}_{n 2^{2 n} \text{ veces}} \right> \text{.}
     \end{equation*}
@@ -363,8 +362,8 @@
 
   \begin{equation*}
     \begin{aligned}
-      F^{(4, 2)} & = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \\[0.4cm] \pause
-      A^{(2)}    & = \frac{0}{4}, \frac{0}{4}, \frac{1}{4}, \frac{0}{4}, \frac{2}{4}, \frac{0}{4}, \frac{3}{4}, \frac{1}{4}, \frac{1}{4}, \frac{2}{4}, \frac{1}{4}, \frac{3}{4}, \frac{2}{4}, \frac{2}{4}, \frac{3}{4}, \frac{3}{4} \\[0.4cm] \pause
+      X^{(4, 2)} & = 0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3 \text{;} \\[0.4cm] \pause
+      A^{(2)}    & = \frac{0}{4}, \frac{0}{4}, \frac{1}{4}, \frac{0}{4}, \frac{2}{4}, \frac{0}{4}, \frac{3}{4}, \frac{1}{4}, \frac{1}{4}, \frac{2}{4}, \frac{1}{4}, \frac{3}{4}, \frac{2}{4}, \frac{2}{4}, \frac{3}{4}, \frac{3}{4} \text{;} \\[0.4cm] \pause
       B^{(2)}   & = \left< \underbrace{A^{(2)} ; \dots ; A^{(2)}}_{2 \times 2^{2 \times 2} = 32 \text{ veces}} \right> \\[0.1cm] \pause
                 & = \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}}, \dots, \underbrace{\frac{0}{4}, \frac{0}{4}, \dots, \frac{3}{4}, \frac{3}{4}}_{A^{(2)}} \text{.}
     \end{aligned}
@@ -376,12 +375,13 @@
 \begin{frame}
   \frametitle{Secuencia de Knuth {$^{(3)}$}}
 
-  Ahora sí, ya estamos en condiciones de definir la secuencia de Knuth.
+  Ahora sí ya estamos en condiciones de definir la secuencia de Knuth.
   \pause
 
   \medskip
-  \begin{definition}
-    La secuencia de Knuth, que denominamos $K$, se define como la concatenación de todas las posibles secuencias $B$ en órden creciente:
+  \begin{definition}[{{\scriptsize  Knuth, 1965}}]
+    \medskip
+    La secuencia de Knuth, que denominamos $K$, se define como la concatenación de las secuencias $B^{(n)}$ para $n = 1, 2, 3, \dots$:
     \pause
 
     \begin{equation*}
@@ -397,19 +397,18 @@
   \end{theorem}
 \end{frame}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Secuencia de Knuth {$^{(4)}$}}
-  \vspace{-0.5cm}
   \only<1>{
     \begin{figure}
-      \includegraphics[width=0.7\textwidth]{resources/secuencia-knuth-1.png}
+      \includegraphics[width=0.6\textwidth]{resources/secuencia-knuth-1.png}
       \caption{Secuencia de Knuth en dos dimensiones.}
     \end{figure}
   }
   \only<2>{
     \begin{figure}
-      \includegraphics[width=0.7\textwidth]{resources/secuencia-knuth-2.png}
+      \includegraphics[width=0.6\textwidth]{resources/secuencia-knuth-2.png}
       \caption{Secuencia de Knuth en dos dimensiones.}
     \end{figure}
   }
@@ -418,53 +417,57 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Idea de la demostración}
+  \frametitle{Comentarios sobre la demostración}
 
-  Mauris euismod neque a lorem rutrum, id molestie eros consequat.
+  Knuth da una prueba elemental de este teorema.
   \pause
   
-  In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque.
+  Dos decisiones en la construcción de $K$ parecen arbitrarias, pero juegan un rol importante en la demostración:
   \pause
 
-  \medskip
-  \begin{definition}
-    Fusce sit amet lacus viverra, viverra massa sit amet, placerat neque. Integer ipsum sapien, efficitur quis dui vitae, facilisis tempus dolor.
-    \pause
+  \begin{itemize}
+    \item La cantidad $n 2^{2n}$ de repeticiones de una secuencia $A$ en una secuencia $B$. \pause
+    % On account of the first choice, one can adapt Knuth's proof in a rather straightforward manner to show that a sufficient condition for the complete equidistribution of $K$ is for the number of repetitions to grow asymptotically faster than $2^{2n}$. A proof of this fact is omitted here since it follows from Knuth's work, together with the technique used in the following section to obtain an analogous result. Knuth's choice of $n 2^{2n}$ repetitions is sufficient to achieve complete equidistribution, but a more reduced number of repetitions such as $\lceil \log(n + 1) \rceil 2^{2n}$ would suffice as well.
+  
+    \item El uso de secuencias de De Bruijn $2^n$-arias de orden $n$.
+    % In regard to the second choice, Knuth's use of alphabet sizes which grow exponentially as powers of $2$ allows one to reason more easily about the rational numbers comprised in the sequence $K$ in terms of their binary representations. In particular, Knuth uses this device to derive properties of the distribution of the $m$ most-significant bits of the terms in a $2^n$-ary Ford sequence, where $m \le n$. See \cite[Lemma 2]{knuth-1965}.
 
-    Duis ornare volutpat libero, at sodales dolor porttitor at.
-    \pause
-  \end{definition}
+  \end{itemize}
+  \pause
 
-  In rutrum dapibus justo, at mattis lacus ultrices sed. Suspendisse suscipit luctus fermentum.
+  Si usamos secuencias de De Bruijn con alfabetos que crecen linealmente en tamaño, {\color{cyan}¿sigue siendo completamente equidistribuida la secuencia? ¿Cuántas repeticiones son necesarias?}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Alfabetos linealmente crecientes}
+  \frametitle{Alfabetos linealmente crecientes {$^{(1)}$}}
+  \pause
 
-  \vspace{-0.4cm}
+  \vspace{-0.5cm}
   \begin{definition}
-    Una \textbf{secuencia $C$ de órden $n$} es la secuencia que se obtiene al dividir cada elemento de una secuencia de De Bruijn de base $n$ y de órden $n$ por su base:
+    \medskip
+    Una \textbf{secuencia $C$ de orden $n$} es la secuencia que se obtiene al dividir cada elemento de una secuencia $n$-aria de De Bruijn de orden $n$ por $n$:
     \pause
 
-    \vspace{-0.2cm}
     \begin{equation*}
       \begin{aligned}
-        C^{(n)} & = \frac{f_1}{n}, \frac{f_2}{n}, \dots, \frac{f_{n^n}}{n}
+        C^{(n)} & = \frac{x_1}{n}, \frac{x_2}{n}, \dots, \frac{x_{n^n}}{n}
       \end{aligned}
     \end{equation*}
 
-    \vspace{-0.2cm}
-    donde $F^{(n, n)} = f_1, \dots, f_{n^n}$ denota una secuencia de De Bruijn de base $n$ y de órden $n$.
+    \medskip
+    donde $x_1, \dots, x_{n^n}$ es una secuencia $n$-aria de De Bruijn de orden $n$.
+  \end{definition}
+  \pause
+
+  \begin{definition}
+    \medskip
+    Dada $t : \mathbb{N} \mapsto \mathbb{N}$, una \textbf{secuencia $D$ de orden $n$} es la secuencia que se obtiene de concatenar $t(n)$ copias de una secuencia $C$ de orden $n$:
     \pause
 
-    Una \textbf{secuencia $D$ de órden $n$} es la secuencia que se obtiene de concatenar $t(n)$ copias de una secuencia $C$ de órden $n$:
-    \pause
-
-    \vspace{-0.2cm}
     \begin{equation*}
-      D^{(n)} = \left< \underbrace{C^{(n)} ; C^{(n)} ; \dots ; C^{(n)}}_{t(n) \text{ veces}} \right> \text{.}
+      D^{(n, t)} = \left< \underbrace{C^{(n)} ; C^{(n)} ; \dots ; C^{(n)}}_{t(n) \text{ veces}} \right> \text{.}
     \end{equation*}
   \end{definition}
 \end{frame}
@@ -472,29 +475,49 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Alfabetos linealmente crecientes}
+  \frametitle{Alfabetos linealmente crecientes {$^{(1)}$}}
 
-  \vspace{-0.4cm}
+  \vspace{-0.5cm}
   \begin{definition}
-    Una \textbf{secuencia $C$ de órden $n$} es la secuencia que se obtiene al dividir cada elemento de una secuencia de De Bruijn de {\color{orange} base $n$} y de órden $n$ por su base:
+    \medskip
+    Una \textbf{secuencia $C$ de orden $n$} es la secuencia que se obtiene al dividir cada elemento de una secuencia {\color{cyan} $n$-aria} de De Bruijn de orden $n$ por {\color{cyan} $n$}:
 
-    \vspace{-0.2cm}
     \begin{equation*}
       \begin{aligned}
-        C^{(n)} & = \frac{f_1}{{\color{orange} n}}, \frac{f_2}{{\color{orange} n}}, \dots, \frac{f_{{\color{orange} n^n}}}{{\color{orange} n}}
+        C^{(n)} & = \frac{x_1}{{\color{cyan} n}}, \frac{x_2}{{\color{cyan} n}}, \dots, \frac{x_{{\color{cyan} n^n}}}{{\color{cyan} n}}
       \end{aligned}
     \end{equation*}
 
-    \vspace{-0.2cm}
-    donde $F^{({\color{orange} n}, n)} = f_1, \dots, f_{{\color{orange} n^n}}$ denota una secuencia de De Bruijn de base $n$ y de órden $n$.
+    \medskip
+    donde $x_1, \dots, x_{{\color{cyan} n^n}}$ es una secuencia {\color{cyan} $n$-aria} de De Bruijn de orden $n$.
+  \end{definition}
 
-    Una \textbf{secuencia $D$ de órden $n$} es la secuencia que se obtiene de concatenar {\color{orange} $t(n)$ copias} de una secuencia $C$ de órden $n$:
+  \begin{definition}
+    \medskip
+    Dada ${\color{cyan} t : \mathbb{N} \mapsto \mathbb{N}}$, una \textbf{secuencia $D$ de orden $n$} es la secuencia que se obtiene de concatenar ${\color{cyan} t(n)}$ copias de una secuencia $C$ de orden $n$:
 
-    \vspace{-0.2cm}
     \begin{equation*}
-      D^{(n)} = \left< \underbrace{C^{(n)} ; C^{(n)} ; \dots ; C^{(n)}}_{{\color{orange} t(n)} \text{ veces}} \right> \text{.}
+      D^{(n, {\color{cyan} t})} = \left< \underbrace{C^{(n)} ; C^{(n)} ; \dots ; C^{(n)}}_{{\color{cyan} t(n)} \text{ veces}} \right> \text{.}
     \end{equation*}
   \end{definition}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Alfabetos linealmente crecientes {$^{(2)}$}}
+
+  Ejemplo para $n = 3$, $t(n) = n$:
+  \pause
+
+  \begin{equation*}
+    \begin{aligned}
+      X^{(3, 3)} & = 0, 0, 0, 1, 0, 0, 2, 0, 1, 1, 0, 1, 2, 0, 2, 1, 0, 2, 2, 1, 1, 1, 2, 1, 2, 2, 2  \text{;} \\[0.4cm] \pause
+      C^{(3)}    & = \frac{0}{3}, \frac{0}{3}, \frac{0}{3}, \frac{1}{3}, \frac{0}{3}, \frac{0}{3}, \frac{2}{3}, \frac{0}{3}, \frac{1}{3}, \frac{1}{3}, \frac{0}{3}, \frac{1}{3}, \frac{2}{3}, \frac{0}{3}, \\[0.2cm]
+                 & \hspace{0.5cm} \frac{0}{3}, \frac{2}{3}, \frac{1}{3}, \frac{0}{3}, \frac{2}{3}, \frac{2}{3}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3}, \frac{2}{3}, \frac{1}{3}, \frac{2}{3}, \frac{2}{3}, \frac{2}{3} \text{;} \\[0.4cm] \pause
+      D^{(3)}   & = \underbrace{\frac{0}{3}, \frac{0}{3}, \dots, \frac{2}{3}, \frac{2}{3}}_{C^{(3)}}, \underbrace{\frac{0}{3}, \frac{0}{3}, \dots, \frac{2}{3}, \frac{2}{3}}_{C^{(3)}}, \underbrace{\frac{0}{3}, \frac{0}{3}, \dots, \frac{2}{3}, \frac{2}{3}}_{C^{(3)}} \text{.}
+    \end{aligned}
+  \end{equation*}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -502,40 +525,40 @@
 \begin{frame}
   \frametitle{Secuencia $L$ {$^{(1)}$}}
 
-  \begin{definition}
-    La secuencia $L$ se define como la concatenación de todas las posibles secuencias $D$ en órden creciente:
+  \begin{definition}[Esta tesis]
+    \medskip
+    Dada $t : \mathbb{N} \mapsto \mathbb{N}$, la secuencia $L^{(t)}$ se define como la concatenación de las secuencias $D^{(n, t)}$ para $n = 1, 2, 3, \dots$:
     \pause
 
     \begin{equation*}
-      L = \left< D^{(1)} ; D^{(2)} ;  D^{(3)} ; \dots \right> \text{.}
+      L^{(t)} = \left< D^{(1, t)} ; D^{(2, t)} ;  D^{(3, t)} ; \dots \right> \text{.}
     \end{equation*}
   \end{definition}
   \pause
 
-  {\color{orange} Ahora, enunciamos el aporte principal de esta tesis.}
+  {\color{cyan} Ahora, enunciamos el aporte principal de esta tesis.}
   \pause
 
   \medskip
   \begin{block}{Teorema 1}
     \medskip
-    \textit{Si $t : \mathbb{N} \mapsto \mathbb{N}$ es una función no decreciente y $\lim_{n \to \infty} n / t(n) = 0$, entonces la secuencia $L$ es completamente equidistribuida.}
+    \textit{Si $t : \mathbb{N} \mapsto \mathbb{N}$ es una función no decreciente y $\lim_{n \to \infty} n / t(n) = 0$, entonces la secuencia $L^{(t)}$ es completamente equidistribuida.}
   \end{block}
 \end{frame}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Secuencia $L$ {$^{(2)}$}}
-  \vspace{-0.5cm}
   \only<1>{
     \begin{figure}
-      \includegraphics[width=0.7\textwidth]{resources/secuencia-l-1.png}
-      \caption{Secuencia $L$ en dos dimensiones.}
+      \includegraphics[width=0.6\textwidth]{resources/secuencia-l-1.png}
+      \caption{Secuencia $L^{(t)}$ con $t(n) = n^2$ en dos dimensiones.}
     \end{figure}
   }
   \only<2>{
     \begin{figure}
-      \includegraphics[width=0.7\textwidth]{resources/secuencia-l-2.png}
-      \caption{Secuencia $L$ en dos dimensiones.}
+      \includegraphics[width=0.6\textwidth]{resources/secuencia-l-2.png}
+      \caption{Secuencia $L^{(t)}$ con $t(n) = n^2$ en dos dimensiones.}
     \end{figure}
   }
 \end{frame}
@@ -543,158 +566,148 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Idea de la demostración}
+  \frametitle{Idea de la demostración {$^{(1)}$}}
 
-  Mauris euismod neque a lorem rutrum, id molestie eros consequat.
-  \pause
+  Recordando la definición, queremos probar que para cualquier $k$ vale:
+
+  \vspace{-0.5cm}
+  \begin{equation*}
+    \begin{aligned}
+      Pr \left( \bar{w}_i \in I\, \right) = \left| I\, \right| \hspace*{1cm} \text{para todo } I \subseteq \left[0, 1\right)^k \text{,}
+    \end{aligned}
+  \end{equation*}
   
-  In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque.
+  donde $W_k(L) = \bar{w}_1, \bar{w}_2, \dots$ es la secuencia de ventanas de orden $k$ de $L$.
   \pause
 
-  \medskip
-  \begin{definition}
-    Fusce sit amet lacus viverra, viverra massa sit amet, placerat neque. Integer ipsum sapien, efficitur quis dui vitae, facilisis tempus dolor.
-    \pause
+  Queremos contar cuántas ventanas $\bar{w}_i$ caen adentro de un $I$ arbitrario.
+  \pause
 
-    Duis ornare volutpat libero, at sodales dolor porttitor at.
-    \pause
-  \end{definition}
+  Pensemos en los primeros $N$ elementos de la secuencia $L$. Este prefijo $L_{1:N}$ se puede partir en cuatro partes:
+  \pause
 
-  In rutrum dapibus justo, at mattis lacus ultrices sed. Suspendisse suscipit luctus fermentum.
+  \begin{equation*}
+    L_{1:N} = \left< S^{(1)} ; S^{(2)} ; S^{(3)} ; S^{(4)} \right>
+  \end{equation*}
+  
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Prueba alternativa {$^{(1)}$}}
+  \frametitle{Idea de la demostración {$^{(2)}$}}
 
-  Presentamos una prueba alternativa más sencilla, basada en el criterio de Weyl y en una proposición de la teoría de congruencias lineales.
+  Calculamos cuántas ventanas pertenecen a $I$ en cada parte. Después sumamos, dividimos por $N$, y tomamos el límite. El resultado es $Pr \left( \bar{w}_i \in I\, \right)$.
   \pause
 
-  \medskip
-  \begin{block}{Criterio de Weyl}
+  Para las partes $S^{(1)}$ y $S^{(4)}$, podemos acotar la cantidad de ventanas por la longitud del segmento. Para las partes $S^{(2)}$ y $S^{(3)}$, necesitamos el siguiente lema:
+  \pause
+
+  \begin{lemma}
     \medskip
-    Una secuencia $X = x_1, x_2, \dots$ de números reales en $[0, 1)$ es $k$-distribuida si, y solo si, para cualquier vector de enteros no nulo $\bar{\ell} = (l_1, \dots, l_k)$:
-    \pause
-
+    Dado un entero positivo $k$ y un conjunto $I \subseteq [0, 1)^k$, sea $n \in \mathbb{N}$ tal que $k \le n$. Luego, para algún $\varepsilon \in (-1, 1)$:
     \begin{equation*}
-      \lim_{N \to \infty} \frac{1}{N} \sum_{n = 1}^{N} e^{2 \pi i \bar{\ell} \cdot \bar{w}_n} = 0 \text{,}
+      \sum_{i = 1}^{n^n} \sigma\Big( \big( W_k^{c}(C^{(n)}) \big)_i \in I \Big) = n^n |I| + n^{n - 1} (2^k - 1) \varepsilon \text{.}
     \end{equation*}
+  \end{lemma}
 
-    donde $W_k(X) = \bar{w}_1, \bar{w}_2, \dots$ es la secuencia de ventanas de órden $k$ de $X$.
-  \end{block}
-  \pause
-
-  Podemos reducir el problema a una cota sobre una suma exponencial.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{Prueba alternativa {$^{(2)}$}}
+  \frametitle{Comentarios sobre la demostración}
 
-  Mauris euismod neque a lorem rutrum, id molestie eros consequat.
-  \pause
-  
-  In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque.
+  La prueba de Knuth usa la propiedad de que los denominadores son potencias de $2$. Con el lema previo, podemos hacer la cuenta para cualquier denominador arbitrario.
   \pause
 
-  \medskip
-  \begin{definition}
-    Fusce sit amet lacus viverra, viverra massa sit amet, placerat neque. Integer ipsum sapien, efficitur quis dui vitae, facilisis tempus dolor.
-    \pause
+  Transformamos los números racionales en $C^{(n)}$ a enteros. La condición $\bar{w_i} \in I$ se transforma en un sistema de inecuaciones. Podemos contar la cantidad de soluciones dentro de $C^{(n)}$ gracias a la propiedad de De Bruijn.
+  \pause
 
-    Duis ornare volutpat libero, at sodales dolor porttitor at.
-    \pause
-  \end{definition}
+  Las condiciones sobre $t$ surgen como medio para garantizar que el límite sobre la parte $S^{(4)}$ se vaya a $0$.
+  \pause
 
-  In rutrum dapibus justo, at mattis lacus ultrices sed. Suspendisse suscipit luctus fermentum.
+  También damos una prueba alternativa más sencilla, aunque no es elemental ya que se basa en el criterio de Weyl.
+
 \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}
+%   \frametitle{Prueba alternativa {$^{(1)}$}}
+
+%   También damos una prueba alternativa más sencilla, aunque no es elemental ya que se basa en el criterio de Weyl.
+%   \pause
+
+%   \medskip
+%   \begin{block}{Criterio de Weyl}
+%     \medskip
+%     Una secuencia $X = x_1, x_2, \dots$ de números reales en $[0, 1)$ es $k$-distribuida si, y solo si, para cualquier vector de enteros no nulo $\bar{\ell} = (l_1, \dots, l_k)$:
+%     \pause
+
+%     \begin{equation*}
+%       \lim_{N \to \infty} \frac{1}{N} \sum_{n = 1}^{N} e^{2 \pi i \bar{\ell} \cdot \bar{w}_n} = 0 \text{,}
+%     \end{equation*}
+
+%     donde $W_k(X) = \bar{w}_1, \bar{w}_2, \dots$ es la secuencia de ventanas de orden $k$ de $X$.
+%   \end{block}
+%   \pause
+
+%   Podemos reducir el problema a una cota sobre una suma exponencial.
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}
+%   \frametitle{Prueba alternativa {$^{(2)}$}}
+
+%   Mauris euismod neque a lorem rutrum, id molestie eros consequat.
+%   \pause
+  
+%   In facilisis magna eu libero commodo, id tincidunt {\color{magenta} $\ell$} purus pellentesque.
+%   \pause
+
+%   \medskip
+%   \begin{definition}
+%     Fusce sit amet lacus viverra, viverra massa sit amet, placerat neque. Integer ipsum sapien, efficitur quis dui vitae, facilisis tempus dolor.
+%     \pause
+
+%     Duis ornare volutpat libero, at sodales dolor porttitor at.
+%     \pause
+%   \end{definition}
+
+%   In rutrum dapibus justo, at mattis lacus ultrices sed. Suspendisse suscipit luctus fermentum.
+% \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
   \frametitle{Problemas abiertos}
 
-  Quedan varias líneas claras de investigación futura:
+  Líneas de investigación futura:
   \pause
 
   \begin{itemize}
-    \item ¿Qué pasa cuando no se cumple que $\lim_{n \to \infty} n / t(n) = 0$? ¿La secuencia $L$ sigue siendo completamente equidistribuida?
+    \item ¿Qué pasa cuando no se cumple que $\lim_{n \to \infty} n / t(n) = 0$? ¿La secuencia $L$ sigue siendo completamente equidistribuida? % Idem seq K. % Para responder eso, es necesario entender mejor la discrepancia de la secuencia $L$.
     \pause
     
-    \item Para responder eso, es necesario entender mejor la discrepancia de la familia de secuencias de De Bruijn que se use para formar la secuencia $L$.
+    \item ¿Qué pasa si cambiamos las secuencias de De Bruijn por alguna de sus variantes?
     \pause
 
     \item Relacionado: ¿cumple la secuencia $L$ la propiedad de correlación de pares de Poisson?
   \end{itemize}
 \end{frame}
 
-\newcounter{finalframe}
-\setcounter{finalframe}{\value{framenumber}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \addtocounter{framenumber}{-1}
+\begin{frame}
+  \frametitle{¿Preguntas?}
 
-% \begin{frame}
-% \scriptsize
-
-% \begin{thebibliography}{1}
-
-% \setlength{\parskip}{-0.5mm}
-
-% \bibitem{agafonov1968normal}
-% V.~N. Agafonov.
-% \newblock Normal sequences and finite automata.
-% \newblock {\em Soviet Mathematics Doklady}, 9:324--325, 1968.
-
-% \bibitem{BecherCarton2017}
-% Ver\'onica Becher and Olivier Carton.
-% \newblock Normal numbers and computer science.
-% \newblock In Val\'erie Berth\'e and Michel Rig\'o, editors, {\em Sequences,
-%   Groups, and Number Theory}, Trends in Mathematics Series.
-%   Birkhauser/Springer, 2017.
-
-% \bibitem{borel1909probabilites}
-% {\'E}mile Borel.
-% \newblock Les probabilit{\'e}s d{\'e}nombrables et leurs applications
-%   arithm{\'e}tiques.
-% \newblock {\em Rendiconti del Circolo Matematico di Palermo}, 27(1):247--271,
-%   1909.
-
-% \bibitem{bugeaud2012distribution}
-% Yann Bugeaud.
-% \newblock {\em Distribution modulo one and Diophantine approximation}, volume
-%   193.
-% \newblock Cambridge University Press, 2012.
-
-% \bibitem{Champernowne:1933}
-% David Champernowne.
-% \newblock The {C}onstruction of {D}ecimals {N}ormal in the {S}cale of {T}en.
-% \newblock {\em The Journal of the London Mathematical Society},
-%   s1-8(4):254--260, 1933.
-
-% \bibitem{rogers1987theory}
-% Jr. Hartley~Rogers.
-% \newblock {\em Theory of recursive functions and effective computability}.
-% \newblock MIT Press, Cambridge, MA, second edition, 1987.
-
-% \bibitem{kamae1975normal}
-% Teturo Kamae and Benjamin Weiss.
-% \newblock Normal numbers and selection rules.
-% \newblock {\em Israel Journal of Mathematics}, 21(2):101--110, 1975.
-
-% \bibitem{Piatetski-Shapiro:1951}
-% I.~I. Piatetski-Shapiro.
-% \newblock On the law of distribution of the fractional parts of the exponential
-%   function.
-% \newblock {\em Izv. Akad. Nauk SSSR Ser. Mat.}, 15(1):47--52, 1951.
-
-% \bibitem{vandehey2016uncanny}
-% Joseph Vandehey.
-% \newblock Uncanny subsequence selections that generate normal numbers.
-% \newblock {\em ar{X}iv:1607.03531}, 2016.
-% \end{thebibliography}
-
-% \end{frame}
-
+  \vspace{-0.5cm}
+  \begin{figure}
+    \includegraphics[scale=0.3]{resources/ultima.png}
+    \caption{Secuencias $2$-distribuidas.}
+  \end{figure}
+\end{frame}
+ 
 \end{document}
