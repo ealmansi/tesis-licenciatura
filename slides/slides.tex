@@ -100,6 +100,54 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}{Secuencias de De Bruijn}
+  \only<1->{
+    Son secuencias muy estudiadas en combinatoria. Una secuencia $b$-aria de De Bruijn de orden $k$ ``contiene`` a cada posible secuencia $b$-aria de longitud $k$ exactamente una vez. Ejemplos:
+  }
+
+  \only<1->{Con $b = 2, k = 3$:}
+  \only<2->{\vspace{-0.3cm}}
+  \only<2>{\begin{center}$0, 0, 0, 1, 0, 1, 1, 1$\end{center}}
+  \only<3>{\begin{center}$\textbf{0, 0, 0}, 1, 0, 1, 1, 1$\end{center}}
+  \only<4>{\begin{center}$0, \textbf{0, 0, 1}, 0, 1, 1, 1$\end{center}}
+  \only<5>{\begin{center}$0, 0, \textbf{0, 1, 0}, 1, 1, 1$\end{center}}
+  \only<6>{\begin{center}$0, 0, 0, \textbf{1, 0, 1}, 1, 1$\end{center}}
+  \only<7>{\begin{center}$0, 0, 0, 1, \textbf{0, 1, 1}, 1$\end{center}}
+  \only<8>{\begin{center}$0, 0, 0, 1, 0, \textbf{1, 1, 1}$\end{center}}
+  \only<9>{\begin{center}$\textbf{0}, 0, 0, 1, 0, 1, \textbf{1, 1}$\end{center}}
+  \only<10>{\begin{center}$\textbf{0, 0}, 0, 1, 0, 1, 1, \textbf{1}$\end{center}}
+  \only<11->{\begin{center}$0, 0, 0, 1, 0, 1, 1, 1$\end{center}}
+  \only<11->{\vspace{-0.3cm}}
+
+  \only<11->{Con $b = 4, k = 2$:}
+  \only<11->{\vspace{-0.3cm}}
+  \only<12>{\begin{center}$\textbf{0, 0}, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<13>{\begin{center}$0, \textbf{0, 1}, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<14>{\begin{center}$0, 0, \textbf{1, 0}, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<15>{\begin{center}$0, 0, 1, \textbf{0, 2}, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<16>{\begin{center}$0, 0, 1, 0, \textbf{2, 0}, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<17>{\begin{center}$0, 0, 1, 0, 2, \textbf{0, 3}, 1, 1, 2, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<18>{\begin{center}$0, 0, 1, 0, 2, 0, \textbf{3, 1}, 1, 2, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<19>{\begin{center}$0, 0, 1, 0, 2, 0, 3, \textbf{1, 1}, 2, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<20>{\begin{center}$0, 0, 1, 0, 2, 0, 3, 1, \textbf{1, 2}, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<21>{\begin{center}$0, 0, 1, 0, 2, 0, 3, 1, 1, \textbf{2, 1}, 3, 2, 2, 3, 3$\end{center}}
+  \only<22>{\begin{center}$0, 0, 1, 0, 2, 0, 3, 1, 1, 2, \textbf{1, 3}, 2, 2, 3, 3$\end{center}}
+  \only<23>{\begin{center}$0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, \textbf{3, 2}, 2, 3, 3$\end{center}}
+  \only<24>{\begin{center}$0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, \textbf{2, 2}, 3, 3$\end{center}}
+  \only<25>{\begin{center}$0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, \textbf{2, 3}, 3$\end{center}}
+  \only<26>{\begin{center}$0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, \textbf{3, 3}$\end{center}}
+  \only<27>{\begin{center}$\textbf{0}, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, \textbf{3}$\end{center}}
+  \only<28->{\begin{center}$0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3$\end{center}}
+  \only<28->{\vspace{-0.3cm}}
+
+  \only<29->{Notar que siempre tienen longitud $b^k$.}
+  \only<28->{\vspace{-0.3cm}}
+
+  \only<30->{{\color{cyan} Estas secuencias tienen una relación con la noción de equidistribución.}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
   \frametitle{Sobre secuencias aleatorias {$^{(1)}$}}
 
@@ -147,12 +195,12 @@
 \begin{frame}
   \frametitle{Equidistribución {$^{(1)}$}}
 
-  Dado un entero $b \ge 2$, una secuencia de \textit{números enteros} $X = x_1, x_2, \dots$ del conjunto $\{ 0, 1, \dots, b - 1 \}$ es \textbf{equidistribuida} si todo valor posible aparece con la misma frecuencia asintótica:
+  Dado un entero $b \ge 2$, una secuencia de \textit{números enteros} $X = x_1, x_2, \dots$ del conjunto $\{ 1, \dots, b \}$ es \textbf{equidistribuida} si todo valor posible aparece con la misma frecuencia asintótica:
   \pause
 
   \begin{equation*}
     \begin{aligned}
-      Pr \left( x_i = j \right) = \frac{1}{b} \hspace*{1cm} \text{para todo } j \in \{ 0, \dots, b - 1 \} \text{,}
+      Pr \left( x_i = j \right) = \frac{1}{b} \hspace*{1cm} \text{para todo } j \in \{ 1, \dots, b \} \text{,}
     \end{aligned}
   \end{equation*}
   \pause
@@ -183,7 +231,7 @@
   donde $\displaystyle Pr \left( x_i \in I\, \right) = \lim_{N \to \infty} \frac{1}{N} \sum_{i = 1}^{N} \sigma(x_i \in I\,)$.
   \pause
 
-  Si $X$ es equidistribuida en $[0, 1)$, entonces para cualquier $b \ge 2$ la secuencia $Y = \lfloor b x_1 \rfloor, \lfloor b x_2 \rfloor, \dots$ es equidistribuida en $\{ 0, 1, \dots, b - 1 \}$.
+  % Si $X$ es equidistribuida en $[0, 1)$, entonces para cualquier $b \ge 2$ la secuencia $Y = \lfloor b x_1 \rfloor + 1, \lfloor b x_2 \rfloor + 1, \dots$ es equidistribuida en $\{ 1, \dots, b \}$.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -264,8 +312,8 @@
   \begin{itemize}
     \item Requerimiento básico de pseudo-aleatoriedad. Propiedades de equipartición y autocorrelación con retraso. \pause
     \item Calidad de un generador de números aleatorios o PRNG. Pruebas de aleatoriedad.\pause % Mersenne Twister
-    \item Integración de Montecarlo, criterio de la integral de Riemann. \pause
-    \item Vínculo: teoría de números, computación, probabilidad y estadística.
+    \item Integración de Montecarlo, criterio de la integral de Riemann.
+    % \item Vínculo: teoría de números, computación, probabilidad y estadística.
   \end{itemize}
   \pause
 
@@ -284,39 +332,6 @@
   \end{figure}
 \end{frame}
  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Secuencias de De Bruijn}
-  \only<1->{
-    Son secuencias muy estudiadas en combinatoria. Una secuencia $b$-aria de De Bruijn de orden $k$ ``contiene`` a cada posible secuencia $b$-aria de longitud $k$ exactamente una vez. Ejemplos:
-  }
-
-  \only<1->{Con $b = 2, k = 3$:}
-  \only<2->{\vspace{-0.3cm}}
-  \begin{center}
-    \only<2>{$0, 0, 0, 1, 0, 1, 1, 1$}
-    \only<3>{$\textbf{0, 0, 0}, 1, 0, 1, 1, 1$}
-    \only<4>{$0, \textbf{0, 0, 1}, 0, 1, 1, 1$}
-    \only<5>{$0, 0, \textbf{0, 1, 0}, 1, 1, 1$}
-    \only<6>{$0, 0, 0, \textbf{1, 0, 1}, 1, 1$}
-    \only<7>{$0, 0, 0, 1, \textbf{0, 1, 1}, 1$}
-    \only<8>{$0, 0, 0, 1, 0, \textbf{1, 1, 1}$}
-    \only<9>{$\textbf{0}, 0, 0, 1, 0, 1, \textbf{1, 1}$}
-    \only<10>{$\textbf{0, 0}, 0, 1, 0, 1, 1, \textbf{1}$}
-    \only<11->{$0, 0, 0, 1, 0, 1, 1, 1$}
-    \only<11->{\vspace{-0.3cm}}
-  \end{center}
-
-  \only<11->{Con $b = 4, k = 2$:}
-  \only<11->{\vspace{-0.3cm}}
-  \begin{center}
-    \only<12->{$0, 0, 1, 0, 2, 0, 3, 1, 1, 2, 1, 3, 2, 2, 3, 3$}
-  \end{center}
-
-  \only<13->{Notar que siempre tienen longitud $b^k$.}
-  \only<14->{{\color{cyan} ¿Qué relación tienen con las secuencias equidistribuidas?}}
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
